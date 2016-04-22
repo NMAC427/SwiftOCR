@@ -8,6 +8,7 @@ As of now, the SwiftOCR is optimized for recognizing short, one line long alphan
 - [x] High accuracy
 - [ ] Fast and accurate character segmentation algorithm
 - [ ] Add support for lowercase characters
+- [ ] Add support for connected character segmentation
 
 ## How does it work?
 

@@ -638,10 +638,10 @@ public class SwiftOCR {
                         return false
                     }
                 }()
-                let notToTall    = Double(maxY - minY) < Double(inputImage.size.height) * 0.75 || isTraining
-                let notToWide    = Double(maxX - minX) < Double(inputImage.size.width ) * 0.25 || isTraining
-                let notToShort   = Double(maxY - minY) > Double(inputImage.size.height) * 0.25 || isTraining
-                let notToThin    = Double(maxX - minX) > Double(inputImage.size.width ) * 0.01 || isTraining
+                let notToTall    = Double(maxY - minY) < Double(inputImage.size.height) * 0.75
+                let notToWide    = Double(maxX - minX) < Double(inputImage.size.width ) * 0.25
+                let notToShort   = Double(maxY - minY) > Double(inputImage.size.height) * 0.25
+                let notToThin    = Double(maxX - minX) > Double(inputImage.size.width ) * 0.01
                 
                 let notToSmall   = (maxX - minX)*(maxY - minY) > 100
                 

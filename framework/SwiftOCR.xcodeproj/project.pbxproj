@@ -12,9 +12,7 @@
 		373ED0BF1CC9071D00C4758B /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0BE1CC9071D00C4758B /* SwiftOCRTests.swift */; };
 		373ED0CB1CC9076300C4758B /* SwiftOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0C91CC9076300C4758B /* SwiftOCR.swift */; };
 		373ED0CC1CC9076300C4758B /* SwiftOCRTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0CA1CC9076300C4758B /* SwiftOCRTraining.swift */; };
-		373ED0E91CC909A500C4758B /* SwiftOCR Mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 373ED0E81CC909A500C4758B /* SwiftOCR Mac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		373ED0F01CC909A500C4758B /* SwiftOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED0E61CC909A500C4758B /* SwiftOCR.framework */; };
-		373ED0F51CC909A500C4758B /* SwiftOCR_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0F41CC909A500C4758B /* SwiftOCR_MacTests.swift */; };
 		373ED1081CC90A2300C4758B /* FFNN+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1001CC90A2300C4758B /* FFNN+Storage.swift */; };
 		373ED1091CC90A2300C4758B /* FFNN+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1001CC90A2300C4758B /* FFNN+Storage.swift */; };
 		373ED10A1CC90A2300C4758B /* FFNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1011CC90A2300C4758B /* FFNN.swift */; };
@@ -103,11 +101,7 @@
 		373ED0CF1CC908BD00C4758B /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
 		373ED0D21CC908BD00C4758B /* GPUImageMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImageMac.xcodeproj; path = "GPUImage-master/framework/GPUImageMac.xcodeproj"; sourceTree = "<group>"; };
 		373ED0E61CC909A500C4758B /* SwiftOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		373ED0E81CC909A500C4758B /* SwiftOCR Mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftOCR Mac.h"; sourceTree = "<group>"; };
-		373ED0EA1CC909A500C4758B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		373ED0EF1CC909A500C4758B /* SwiftOCR MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftOCR MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		373ED0F41CC909A500C4758B /* SwiftOCR_MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftOCR_MacTests.swift; sourceTree = "<group>"; };
-		373ED0F61CC909A500C4758B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		373ED1001CC90A2300C4758B /* FFNN+Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FFNN+Storage.swift"; sourceTree = "<group>"; };
 		373ED1011CC90A2300C4758B /* FFNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFNN.swift; sourceTree = "<group>"; };
 		373ED1021CC90A2300C4758B /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
@@ -167,8 +161,6 @@
 			children = (
 				373ED0B11CC9071D00C4758B /* SwiftOCR */,
 				373ED0BD1CC9071D00C4758B /* SwiftOCRTests */,
-				373ED0E71CC909A500C4758B /* SwiftOCR Mac */,
-				373ED0F31CC909A500C4758B /* SwiftOCR MacTests */,
 				373ED0B01CC9071C00C4758B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -202,24 +194,6 @@
 				373ED0C01CC9071D00C4758B /* Info.plist */,
 			);
 			path = SwiftOCRTests;
-			sourceTree = "<group>";
-		};
-		373ED0E71CC909A500C4758B /* SwiftOCR Mac */ = {
-			isa = PBXGroup;
-			children = (
-				373ED0E81CC909A500C4758B /* SwiftOCR Mac.h */,
-				373ED0EA1CC909A500C4758B /* Info.plist */,
-			);
-			path = "SwiftOCR Mac";
-			sourceTree = "<group>";
-		};
-		373ED0F31CC909A500C4758B /* SwiftOCR MacTests */ = {
-			isa = PBXGroup;
-			children = (
-				373ED0F41CC909A500C4758B /* SwiftOCR_MacTests.swift */,
-				373ED0F61CC909A500C4758B /* Info.plist */,
-			);
-			path = "SwiftOCR MacTests";
 			sourceTree = "<group>";
 		};
 		373ED0FF1CC90A2300C4758B /* FFNN */ = {
@@ -296,7 +270,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				373ED0E91CC909A500C4758B /* SwiftOCR Mac.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,7 +522,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				373ED0F51CC909A500C4758B /* SwiftOCR_MacTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,7 +706,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "SwiftOCR Mac/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftOCR/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -756,7 +728,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "SwiftOCR Mac/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftOCR/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;

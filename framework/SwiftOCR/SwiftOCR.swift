@@ -43,6 +43,8 @@ public class SwiftOCR {
     
     public   func recognize(completionHandler: (String) -> Void){
         
+        let confidenceThreshold:Float = 0.1 //Confidence must be bigger than the threshold
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             if let imageToRecognize = self.image {
                 #if os(iOS)
@@ -66,19 +68,22 @@ public class SwiftOCR {
                     do {
                         let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
                         let networkResult  = try self.network.update(inputs: blobData)
-                        let recognizedChar = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
-                        recognizedString.append(recognizedChar)
+                        
+                        if networkResult.maxElement() >= confidenceThreshold {
+                            let recognizedChar = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
+                            recognizedString.append(recognizedChar)
+                        }
                         
                         //Generate SwiftOCRRecognizedBlob
                         
                         var ocrRecognizedBlobCharactersWithConfidenceArray = [(character: Character, confidence: Float)]()
-                        let confidenceThreshold = networkResult.reduce(0, combine: +)/Float(networkResult.count)
+                        let ocrRecognizedBlobConfidenceThreshold = networkResult.reduce(0, combine: +)/Float(networkResult.count)
                         
                         for networkResultIndex in 0..<networkResult.count {
                             let characterConfidence = networkResult[networkResultIndex]
                             let character           = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)[networkResultIndex]
                             
-                            if characterConfidence >= confidenceThreshold {
+                            if characterConfidence >= ocrRecognizedBlobConfidenceThreshold {
                                 ocrRecognizedBlobCharactersWithConfidenceArray.append((character: character, confidence: characterConfidence))
                             }
                             

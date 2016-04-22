@@ -16,6 +16,8 @@ import CoreGraphics
 
 import GPUImage
 
+internal let network = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil, subdirectory: nil, localization: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: 36, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
+
 public class SwiftOCR {
     
     #if os(iOS)
@@ -28,8 +30,6 @@ public class SwiftOCR {
     
     public   var delegate:SwiftOCRDelegate?
     public   var currentOCRRecognizedBlobs = [SwiftOCRRecognizedBlob]()
-    
-    internal let network = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil, subdirectory: nil, localization: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: 36, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
     
     public   init(){}
     
@@ -67,7 +67,7 @@ public class SwiftOCR {
                     
                     do {
                         let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
-                        let networkResult  = try self.network.update(inputs: blobData)
+                        let networkResult  = try network.update(inputs: blobData)
                         
                         if networkResult.maxElement() >= confidenceThreshold {
                             let recognizedChar = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
@@ -126,11 +126,16 @@ public class SwiftOCR {
             let pixelData = CGDataProviderCopyData(CGImageGetDataProvider(inputImage.CGImage))
             let bitmapData: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
             
-            var data = [UInt16](count: (Int(inputImage.size.width) * Int(inputImage.size.height)) * 4, repeatedValue: 0)
             //data <- bitmapData
-            for y in 0..<Int(inputImage.size.height) {
-                for x in 0..<Int(inputImage.size.width) {
-                    let pixelInfo: Int = ((Int(inputImage.size.width) * Int(y)) + Int(x)) * 4
+            
+            let inputImageHeight = inputImage.size.height
+            let inputImageWidth  = inputImage.size.width
+            
+            var data = [UInt16](count: (Int(inputImageWidth) * Int(inputImageHeight)) * 4, repeatedValue: 0)
+            
+            for y in 0..<Int(inputImageHeight) {
+                for x in 0..<Int(inputImageWidth) {
+                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
                     for i in 0..<4 {
                         data[pixelInfo+i] = UInt16(bitmapData[pixelInfo+i])
                     }
@@ -148,11 +153,11 @@ public class SwiftOCR {
             }
             var labelsUnion = UnionFind<UInt16>()
             
-            for y in 0..<Int(inputImage.size.height) {
-                for x in 0..<Int(inputImage.size.width) {
-                    let pixelInfo: Int = ((Int(inputImage.size.width) * Int(y)) + Int(x)) * 4
+            for y in 0..<Int(inputImageHeight) {
+                for x in 0..<Int(inputImageWidth) {
+                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
                     let pixelIndex:(Int, Int) -> Int = {x, y in
-                        return ((Int(inputImage.size.width) * Int(y)) + Int(x))  * 4
+                        return ((Int(inputImageWidth) * Int(y)) + Int(x))  * 4
                     }
                     
                     if data[pixelInfo] == 0 { //Is Black
@@ -207,9 +212,9 @@ public class SwiftOCR {
             
             let parentArray = Array(labelsUnion.parent.uniq())
             
-            for y in 0..<Int(inputImage.size.height) {
-                for x in 0..<Int(inputImage.size.width) {
-                    let pixelInfo: Int = ((Int(inputImage.size.width) * Int(y)) + Int(x)) * 4
+            for y in 0..<Int(inputImageHeight) {
+                for x in 0..<Int(inputImageWidth) {
+                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
                     
                     if data[pixelInfo] != 255 {
                         data[pixelInfo] = UInt16(parentArray.indexOf(labelsUnion.setOf(data[pixelInfo]) ?? 0) ?? 0) // * UInt16(255/parentArray.count)
@@ -229,14 +234,14 @@ public class SwiftOCR {
             let yMergeRadius:CGFloat = 3
             
             for label in 0..<parentArray.count {
-                var minX = Int(inputImage.size.width)
+                var minX = Int(inputImageWidth)
                 var maxX = 0
-                var minY = Int(inputImage.size.height)
+                var minY = Int(inputImageHeight)
                 var maxY = 0
                 
-                for y in 0..<Int(inputImage.size.height) {
-                    for x in 0..<Int(inputImage.size.width) {
-                        let pixelInfo: Int = ((Int(inputImage.size.width) * Int(y)) + Int(x)) * 4
+                for y in 0..<Int(inputImageHeight) {
+                    for x in 0..<Int(inputImageWidth) {
+                        let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
                         
                         if data[pixelInfo] == UInt16(label) {
                             minX = min(minX, x)
@@ -266,7 +271,7 @@ public class SwiftOCR {
                 
                 let notToSmall   = (maxX - minX)*(maxY - minY) > 100
                 
-                let positionIsOK = minY != 0 && minX != 0 && maxY != Int(inputImage.size.height - 1) && maxX != Int(inputImage.size.width - 1)
+                let positionIsOK = minY != 0 && minX != 0 && maxY != Int(inputImageHeight - 1) && maxX != Int(inputImageWidth - 1)
                 
                 if minMaxCorrect && correctFormat && notToTall && notToWide && notToShort && notToThin && notToSmall && positionIsOK{
                     let labelRect = CGRectMake(CGFloat(CGFloat(minX) - xMergeRadius), CGFloat(CGFloat(minY) - yMergeRadius), CGFloat(CGFloat(maxX - minX) + 2*xMergeRadius + 1), CGFloat(CGFloat(maxY - minY) + 2*yMergeRadius + 1))
@@ -356,7 +361,7 @@ public class SwiftOCR {
      
      */
     
-    public   func preprocessImageForOCR(image:UIImage?) -> UIImage? {
+    public func preprocessImageForOCR(image:UIImage?) -> UIImage? {
         
         func getDodgeBlendImage(inputImage: UIImage) -> UIImage {
             let image = GPUImagePicture(image: inputImage)
@@ -517,11 +522,15 @@ public class SwiftOCR {
             let bitmapData: UnsafeMutablePointer<UInt8> = bitmapRep.bitmapData
             
             let cgImage = bitmapRep.CGImage
-            var data = [UInt16](count: (Int(inputImage.size.width) * Int(inputImage.size.height)) * bitmapRep.samplesPerPixel, repeatedValue: 0)
             //data <- bitmapData
-            for y in 0..<Int(inputImage.size.height) {
-                for x in 0..<Int(inputImage.size.width) {
-                    let pixelInfo: Int = ((Int(inputImage.size.width) * Int(y)) + Int(x)) * bitmapRep.samplesPerPixel
+            let inputImageHeight = inputImage.size.height
+            let inputImageWidth  = inputImage.size.width
+            
+            var data = [UInt16](count: (Int(inputImageWidth) * Int(inputImageHeight)) * bitmapRep.samplesPerPixel, repeatedValue: 0)
+            
+            for y in 0..<Int(inputImageHeight) {
+                for x in 0..<Int(inputImageWidth) {
+                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * bitmapRep.samplesPerPixel
                     for i in 0..<bitmapRep.samplesPerPixel {
                         data[pixelInfo+i] = UInt16(bitmapData[pixelInfo+i])
                     }
@@ -539,11 +548,11 @@ public class SwiftOCR {
             }
             var labelsUnion = UnionFind<UInt16>()
             
-            for y in 0..<Int(inputImage.size.height) {
-                for x in 0..<Int(inputImage.size.width) {
-                    let pixelInfo: Int = ((Int(inputImage.size.width) * Int(y)) + Int(x)) * bitmapRep.samplesPerPixel
+            for y in 0..<Int(inputImageHeight) {
+                for x in 0..<Int(inputImageWidth) {
+                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * bitmapRep.samplesPerPixel
                     let pixelIndex:(Int, Int) -> Int = {x, y in
-                        return ((Int(inputImage.size.width) * Int(y)) + Int(x))  * bitmapRep.samplesPerPixel
+                        return ((Int(inputImageWidth) * Int(y)) + Int(x))  * bitmapRep.samplesPerPixel
                     }
                     
                     if data[pixelInfo] == 0 { //Is Black
@@ -598,9 +607,9 @@ public class SwiftOCR {
             
             let parentArray = Array(labelsUnion.parent.uniq())
             
-            for y in 0..<Int(inputImage.size.height) {
-                for x in 0..<Int(inputImage.size.width) {
-                    let pixelInfo: Int = ((Int(inputImage.size.width) * Int(y)) + Int(x)) * bitmapRep.samplesPerPixel
+            for y in 0..<Int(inputImageHeight) {
+                for x in 0..<Int(inputImageWidth) {
+                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * bitmapRep.samplesPerPixel
                     
                     if data[pixelInfo] != 255 {
                         data[pixelInfo] = UInt16(parentArray.indexOf(labelsUnion.setOf(data[pixelInfo]) ?? 0) ?? 0) // * UInt16(255/parentArray.count)
@@ -620,14 +629,14 @@ public class SwiftOCR {
             let yMergeRadius:CGFloat = 3
             
             for label in 0..<parentArray.count {
-                var minX = Int(inputImage.size.width)
+                var minX = Int(inputImageWidth)
                 var maxX = 0
-                var minY = Int(inputImage.size.height)
+                var minY = Int(inputImageHeight)
                 var maxY = 0
                 
-                for y in 0..<Int(inputImage.size.height) {
-                    for x in 0..<Int(inputImage.size.width) {
-                        let pixelInfo: Int = ((Int(inputImage.size.width) * Int(y)) + Int(x)) * 4
+                for y in 0..<Int(inputImageHeight) {
+                    for x in 0..<Int(inputImageWidth) {
+                        let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
                         
                         if data[pixelInfo] == UInt16(label) {
                             minX = min(minX, x)
@@ -657,7 +666,7 @@ public class SwiftOCR {
                 
                 let notToSmall   = (maxX - minX)*(maxY - minY) > 100
                 
-                let positionIsOK = minY != 0 && minX != 0 && maxY != Int(inputImage.size.height - 1) && maxX != Int(inputImage.size.width - 1)
+                let positionIsOK = minY != 0 && minX != 0 && maxY != Int(inputImageHeight - 1) && maxX != Int(inputImageWidth - 1)
                 
                 if minMaxCorrect && correctFormat && notToTall && notToWide && notToShort && notToThin && notToSmall && positionIsOK{
                     let labelRect = CGRectMake(CGFloat(CGFloat(minX) - xMergeRadius), CGFloat(CGFloat(minY) - yMergeRadius), CGFloat(CGFloat(maxX - minX) + 2*xMergeRadius + 1), CGFloat(CGFloat(maxY - minY) + 2*yMergeRadius + 1))
@@ -747,7 +756,7 @@ public class SwiftOCR {
      
      */
     
-    public   func preprocessImageForOCR(image:NSImage?) -> NSImage? {
+    internal func preprocessImageForOCR(image:NSImage?) -> NSImage? {
         
         func getDodgeBlendImage(inputImage: NSImage) -> NSImage {
             let image = GPUImagePicture(image: inputImage)

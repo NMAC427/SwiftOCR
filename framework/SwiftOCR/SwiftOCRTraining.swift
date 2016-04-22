@@ -19,6 +19,8 @@ public class SwiftOCRTraining {
     private let network     = SwiftOCR().network
     private let ocrInstance = SwiftOCR()
     
+    public  init() {}
+    
     /**
      Generates a training set for the neural network and uses that for training the neural network.
      */

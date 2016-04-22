@@ -26,10 +26,12 @@ public class SwiftOCR {
     public var image:NSImage?
     #endif
     
-    public   var delegate:OCRDelegate?
-    public   var currentOCRRecognizedBlobs = [OCRRecognizedBlob]()
+    public   var delegate:SwiftOCRDelegate?
+    public   var currentOCRRecognizedBlobs = [SwiftOCRRecognizedBlob]()
     
     internal let network = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil, subdirectory: nil, localization: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: 36, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
+    
+    public   init(){}
     
     /**
      
@@ -57,7 +59,7 @@ public class SwiftOCR {
                 
                 let blobs                  = self.extractBlobs(preprocessedImage)
                 var recognizedString       = ""
-                var ocrRecognizedBlobArray = [OCRRecognizedBlob]()
+                var ocrRecognizedBlobArray = [SwiftOCRRecognizedBlob]()
                 
                 for blob in blobs {
                     
@@ -67,7 +69,7 @@ public class SwiftOCR {
                         let recognizedChar = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
                         recognizedString.append(recognizedChar)
                         
-                        //Generate OCRRecognizedBlob
+                        //Generate SwiftOCRRecognizedBlob
                         
                         var ocrRecognizedBlobCharactersWithConfidenceArray = [(character: Character, confidence: Float)]()
                         let confidenceThreshold = networkResult.reduce(0, combine: +)/Float(networkResult.count)
@@ -82,7 +84,7 @@ public class SwiftOCR {
                             
                         }
                         
-                        let currentRecognizedBlob = OCRRecognizedBlob(charactersWithConfidence: ocrRecognizedBlobCharactersWithConfidenceArray, boundingBox: blob.1)
+                        let currentRecognizedBlob = SwiftOCRRecognizedBlob(charactersWithConfidence: ocrRecognizedBlobCharactersWithConfidenceArray, boundingBox: blob.1)
                         
                         ocrRecognizedBlobArray.append(currentRecognizedBlob)
                         
@@ -882,7 +884,7 @@ public class SwiftOCR {
     
 }
 
-@objc public protocol OCRDelegate {
+@objc public protocol SwiftOCRDelegate {
     
     #if os(iOS)
     
@@ -914,7 +916,7 @@ public class SwiftOCR {
     #endif
 }
 
-public struct OCRRecognizedBlob {
+public struct SwiftOCRRecognizedBlob {
     
     let charactersWithConfidence: [(character: Character, confidence: Float)]!
     let boundingBox:              CGRect!

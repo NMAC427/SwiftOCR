@@ -19,14 +19,14 @@ If you ever used Tesseract you know how exhausting it can be to implement OCR in
 SwiftOCR is the exact opposite of Tesseract. It can be implemented using **just 6 lines of code**. 
 
 ```swift
-    import SwiftOCR
+import SwiftOCR
+
+let swiftOCRInstance   = SwiftOCR()
+swiftOCRInstance.image = myImage
     
-    let swiftOCRInstance   = SwiftOCR()
-    swiftOCRInstance.image = myImage
-    
-    swiftOCRInstance.recognize({recognizedString in
-        print(recognizedString)
-    })
+swiftOCRInstance.recognize({recognizedString in
+    print(recognizedString)
+})
 ```
 
 

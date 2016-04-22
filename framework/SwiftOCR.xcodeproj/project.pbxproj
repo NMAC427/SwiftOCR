@@ -29,12 +29,10 @@
 		373ED1171CC90A2300C4758B /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1071CC90A2300C4758B /* Vector.swift */; };
 		373ED1181CC90A2500C4758B /* SwiftOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0C91CC9076300C4758B /* SwiftOCR.swift */; };
 		373ED1191CC90A2700C4758B /* SwiftOCRTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0CA1CC9076300C4758B /* SwiftOCRTraining.swift */; };
-		373ED1221CC9107600C4758B /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1211CC9107600C4758B /* GPUImage.framework */; };
 		373ED12A1CC912E400C4758B /* OCR-Network in Resources */ = {isa = PBXBuildFile; fileRef = 373ED1281CC912C000C4758B /* OCR-Network */; };
 		373ED12E1CC914E400C4758B /* OCR-Network in Resources */ = {isa = PBXBuildFile; fileRef = 373ED1281CC912C000C4758B /* OCR-Network */; };
 		373ED1301CC917A500C4758B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED12F1CC917A500C4758B /* Extensions.swift */; };
 		373ED1311CC917A500C4758B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED12F1CC917A500C4758B /* Extensions.swift */; };
-		373ED13B1CC9206F00C4758B /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED13A1CC9206F00C4758B /* GPUImage.framework */; };
 		373ED15B1CC953F500C4758B /* TBBackground_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 373ED1571CC953F400C4758B /* TBBackground_1.png */; };
 		373ED15C1CC953F500C4758B /* TBBackground_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 373ED1571CC953F400C4758B /* TBBackground_1.png */; };
 		373ED15D1CC953F500C4758B /* TBBackground_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 373ED1581CC953F400C4758B /* TBBackground_2.png */; };
@@ -49,6 +47,8 @@
 		373ED1671CC9542400C4758B /* TBBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 373ED15A1CC953F400C4758B /* TBBackground_4.png */; };
 		373ED19A1CC9634500C4758B /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1991CC9634400C4758B /* UnionFind.swift */; };
 		373ED19B1CC9634500C4758B /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1991CC9634400C4758B /* UnionFind.swift */; };
+		377ECDCB1CCA43290050EFD4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1401CC9521B00C4758B /* GPUImage.framework */; };
+		377ECDCC1CCA432E0050EFD4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1491CC9521B00C4758B /* GPUImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,10 +109,8 @@
 		373ED1041CC90A2300C4758B /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		373ED1061CC90A2300C4758B /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		373ED1071CC90A2300C4758B /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
-		373ED1211CC9107600C4758B /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GPUImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/SwiftOCR-gfzcdaqyhsfbywdermepkmcezqqr/Build/Products/Debug/GPUImage.framework"; sourceTree = "<group>"; };
 		373ED1281CC912C000C4758B /* OCR-Network */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "OCR-Network"; sourceTree = "<group>"; };
 		373ED12F1CC917A500C4758B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		373ED13A1CC9206F00C4758B /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GPUImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/SwiftOCR-gfzcdaqyhsfbywdermepkmcezqqr/Build/Products/Debug-iphonesimulator/GPUImage.framework"; sourceTree = "<group>"; };
 		373ED1571CC953F400C4758B /* TBBackground_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TBBackground_1.png; path = "Realistic Training Images/TBBackground_1.png"; sourceTree = "<group>"; };
 		373ED1581CC953F400C4758B /* TBBackground_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TBBackground_2.png; path = "Realistic Training Images/TBBackground_2.png"; sourceTree = "<group>"; };
 		373ED1591CC953F400C4758B /* TBBackground_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TBBackground_3.png; path = "Realistic Training Images/TBBackground_3.png"; sourceTree = "<group>"; };
@@ -125,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				373ED13B1CC9206F00C4758B /* GPUImage.framework in Frameworks */,
+				377ECDCC1CCA432E0050EFD4 /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				373ED1221CC9107600C4758B /* GPUImage.framework in Frameworks */,
+				377ECDCB1CCA43290050EFD4 /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,8 +215,6 @@
 				373ED0B41CC9071D00C4758B /* Info.plist */,
 				373ED0CF1CC908BD00C4758B /* GPUImage.xcodeproj */,
 				373ED0D21CC908BD00C4758B /* GPUImageMac.xcodeproj */,
-				373ED13A1CC9206F00C4758B /* GPUImage.framework */,
-				373ED1211CC9107600C4758B /* GPUImage.framework */,
 				373ED1631CC9540100C4758B /* Realistic Training Images */,
 				373ED0FF1CC90A2300C4758B /* FFNN */,
 				373ED12F1CC917A500C4758B /* Extensions.swift */,
@@ -646,11 +642,13 @@
 				);
 				INFOPLIST_FILE = SwiftOCR/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = camenisch.nicolas.SwiftOCR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -669,10 +667,12 @@
 				);
 				INFOPLIST_FILE = SwiftOCR/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = camenisch.nicolas.SwiftOCR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -709,7 +709,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftOCR/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Mac";
 				PRODUCT_NAME = SwiftOCR;
 				SDKROOT = macosx;
@@ -731,7 +731,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftOCR/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Mac";
 				PRODUCT_NAME = SwiftOCR;
 				SDKROOT = macosx;

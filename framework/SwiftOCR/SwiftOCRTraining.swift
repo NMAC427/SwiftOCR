@@ -16,7 +16,6 @@ import GPUImage
 
 public class SwiftOCRTraining {
     
-    private let network     = SwiftOCR().network
     private let ocrInstance = SwiftOCR()
     
     public  init() {}

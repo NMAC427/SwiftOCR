@@ -96,7 +96,7 @@ public class SwiftOCRTraining {
                 
                 switch Int(floor(Double(arc4random()) / (Double(UINT32_MAX) + 1) * 4 )) {
                 case 0:
-                    let customImage = UIImage(named: "TBBackground_1.png")!.copy() as! UIImage
+                    let customImage = UIImage(named: "TBBackground_1.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
                     UIGraphicsBeginImageContext(customImage.size)
                     customImage.drawInRect(CGRect(origin: CGPoint.zero, size: customImage.size))
                     
@@ -116,7 +116,7 @@ public class SwiftOCRTraining {
                     
                 case 1:
                     
-                    let customImage = UIImage(named: "TBBackground_2.png")!.copy() as! UIImage
+                    let customImage = UIImage(named: "TBBackground_2.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
                     UIGraphicsBeginImageContext(customImage.size)
                     customImage.drawInRect(CGRect(origin: CGPoint.zero, size: customImage.size))
                     
@@ -136,7 +136,7 @@ public class SwiftOCRTraining {
                     
                 case 2:
                     
-                    let customImage = UIImage(named: "TBBackground_3.png")!.copy() as! UIImage
+                    let customImage = UIImage(named: "TBBackground_3.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
                     UIGraphicsBeginImageContext(customImage.size)
                     customImage.drawInRect(CGRect(origin: CGPoint.zero, size: customImage.size))
                     
@@ -153,7 +153,7 @@ public class SwiftOCRTraining {
                     
                 case 3:
                     
-                    let customImage = UIImage(named: "TBBackground_1.png")!.copy() as! UIImage
+                    let customImage = UIImage(named: "TBBackground_4.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
                     UIGraphicsBeginImageContext(customImage.size)
                     customImage.drawInRect(CGRect(origin: CGPoint.zero, size: customImage.size))
                     
@@ -180,10 +180,10 @@ public class SwiftOCRTraining {
                 
                 switch Int(floor(Double(arc4random()) / (Double(UINT32_MAX) + 1) * 4 )) {
                 case 0:
-                    let customImage = NSImage(named: "TBBackground_1.png")!.copy() as! NSImage
+                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TBBackground_1.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
                     customImage.lockFocus()
                     
-                    let tbFont = NSFont(name: "Arial Narrow", size: 49.3 + randomFloat(2))!
+                    let tbFont = NSFont(name: "Arial Narrow MS", size: 49.3 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSCenterTextAlignment
@@ -199,10 +199,10 @@ public class SwiftOCRTraining {
                     
                 case 1:
                     
-                    let customImage = NSImage(named: "TBBackground_2.png")!.copy() as! NSImage
+                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TBBackground_2.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
                     customImage.lockFocus()
                     
-                    let tbFont = NSFont(name: "Arial Narrow", size: 47.9 + randomFloat(2))!
+                    let tbFont = NSFont(name: "Arial Narrow MS", size: 47.9 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSCenterTextAlignment
@@ -217,8 +217,7 @@ public class SwiftOCRTraining {
                     currentImage = customImage
                     
                 case 2:
-                    
-                    let customImage = NSImage(named: "TBBackground_3.png")!.copy() as! NSImage
+                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TBBackground_3.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
                     customImage.lockFocus()
                     
                     let tbFont = NSFont(name: "Arial Narrow Bold", size: 47.7 + randomFloat(2))!
@@ -234,10 +233,10 @@ public class SwiftOCRTraining {
                     
                 case 3:
                     
-                    let customImage = NSImage(named: "TBBackground_1.png")!.copy() as! NSImage
+                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TBBackground_4.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
                     customImage.lockFocus()
                     
-                    let tbFont = NSFont(name: "Arial Narrow", size: 47.9 + randomFloat(2))!
+                    let tbFont = NSFont(name: "Arial Narrow MS", size: 47.9 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSCenterTextAlignment

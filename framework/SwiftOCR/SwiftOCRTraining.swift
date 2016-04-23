@@ -16,7 +16,8 @@ import GPUImage
 
 public class SwiftOCRTraining {
     
-    private let ocrInstance = SwiftOCR()
+    private let ocrInstance       = SwiftOCR()
+    private let trainingFontNames = ["Arial Narrow", "Arial Narrow Bold"]
     
     public  init() {}
     
@@ -84,6 +85,13 @@ public class SwiftOCRTraining {
             return  (0 - modi) + CGFloat(arc4random()) / CGFloat(UINT32_MAX) * (modi * 2)
         }
         
+        let randomFontName: () -> String = {
+            let randomDouble = Double(arc4random())/(Double(UINT32_MAX) + 1)
+            let randomIndex  = Int(floor(randomDouble * Double(trainingFontNames.count)))
+            return trainingFontNames[randomIndex]
+        }
+        
+        
         for _ in 0..<size {
             #if os(iOS)
                 var currentImage = UIImage()
@@ -96,15 +104,15 @@ public class SwiftOCRTraining {
                 
                 switch Int(floor(Double(arc4random()) / (Double(UINT32_MAX) + 1) * 4 )) {
                 case 0:
-                    let customImage = UIImage(named: "TBBackground_1.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
+                    let customImage = UIImage(named: "TrainingBackground_1.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
                     UIGraphicsBeginImageContext(customImage.size)
                     customImage.drawInRect(CGRect(origin: CGPoint.zero, size: customImage.size))
                     
-                    let tbFont = UIFont(name: "Arial Narrow", size: 49.3 + randomFloat(2))!
+                    let trainingFont = UIFont(name: randomFontName(), size: 49.3 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSTextAlignment.Center
-                    let attributes = [NSFontAttributeName: tbFont,
+                    let attributes = [NSFontAttributeName: trainingFont,
                                       NSKernAttributeName: CGFloat(8),
                                       NSForegroundColorAttributeName: UIColor(red: 27/255 + randomFloat(0.1), green: 16/255 + randomFloat(0.1), blue: 16/255 + randomFloat(0.1), alpha: 80/100 + randomFloat(0.1)),
                                       NSParagraphStyleAttributeName: paragraphStyle]
@@ -116,15 +124,15 @@ public class SwiftOCRTraining {
                     
                 case 1:
                     
-                    let customImage = UIImage(named: "TBBackground_2.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
+                    let customImage = UIImage(named: "TrainingBackground_2.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
                     UIGraphicsBeginImageContext(customImage.size)
                     customImage.drawInRect(CGRect(origin: CGPoint.zero, size: customImage.size))
                     
-                    let tbFont = UIFont(name: "Arial Narrow", size: 47.9 + randomFloat(2))!
+                    let trainingFont = UIFont(name: randomFontName(), size: 47.9 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSTextAlignment.Center
-                    let attributes = [NSFontAttributeName: tbFont,
+                    let attributes = [NSFontAttributeName: trainingFont,
                                       NSKernAttributeName: CGFloat(8),
                                       NSForegroundColorAttributeName: UIColor(red: 56/255 + randomFloat(0.1), green: 36/255 + randomFloat(0.1), blue: 36/255 + randomFloat(0.1), alpha: 97/100 + randomFloat(0.1)),
                                       NSParagraphStyleAttributeName: paragraphStyle]
@@ -136,15 +144,15 @@ public class SwiftOCRTraining {
                     
                 case 2:
                     
-                    let customImage = UIImage(named: "TBBackground_3.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
+                    let customImage = UIImage(named: "TrainingBackground_3.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
                     UIGraphicsBeginImageContext(customImage.size)
                     customImage.drawInRect(CGRect(origin: CGPoint.zero, size: customImage.size))
                     
-                    let tbFont = UIFont(name: "Arial Narrow Bold", size: 47.7 + randomFloat(2))!
+                    let trainingFont = UIFont(name: randomFontName(), size: 47.7 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSTextAlignment.Center
-                    let attributes = [NSFontAttributeName: tbFont, NSKernAttributeName: CGFloat(8), NSForegroundColorAttributeName: UIColor(red: 76/255 + randomFloat(0.1), green: 47/255 + randomFloat(0.1), blue: 36/255 + randomFloat(0.1), alpha: 90/100 + randomFloat(0.1)), NSParagraphStyleAttributeName: paragraphStyle]
+                    let attributes = [NSFontAttributeName: trainingFont, NSKernAttributeName: CGFloat(8), NSForegroundColorAttributeName: UIColor(red: 76/255 + randomFloat(0.1), green: 47/255 + randomFloat(0.1), blue: 36/255 + randomFloat(0.1), alpha: 90/100 + randomFloat(0.1)), NSParagraphStyleAttributeName: paragraphStyle]
                     
                     NSString(string: code).drawInRect(CGRect(origin: CGPointMake(0 + randomFloat(5), -15.1 + randomFloat(5)), size: customImage.size), withAttributes: attributes)
                     
@@ -153,15 +161,15 @@ public class SwiftOCRTraining {
                     
                 case 3:
                     
-                    let customImage = UIImage(named: "TBBackground_4.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
+                    let customImage = UIImage(named: "TrainingBackground_4.png", inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
                     UIGraphicsBeginImageContext(customImage.size)
                     customImage.drawInRect(CGRect(origin: CGPoint.zero, size: customImage.size))
                     
-                    let tbFont = UIFont(name: "Arial Narrow", size: 47.9 + randomFloat(2))!
+                    let trainingFont = UIFont(name: randomFontName(), size: 47.9 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSTextAlignment.Center
-                    let attributes = [NSFontAttributeName: tbFont,
+                    let attributes = [NSFontAttributeName: trainingFont,
                                       NSKernAttributeName: CGFloat(8),
                                       NSForegroundColorAttributeName: UIColor(red: 24/255 + randomFloat(0.05), green: 16/255 + randomFloat(0.05), blue: 16/255 + randomFloat(0.05), alpha: 80/100 + randomFloat(0.1)),
                                       NSParagraphStyleAttributeName: paragraphStyle]
@@ -180,14 +188,14 @@ public class SwiftOCRTraining {
                 
                 switch Int(floor(Double(arc4random()) / (Double(UINT32_MAX) + 1) * 4 )) {
                 case 0:
-                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TBBackground_1.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
+                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TrainingBackground_1.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
                     customImage.lockFocus()
                     
-                    let tbFont = NSFont(name: "Arial Narrow MS", size: 49.3 + randomFloat(2))!
+                    let trainingFont = NSFont(name: randomFontName(), size: 49.3 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSCenterTextAlignment
-                    let attributes = [NSFontAttributeName: tbFont,
+                    let attributes = [NSFontAttributeName: trainingFont,
                                       NSKernAttributeName: CGFloat(8),
                                       NSForegroundColorAttributeName :NSColor(calibratedRed: 27/255 + randomFloat(0.1), green: 16/255 + randomFloat(0.1), blue: 16/255 + randomFloat(0.1), alpha: 80/100 + randomFloat(0.1)),
                                       NSParagraphStyleAttributeName: paragraphStyle]
@@ -199,14 +207,14 @@ public class SwiftOCRTraining {
                     
                 case 1:
                     
-                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TBBackground_2.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
+                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TrainingBackground_2.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
                     customImage.lockFocus()
                     
-                    let tbFont = NSFont(name: "Arial Narrow MS", size: 47.9 + randomFloat(2))!
+                    let trainingFont = NSFont(name: randomFontName(), size: 47.9 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSCenterTextAlignment
-                    let attributes = [NSFontAttributeName: tbFont,
+                    let attributes = [NSFontAttributeName: trainingFont,
                                       NSKernAttributeName: CGFloat(8),
                                       NSForegroundColorAttributeName :NSColor(calibratedRed: 56/255 + randomFloat(0.1), green: 36/255 + randomFloat(0.1), blue: 36/255 + randomFloat(0.1), alpha: 97/100 + randomFloat(0.1)),
                                       NSParagraphStyleAttributeName: paragraphStyle]
@@ -217,14 +225,14 @@ public class SwiftOCRTraining {
                     currentImage = customImage
                     
                 case 2:
-                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TBBackground_3.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
+                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TrainingBackground_3.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
                     customImage.lockFocus()
                     
-                    let tbFont = NSFont(name: "Arial Narrow Bold", size: 47.7 + randomFloat(2))!
+                    let trainingFont = NSFont(name: randomFontName(), size: 47.7 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSCenterTextAlignment
-                    let attributes = [NSFontAttributeName: tbFont, NSKernAttributeName: CGFloat(8), NSForegroundColorAttributeName :NSColor(calibratedRed: 76/255 + randomFloat(0.1), green: 47/255 + randomFloat(0.1), blue: 36/255 + randomFloat(0.1), alpha: 90/100 + randomFloat(0.1)), NSParagraphStyleAttributeName: paragraphStyle]
+                    let attributes = [NSFontAttributeName: trainingFont, NSKernAttributeName: CGFloat(8), NSForegroundColorAttributeName :NSColor(calibratedRed: 76/255 + randomFloat(0.1), green: 47/255 + randomFloat(0.1), blue: 36/255 + randomFloat(0.1), alpha: 90/100 + randomFloat(0.1)), NSParagraphStyleAttributeName: paragraphStyle]
                     
                     NSString(string: code).drawInRect(CGRect(origin: CGPointMake(0 + randomFloat(5), -15.1 + randomFloat(5)), size: customImage.size), withAttributes: attributes)
                     
@@ -233,14 +241,14 @@ public class SwiftOCRTraining {
                     
                 case 3:
                     
-                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TBBackground_4.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
+                    let customImage = NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource("TrainingBackground_4.png", withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
                     customImage.lockFocus()
                     
-                    let tbFont = NSFont(name: "Arial Narrow MS", size: 47.9 + randomFloat(2))!
+                    let trainingFont = NSFont(name: randomFontName(), size: 47.9 + randomFloat(2))!
                     
                     let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
                     paragraphStyle.alignment = NSCenterTextAlignment
-                    let attributes = [NSFontAttributeName: tbFont,
+                    let attributes = [NSFontAttributeName: trainingFont,
                                       NSKernAttributeName: CGFloat(8),
                                       NSForegroundColorAttributeName :NSColor(calibratedRed: 24/255 + randomFloat(0.05), green: 16/255 + randomFloat(0.05), blue: 16/255 + randomFloat(0.05), alpha: 80/100 + randomFloat(0.1)),
                                       NSParagraphStyleAttributeName: paragraphStyle]

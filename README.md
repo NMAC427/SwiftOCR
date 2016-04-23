@@ -32,6 +32,7 @@ swiftOCRInstance.recognize({recognizedString in
 })
 ```
 
+To improve your exterience with SwiftOCR you should set your Build Configuration to `Release`.
 
 ### Dependencies
 

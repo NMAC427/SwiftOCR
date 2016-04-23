@@ -8,9 +8,28 @@ On a iPhone 4s SwiftOCR (0.5 sec) is about **700% faster** than Tesseract (3.5 s
 ## Features
 - [x] Easy to use training class
 - [x] High accuracy
+- [x] Great default image preprocessing
 - [ ] Fast and accurate character segmentation algorithm
 - [ ] Add support for lowercase characters
 - [ ] Add support for connected character segmentation
+
+## Why should I choose SwiftOCR instead of Tesseract?
+
+This is a really good question. 
+
+If you want to recognize normal text like a poem or a news article, go with Tesseract , but if you want to recognize short, alphanumeric codes (e.g. gift cards), I would advise you to choose SwiftOCR because that's where it exceeds.
+
+Tesseract is written in C++ and over 30 years old. To use it you first have to write a Objective-C++ wrapper for it. The main issue that's slowing down Tesseract is the way memory is managed. Too many memory allocations and releases slow it down.
+
+
+I did some testing on over 50 difficult images containing alphanumeric codes. The results where astonishing. SwiftOCR beat Tesseract in every category.
+
+ |SwiftOCR | Tesseract
+------------ |------------ | -------------
+Speed | 0.08 sec. | 0.63 sec.
+Accuracy | 97.7% | 45.2%
+CPU | ~30% | ~90% 
+Memory | 45 MB | 73 MB
 
 ## How does it work?
 
@@ -33,6 +52,16 @@ swiftOCRInstance.recognize({recognizedString in
 ```
 
 To improve your exterience with SwiftOCR you should set your Build Configuration to `Release`.
+
+## Examples
+
+Here is an example images. SwiftOCR has no problem recognizing it. If you try to recognize the same image using Tesseract the output is 'LABMENSW' ?!?!?.
+
+![Image 1](example/OS X/SwiftOCR Example OS X/SwiftOCR Example OS X/images/Test 2.png)
+
+This image is difficult to recognize because of two reasons:
+- The lighting is uneven. This problem is solved by the inovative preprocessing algorithm os SwiftOCR.
+- The text in this image is distorted. Since SwiftOCR uses a neural network for the recognition, this isn't a real problem. A NN is flexible like a human brain and can recognize even the most distorted image (most of the time).
 
 ### Dependencies
 

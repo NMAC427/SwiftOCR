@@ -1,0 +1,416 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		37A40DB91CCB620400337ACD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40DB81CCB620400337ACD /* AppDelegate.swift */; };
+		37A40DBB1CCB620400337ACD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A40DBA1CCB620400337ACD /* ViewController.swift */; };
+		37A40DBD1CCB620400337ACD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A40DBC1CCB620400337ACD /* Assets.xcassets */; };
+		37A40DC01CCB620400337ACD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A40DBE1CCB620400337ACD /* Main.storyboard */; };
+		37A40DD81CCB624800337ACD /* SwiftOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A40DD51CCB623B00337ACD /* SwiftOCR.framework */; };
+		37A40DD91CCB624800337ACD /* SwiftOCR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37A40DD51CCB623B00337ACD /* SwiftOCR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37A40DE01CCB716300337ACD /* Test 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A40DDE1CCB716300337ACD /* Test 1.png */; };
+		37A40DE11CCB716300337ACD /* Test 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A40DDF1CCB716300337ACD /* Test 2.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37A40DD01CCB623B00337ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A40DC71CCB623700337ACD /* SwiftOCR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 373ED0AF1CC9071C00C4758B;
+			remoteInfo = SwiftOCR;
+		};
+		37A40DD21CCB623B00337ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A40DC71CCB623700337ACD /* SwiftOCR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 373ED0B91CC9071D00C4758B;
+			remoteInfo = SwiftOCRTests;
+		};
+		37A40DD41CCB623B00337ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A40DC71CCB623700337ACD /* SwiftOCR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 373ED0E61CC909A500C4758B;
+			remoteInfo = "SwiftOCR Mac";
+		};
+		37A40DD61CCB623B00337ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A40DC71CCB623700337ACD /* SwiftOCR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 373ED0EF1CC909A500C4758B;
+			remoteInfo = "SwiftOCR MacTests";
+		};
+		37A40DDA1CCB624800337ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A40DC71CCB623700337ACD /* SwiftOCR.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 373ED0E51CC909A400C4758B;
+			remoteInfo = "SwiftOCR Mac";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		37A40DDC1CCB624800337ACD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				37A40DD91CCB624800337ACD /* SwiftOCR.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		37A40DB51CCB620400337ACD /* SwiftOCR Example OS X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftOCR Example OS X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A40DB81CCB620400337ACD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		37A40DBA1CCB620400337ACD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		37A40DBC1CCB620400337ACD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		37A40DBF1CCB620400337ACD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		37A40DC11CCB620400337ACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37A40DC71CCB623700337ACD /* SwiftOCR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftOCR.xcodeproj; path = ../../../framework/SwiftOCR.xcodeproj; sourceTree = "<group>"; };
+		37A40DDE1CCB716300337ACD /* Test 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Test 1.png"; sourceTree = "<group>"; };
+		37A40DDF1CCB716300337ACD /* Test 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Test 2.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		37A40DB21CCB620400337ACD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37A40DD81CCB624800337ACD /* SwiftOCR.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		37A40DAC1CCB620400337ACD = {
+			isa = PBXGroup;
+			children = (
+				37A40DC71CCB623700337ACD /* SwiftOCR.xcodeproj */,
+				37A40DB71CCB620400337ACD /* SwiftOCR Example OS X */,
+				37A40DB61CCB620400337ACD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		37A40DB61CCB620400337ACD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37A40DB51CCB620400337ACD /* SwiftOCR Example OS X.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		37A40DB71CCB620400337ACD /* SwiftOCR Example OS X */ = {
+			isa = PBXGroup;
+			children = (
+				37A40DB81CCB620400337ACD /* AppDelegate.swift */,
+				37A40DBA1CCB620400337ACD /* ViewController.swift */,
+				37A40DDD1CCB716300337ACD /* Test Images */,
+				37A40DBC1CCB620400337ACD /* Assets.xcassets */,
+				37A40DBE1CCB620400337ACD /* Main.storyboard */,
+				37A40DC11CCB620400337ACD /* Info.plist */,
+			);
+			path = "SwiftOCR Example OS X";
+			sourceTree = "<group>";
+		};
+		37A40DC81CCB623700337ACD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37A40DD11CCB623B00337ACD /* SwiftOCR.framework */,
+				37A40DD31CCB623B00337ACD /* SwiftOCRTests.xctest */,
+				37A40DD51CCB623B00337ACD /* SwiftOCR.framework */,
+				37A40DD71CCB623B00337ACD /* SwiftOCR MacTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		37A40DDD1CCB716300337ACD /* Test Images */ = {
+			isa = PBXGroup;
+			children = (
+				37A40DDE1CCB716300337ACD /* Test 1.png */,
+				37A40DDF1CCB716300337ACD /* Test 2.png */,
+			);
+			name = "Test Images";
+			path = images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		37A40DB41CCB620400337ACD /* SwiftOCR Example OS X */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37A40DC41CCB620400337ACD /* Build configuration list for PBXNativeTarget "SwiftOCR Example OS X" */;
+			buildPhases = (
+				37A40DB11CCB620400337ACD /* Sources */,
+				37A40DB21CCB620400337ACD /* Frameworks */,
+				37A40DB31CCB620400337ACD /* Resources */,
+				37A40DDC1CCB624800337ACD /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37A40DDB1CCB624800337ACD /* PBXTargetDependency */,
+			);
+			name = "SwiftOCR Example OS X";
+			productName = "SwiftOCR Example OS X";
+			productReference = 37A40DB51CCB620400337ACD /* SwiftOCR Example OS X.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		37A40DAD1CCB620400337ACD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Nicolas Camenisch";
+				TargetAttributes = {
+					37A40DB41CCB620400337ACD = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 37A40DB01CCB620400337ACD /* Build configuration list for PBXProject "SwiftOCR Example OS X" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 37A40DAC1CCB620400337ACD;
+			productRefGroup = 37A40DB61CCB620400337ACD /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 37A40DC81CCB623700337ACD /* Products */;
+					ProjectRef = 37A40DC71CCB623700337ACD /* SwiftOCR.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				37A40DB41CCB620400337ACD /* SwiftOCR Example OS X */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		37A40DD11CCB623B00337ACD /* SwiftOCR.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftOCR.framework;
+			remoteRef = 37A40DD01CCB623B00337ACD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37A40DD31CCB623B00337ACD /* SwiftOCRTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftOCRTests.xctest;
+			remoteRef = 37A40DD21CCB623B00337ACD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37A40DD51CCB623B00337ACD /* SwiftOCR.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftOCR.framework;
+			remoteRef = 37A40DD41CCB623B00337ACD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37A40DD71CCB623B00337ACD /* SwiftOCR MacTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SwiftOCR MacTests.xctest";
+			remoteRef = 37A40DD61CCB623B00337ACD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		37A40DB31CCB620400337ACD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37A40DBD1CCB620400337ACD /* Assets.xcassets in Resources */,
+				37A40DE01CCB716300337ACD /* Test 1.png in Resources */,
+				37A40DC01CCB620400337ACD /* Main.storyboard in Resources */,
+				37A40DE11CCB716300337ACD /* Test 2.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		37A40DB11CCB620400337ACD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37A40DBB1CCB620400337ACD /* ViewController.swift in Sources */,
+				37A40DB91CCB620400337ACD /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37A40DDB1CCB624800337ACD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SwiftOCR Mac";
+			targetProxy = 37A40DDA1CCB624800337ACD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		37A40DBE1CCB620400337ACD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37A40DBF1CCB620400337ACD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		37A40DC21CCB620400337ACD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		37A40DC31CCB620400337ACD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		37A40DC51CCB620400337ACD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = "SwiftOCR Example OS X/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Example-OS-X";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		37A40DC61CCB620400337ACD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = "SwiftOCR Example OS X/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Example-OS-X";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		37A40DB01CCB620400337ACD /* Build configuration list for PBXProject "SwiftOCR Example OS X" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37A40DC21CCB620400337ACD /* Debug */,
+				37A40DC31CCB620400337ACD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37A40DC41CCB620400337ACD /* Build configuration list for PBXNativeTarget "SwiftOCR Example OS X" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37A40DC51CCB620400337ACD /* Debug */,
+				37A40DC61CCB620400337ACD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 37A40DAD1CCB620400337ACD /* Project object */;
+}

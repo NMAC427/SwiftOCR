@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "373ED0E51CC909A400C4758B"
-               BuildableName = "SwiftOCR.framework"
-               BlueprintName = "SwiftOCR Mac"
-               ReferencedContainer = "container:SwiftOCR.xcodeproj">
+               BlueprintIdentifier = "37A40DB41CCB620400337ACD"
+               BuildableName = "SwiftOCR Example OS X.app"
+               BlueprintName = "SwiftOCR Example OS X"
+               ReferencedContainer = "container:SwiftOCR Example OS X.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,24 +28,14 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "373ED0EE1CC909A500C4758B"
-               BuildableName = "SwiftOCR MacTests.xctest"
-               BlueprintName = "SwiftOCR MacTests"
-               ReferencedContainer = "container:SwiftOCR.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "373ED0E51CC909A400C4758B"
-            BuildableName = "SwiftOCR.framework"
-            BlueprintName = "SwiftOCR Mac"
-            ReferencedContainer = "container:SwiftOCR.xcodeproj">
+            BlueprintIdentifier = "37A40DB41CCB620400337ACD"
+            BuildableName = "SwiftOCR Example OS X.app"
+            BlueprintName = "SwiftOCR Example OS X"
+            ReferencedContainer = "container:SwiftOCR Example OS X.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -61,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "373ED0E51CC909A400C4758B"
-            BuildableName = "SwiftOCR.framework"
-            BlueprintName = "SwiftOCR Mac"
-            ReferencedContainer = "container:SwiftOCR.xcodeproj">
+            BlueprintIdentifier = "37A40DB41CCB620400337ACD"
+            BuildableName = "SwiftOCR Example OS X.app"
+            BlueprintName = "SwiftOCR Example OS X"
+            ReferencedContainer = "container:SwiftOCR Example OS X.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -79,15 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "373ED0E51CC909A400C4758B"
-            BuildableName = "SwiftOCR.framework"
-            BlueprintName = "SwiftOCR Mac"
-            ReferencedContainer = "container:SwiftOCR.xcodeproj">
+            BlueprintIdentifier = "37A40DB41CCB620400337ACD"
+            BuildableName = "SwiftOCR Example OS X.app"
+            BlueprintName = "SwiftOCR Example OS X"
+            ReferencedContainer = "container:SwiftOCR Example OS X.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

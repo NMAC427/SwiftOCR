@@ -51,6 +51,15 @@ swiftOCRInstance.recognize({recognizedString in
 
 To improve your exterience with SwiftOCR you should set your Build Configuration to `Release`.
 
+#### Training
+
+Training SwiftOCR is pretty easy. There are only a few steps you have to do, before it can recognize a new font.
+
+1. In the `SwiftOCR.swift` file replace `internal let network = FFNN.fromFile(...)` with `internal let network = FFNN(inputs: 321, hidden: 100, outputs: 36, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))`.
+2. Set the `errorThreshold` value in the training file to something like 15.
+3. Add your font name to the `trainingFontNames` array at the beginning of the `SwiftOCRTraining.swift`file.
+4. Call `trainWithCharSet()` and wait.
+
 ## Examples
 
 Here is an example image. SwiftOCR has no problem recognizing it. If you try to recognize the same image using Tesseract the output is 'LABMENSW' ?!?!?.
@@ -61,13 +70,13 @@ This image is difficult to recognize because of two reasons:
 - The lighting is uneven. This problem is solved by the inovative preprocessing algorithm os SwiftOCR.
 - The text in this image is distorted. Since SwiftOCR uses a neural network for the recognition, this isn't a real problem. A NN is flexible like a human brain and can recognize even the most distorted image (most of the time).
 
-### Dependencies
+## Dependencies
 
 * [Swift-AI](https://github.com/collinhundley/Swift-AI)
 * [GPUImage](https://github.com/BradLarson/GPUImage)
 * [Union-Find](https://github.com/hollance/swift-algorithm-club/tree/master/Union-Find)
 
-### License
+## License
 
     The code in this repository is licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

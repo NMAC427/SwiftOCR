@@ -1,7 +1,9 @@
 # SwiftOCR
 
 SwiftOCR is a fast and simple OCR library written in Swift. It uses a neural network for image recognition.
-As of now, the SwiftOCR is optimized for recognizing short, one line long alphanumeric codes (e.g. DI4C9CM). We currently  support iOS and OS X. 
+As of now, the SwiftOCR is optimized for recognizing short, one line long alphanumeric codes (e.g. DI4C9CM). We currently  support iOS and OS X.
+
+On a iPhone 4s SwiftOCR (0.5 sec) is about 700% faster than Tesseract (3.5 sec).
 
 ## Features
 - [x] Easy to use training class

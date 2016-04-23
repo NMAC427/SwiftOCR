@@ -55,7 +55,7 @@ To improve your exterience with SwiftOCR you should set your Build Configuration
 
 ## Examples
 
-Here is an example images. SwiftOCR has no problem recognizing it. If you try to recognize the same image using Tesseract the output is 'LABMENSW' ?!?!?.
+Here is an example image. SwiftOCR has no problem recognizing it. If you try to recognize the same image using Tesseract the output is 'LABMENSW' ?!?!?.
 
 ![Image 1](example/OS X/SwiftOCR Example OS X/SwiftOCR Example OS X/images/Test 2.png)
 

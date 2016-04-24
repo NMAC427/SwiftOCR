@@ -16,7 +16,7 @@ import CoreGraphics
 
 import GPUImage
 
-internal let network = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil, subdirectory: nil, localization: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: 36, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
+internal let globalNetwork = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil, subdirectory: nil, localization: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: 36, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
 
 public class SwiftOCR {
     
@@ -27,6 +27,8 @@ public class SwiftOCR {
     ///The image used for OCR
     public var image:NSImage?
     #endif
+    
+    private  let network = globalNetwork.copy()
     
     public   var delegate:SwiftOCRDelegate?
     public   var currentOCRRecognizedBlobs = [SwiftOCRRecognizedBlob]()
@@ -67,7 +69,7 @@ public class SwiftOCR {
                     
                     do {
                         let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
-                        let networkResult  = try network.update(inputs: blobData)
+                        let networkResult  = try self.network.update(inputs: blobData)
                         
                         if networkResult.maxElement() >= confidenceThreshold {
                             let recognizedChar = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]

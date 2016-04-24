@@ -42,7 +42,7 @@ public class SwiftOCRTraining {
                 let testAnswers  =  testData.map({return $0.1})
                 
                 do {
-                    try network.train(inputs: trainInputs, answers: trainAnswers, testInputs: testInputs, testAnswers: testAnswers, errorThreshold: errorThreshold)
+                    try globalNetwork.train(inputs: trainInputs, answers: trainAnswers, testInputs: testInputs, testAnswers: testAnswers, errorThreshold: errorThreshold)
                     saveOCR()
                 } catch {
                     print(error)
@@ -87,8 +87,8 @@ public class SwiftOCRTraining {
         
         let randomFontName: () -> String = {
             let randomDouble = Double(arc4random())/(Double(UINT32_MAX) + 1)
-            let randomIndex  = Int(floor(randomDouble * Double(trainingFontNames.count)))
-            return trainingFontNames[randomIndex]
+            let randomIndex  = Int(floor(randomDouble * Double(self.trainingFontNames.count)))
+            return self.trainingFontNames[randomIndex]
         }
         
         
@@ -331,7 +331,7 @@ public class SwiftOCRTraining {
     
     private func saveOCR() {
         //Set this path to the location of your OCR-Network file.
-        network.writeToFile(NSURL(string: "file://~/Desktop/ImageFilter/ImageFilter/OCR-Network")!)
+        globalNetwork.writeToFile(NSURL(string: "file://~/Desktop/ImageFilter/ImageFilter/OCR-Network")!)
     }
     
     /**
@@ -343,7 +343,7 @@ public class SwiftOCRTraining {
         
         for i in testData {
             do {
-                let networkResult = try network.update(inputs: i.0)
+                let networkResult = try globalNetwork.update(inputs: i.0)
                 
                 print(Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)[i.1.indexOf(1)!],
                       Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)[networkResult.indexOf(networkResult.maxElement()!)!])

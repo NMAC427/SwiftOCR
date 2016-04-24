@@ -22,7 +22,7 @@ class SwiftOCRTests: XCTestCase {
     }
     
     func testSingleSwiftOCR() {
-        let testImage = UIImage(contentsOfFile: NSBundle(forClass: SwiftOCR.self).pathForResource("Test 2", ofType: "png")!)!
+        let testImage = NSImage(byReferencingFile: NSBundle(forClass: SwiftOCR.self).pathForImageResource("Test 2.png")!)!
         
         self.measureBlock({
             let expection = self.expectationWithDescription("testSingleSwiftOCR Expection")
@@ -39,8 +39,8 @@ class SwiftOCRTests: XCTestCase {
     }
     
     func testMultipleSwiftOCR() {
-        let testImageOne = UIImage(contentsOfFile: NSBundle(forClass: SwiftOCR.self).pathForResource("Test 1", ofType: "png")!)!
-        let testImageTwo = UIImage(contentsOfFile: NSBundle(forClass: SwiftOCR.self).pathForResource("Test 2", ofType: "png")!)!
+        let testImageOne = NSImage(byReferencingFile: NSBundle(forClass: SwiftOCR.self).pathForImageResource("Test 1.png")!)!
+        let testImageTwo = NSImage(byReferencingFile: NSBundle(forClass: SwiftOCR.self).pathForImageResource("Test 2.png")!)!
         
         self.measureBlock({
             let expectionOne = self.expectationWithDescription("testMultipleSwiftOCR Expection One")

@@ -137,6 +137,9 @@ public final class FFNN {
     /// The input indices corresponding to each hidden weight.
     private var inputIndices = [Int]()
     
+    public func copy() -> FFNN {
+        return FFNN.init(inputs: self.numInputs, hidden: self.numHidden, outputs: self.numOutputs, learningRate: self.learningRate, momentum: self.momentumFactor, weights: self.getWeights(), activationFunction: self.activationFunction, errorFunction: self.errorFunction)
+    }
     
     /// Initializes a feed-forward neural network.
     public init(inputs: Int, hidden: Int, outputs: Int, learningRate: Float = 0.7, momentum: Float = 0.4, weights: [Float]? = nil, activationFunction: ActivationFunction = .Default, errorFunction: ErrorFunction = .Default(average: false)) {

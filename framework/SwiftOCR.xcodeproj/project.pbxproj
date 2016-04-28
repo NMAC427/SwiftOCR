@@ -33,8 +33,8 @@
 		373ED12E1CC914E400C4758B /* OCR-Network in Resources */ = {isa = PBXBuildFile; fileRef = 373ED1281CC912C000C4758B /* OCR-Network */; };
 		373ED1301CC917A500C4758B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED12F1CC917A500C4758B /* Extensions.swift */; };
 		373ED1311CC917A500C4758B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED12F1CC917A500C4758B /* Extensions.swift */; };
-		373ED19A1CC9634500C4758B /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1991CC9634400C4758B /* UnionFind.swift */; };
-		373ED19B1CC9634500C4758B /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1991CC9634400C4758B /* UnionFind.swift */; };
+		373ED19A1CC9634500C4758B /* SwiftOCRBlobUnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1991CC9634400C4758B /* SwiftOCRBlobUnionFind.swift */; };
+		373ED19B1CC9634500C4758B /* SwiftOCRBlobUnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1991CC9634400C4758B /* SwiftOCRBlobUnionFind.swift */; };
 		3778855D1CCCF11900A41020 /* SwiftOCRTests OS X.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778855C1CCCF11900A41020 /* SwiftOCRTests OS X.swift */; };
 		377885611CCCF16600A41020 /* Test 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778855F1CCCF16600A41020 /* Test 1.png */; };
 		377885621CCCF16600A41020 /* Test 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778855F1CCCF16600A41020 /* Test 1.png */; };
@@ -116,7 +116,7 @@
 		373ED1071CC90A2300C4758B /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		373ED1281CC912C000C4758B /* OCR-Network */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "OCR-Network"; sourceTree = "<group>"; };
 		373ED12F1CC917A500C4758B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		373ED1991CC9634400C4758B /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
+		373ED1991CC9634400C4758B /* SwiftOCRBlobUnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCRBlobUnionFind.swift; sourceTree = "<group>"; };
 		3778855C1CCCF11900A41020 /* SwiftOCRTests OS X.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftOCRTests OS X.swift"; sourceTree = "<group>"; };
 		3778855F1CCCF16600A41020 /* Test 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Test 1.png"; sourceTree = "<group>"; };
 		377885601CCCF16600A41020 /* Test 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Test 2.png"; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 				373ED1631CC9540100C4758B /* Realistic Training Images */,
 				373ED0FF1CC90A2300C4758B /* FFNN */,
 				373ED12F1CC917A500C4758B /* Extensions.swift */,
-				373ED1991CC9634400C4758B /* UnionFind.swift */,
+				373ED1991CC9634400C4758B /* SwiftOCRBlobUnionFind.swift */,
 			);
 			name = "Supporting files";
 			sourceTree = "<group>";
@@ -500,7 +500,7 @@
 				373ED0CC1CC9076300C4758B /* SwiftOCRTraining.swift in Sources */,
 				373ED10C1CC90A2300C4758B /* Matrix.swift in Sources */,
 				373ED1161CC90A2300C4758B /* Vector.swift in Sources */,
-				373ED19A1CC9634500C4758B /* UnionFind.swift in Sources */,
+				373ED19A1CC9634500C4758B /* SwiftOCRBlobUnionFind.swift in Sources */,
 				373ED10A1CC90A2300C4758B /* FFNN.swift in Sources */,
 				373ED10E1CC90A2300C4758B /* Operations.swift in Sources */,
 				373ED0CB1CC9076300C4758B /* SwiftOCR.swift in Sources */,
@@ -526,7 +526,7 @@
 				373ED1151CC90A2300C4758B /* Storage.swift in Sources */,
 				373ED1171CC90A2300C4758B /* Vector.swift in Sources */,
 				373ED1091CC90A2300C4758B /* FFNN+Storage.swift in Sources */,
-				373ED19B1CC9634500C4758B /* UnionFind.swift in Sources */,
+				373ED19B1CC9634500C4758B /* SwiftOCRBlobUnionFind.swift in Sources */,
 				373ED10B1CC90A2300C4758B /* FFNN.swift in Sources */,
 				373ED1111CC90A2300C4758B /* Random.swift in Sources */,
 				373ED10D1CC90A2300C4758B /* Matrix.swift in Sources */,

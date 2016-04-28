@@ -153,7 +153,8 @@ public class SwiftOCR {
                     }
                 }
             }
-            var labelsUnion = UnionFind<UInt16>()
+            
+            var labelsUnion = SwiftOCRBlobUnionFind()
             
             for y in 0..<Int(inputImageHeight) {
                 for x in 0..<Int(inputImageWidth) {
@@ -166,14 +167,14 @@ public class SwiftOCR {
                         if x == 0 { //Left no pixel
                             if y == 0 { //Top no pixel
                                 currentLabel += 1
-                                labelsUnion.addSetWith(currentLabel)
+                                labelsUnion.insertElement(currentLabel)
                                 data[pixelInfo] = currentLabel
                             } else if y > 0 { //Top pixel
                                 if data[pixelIndex(x, y-1)] != 255 { //Top Label
                                     data[pixelInfo] = data[pixelIndex(x, y-1)]
                                 } else { //Top no Label
                                     currentLabel += 1
-                                    labelsUnion.addSetWith(currentLabel)
+                                    labelsUnion.insertElement(currentLabel)
                                     data[pixelInfo] = currentLabel
                                 }
                             }
@@ -183,13 +184,13 @@ public class SwiftOCR {
                                     data[pixelInfo] = data[pixelIndex(x-1,y)]
                                 } else { //Left no Label
                                     currentLabel += 1
-                                    labelsUnion.addSetWith(currentLabel)
+                                    labelsUnion.insertElement(currentLabel)
                                     data[pixelInfo] = currentLabel
                                 }
                             } else if y > 0 { //Top pixel
                                 if data[pixelIndex(x-1,y)] != 255 { //Left Label
                                     if data[pixelIndex(x,y-1)] != 255 { //Top Label
-                                        labelsUnion.unionSetsContaining(data[pixelIndex(x,y-1)], and: data[pixelIndex(x-1,y)])
+                                        labelsUnion.combineSetContaining(data[pixelIndex(x,y-1)], with: data[pixelIndex(x-1,y)])
                                         data[pixelInfo] = data[pixelIndex(x,y-1)]
                                     } else { //Top no Label
                                         data[pixelInfo] = data[pixelIndex(x-1,y)]
@@ -199,7 +200,7 @@ public class SwiftOCR {
                                         data[pixelInfo] = data[pixelIndex(x,y-1)]
                                     } else { //Top no Label
                                         currentLabel += 1
-                                        labelsUnion.addSetWith(currentLabel)
+                                        labelsUnion.insertElement(currentLabel)
                                         data[pixelInfo] = currentLabel
                                     }
                                 }
@@ -212,14 +213,14 @@ public class SwiftOCR {
             
             //Second Pass
             
-            let parentArray = Array(labelsUnion.parent.uniq())
+            labelsUnion.flattenInPlace()
             
             for y in 0..<Int(inputImageHeight) {
                 for x in 0..<Int(inputImageWidth) {
                     let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
                     
                     if data[pixelInfo] != 255 {
-                        data[pixelInfo] = UInt16(parentArray.indexOf(labelsUnion.setOf(data[pixelInfo]) ?? 0) ?? 0) // * UInt16(255/parentArray.count)
+                        data[pixelInfo] = UInt16(labelsUnion.indexOfElement(data[pixelInfo]) ?? 0)
                     }
                     
                 }
@@ -235,7 +236,7 @@ public class SwiftOCR {
             let xMergeRadius:CGFloat = 1
             let yMergeRadius:CGFloat = 3
             
-            for label in 0..<parentArray.count {
+            for label in 0..<labelsUnion.unionSet.count {
                 var minX = Int(inputImageWidth)
                 var maxX = 0
                 var minY = Int(inputImageHeight)
@@ -277,7 +278,7 @@ public class SwiftOCR {
                 
                 if minMaxCorrect && correctFormat && notToTall && notToWide && notToShort && notToThin && notToSmall && positionIsOK{
                     let labelRect = CGRectMake(CGFloat(CGFloat(minX) - xMergeRadius), CGFloat(CGFloat(minY) - yMergeRadius), CGFloat(CGFloat(maxX - minX) + 2*xMergeRadius + 1), CGFloat(CGFloat(maxY - minY) + 2*yMergeRadius + 1))
-                    mergeUnion.addSetWith(UInt16(label))
+                    mergeUnion.insertElement(label)
                     mergeLabelRects.append(labelRect)
                 }
             }
@@ -285,12 +286,11 @@ public class SwiftOCR {
             for rectOneIndex in 0..<mergeLabelRects.count {
                 for rectTwoIndex in 0..<mergeLabelRects.count {
                     if mergeLabelRects[rectOneIndex].intersects(mergeLabelRects[rectTwoIndex]) && rectOneIndex != rectTwoIndex{
-                        mergeUnion.unionSetsContaining(UInt16(rectOneIndex), and: UInt16(rectTwoIndex))
+                        mergeUnion.combineSetContaining(rectOneIndex, with: rectTwoIndex)
                         mergeLabelRects[rectOneIndex].unionInPlace(mergeLabelRects[rectTwoIndex])
                     }
                 }
             }
-            
             var outputImages = [(UIImage, CGRect)]()
             
             mergeLabelRects.uniqInPlace()
@@ -548,27 +548,27 @@ public class SwiftOCR {
                     }
                 }
             }
-            var labelsUnion = UnionFind<UInt16>()
+            var labelsUnion = SwiftOCRBlobUnionFind()
             
             for y in 0..<Int(inputImageHeight) {
                 for x in 0..<Int(inputImageWidth) {
-                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * bitmapRep.samplesPerPixel
+                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
                     let pixelIndex:(Int, Int) -> Int = {x, y in
-                        return ((Int(inputImageWidth) * Int(y)) + Int(x))  * bitmapRep.samplesPerPixel
+                        return ((Int(inputImageWidth) * Int(y)) + Int(x))  * 4
                     }
                     
                     if data[pixelInfo] == 0 { //Is Black
                         if x == 0 { //Left no pixel
                             if y == 0 { //Top no pixel
                                 currentLabel += 1
-                                labelsUnion.addSetWith(currentLabel)
+                                labelsUnion.insertElement(currentLabel)
                                 data[pixelInfo] = currentLabel
                             } else if y > 0 { //Top pixel
                                 if data[pixelIndex(x, y-1)] != 255 { //Top Label
                                     data[pixelInfo] = data[pixelIndex(x, y-1)]
                                 } else { //Top no Label
                                     currentLabel += 1
-                                    labelsUnion.addSetWith(currentLabel)
+                                    labelsUnion.insertElement(currentLabel)
                                     data[pixelInfo] = currentLabel
                                 }
                             }
@@ -578,13 +578,13 @@ public class SwiftOCR {
                                     data[pixelInfo] = data[pixelIndex(x-1,y)]
                                 } else { //Left no Label
                                     currentLabel += 1
-                                    labelsUnion.addSetWith(currentLabel)
+                                    labelsUnion.insertElement(currentLabel)
                                     data[pixelInfo] = currentLabel
                                 }
                             } else if y > 0 { //Top pixel
                                 if data[pixelIndex(x-1,y)] != 255 { //Left Label
                                     if data[pixelIndex(x,y-1)] != 255 { //Top Label
-                                        labelsUnion.unionSetsContaining(data[pixelIndex(x,y-1)], and: data[pixelIndex(x-1,y)])
+                                        labelsUnion.combineSetContaining(data[pixelIndex(x,y-1)], with: data[pixelIndex(x-1,y)])
                                         data[pixelInfo] = data[pixelIndex(x,y-1)]
                                     } else { //Top no Label
                                         data[pixelInfo] = data[pixelIndex(x-1,y)]
@@ -594,7 +594,7 @@ public class SwiftOCR {
                                         data[pixelInfo] = data[pixelIndex(x,y-1)]
                                     } else { //Top no Label
                                         currentLabel += 1
-                                        labelsUnion.addSetWith(currentLabel)
+                                        labelsUnion.insertElement(currentLabel)
                                         data[pixelInfo] = currentLabel
                                     }
                                 }
@@ -607,14 +607,14 @@ public class SwiftOCR {
             
             //Second Pass
             
-            let parentArray = Array(labelsUnion.parent.uniq())
+            labelsUnion.flattenInPlace()
             
             for y in 0..<Int(inputImageHeight) {
                 for x in 0..<Int(inputImageWidth) {
-                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * bitmapRep.samplesPerPixel
+                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
                     
                     if data[pixelInfo] != 255 {
-                        data[pixelInfo] = UInt16(parentArray.indexOf(labelsUnion.setOf(data[pixelInfo]) ?? 0) ?? 0) // * UInt16(255/parentArray.count)
+                        data[pixelInfo] = UInt16(labelsUnion.indexOfElement(data[pixelInfo]) ?? 0)
                     }
                     
                 }
@@ -624,13 +624,13 @@ public class SwiftOCR {
             
             //Merge rects
             
-            var mergeUnion = UnionFind<UInt16>()
+            var mergeUnion = SwiftOCRBlobUnionFind()
             var mergeLabelRects = [CGRect]()
             
             let xMergeRadius:CGFloat = 1
             let yMergeRadius:CGFloat = 3
             
-            for label in 0..<parentArray.count {
+            for label in 0..<labelsUnion.unionSet.count {
                 var minX = Int(inputImageWidth)
                 var maxX = 0
                 var minY = Int(inputImageHeight)
@@ -672,7 +672,7 @@ public class SwiftOCR {
                 
                 if minMaxCorrect && correctFormat && notToTall && notToWide && notToShort && notToThin && notToSmall && positionIsOK{
                     let labelRect = CGRectMake(CGFloat(CGFloat(minX) - xMergeRadius), CGFloat(CGFloat(minY) - yMergeRadius), CGFloat(CGFloat(maxX - minX) + 2*xMergeRadius + 1), CGFloat(CGFloat(maxY - minY) + 2*yMergeRadius + 1))
-                    mergeUnion.addSetWith(UInt16(label))
+                    mergeUnion.insertElement(label)
                     mergeLabelRects.append(labelRect)
                 }
             }
@@ -680,7 +680,7 @@ public class SwiftOCR {
             for rectOneIndex in 0..<mergeLabelRects.count {
                 for rectTwoIndex in 0..<mergeLabelRects.count {
                     if mergeLabelRects[rectOneIndex].intersects(mergeLabelRects[rectTwoIndex]) && rectOneIndex != rectTwoIndex{
-                        mergeUnion.unionSetsContaining(UInt16(rectOneIndex), and: UInt16(rectTwoIndex))
+                        mergeUnion.combineSetContaining(rectOneIndex, with: rectTwoIndex)
                         mergeLabelRects[rectOneIndex].unionInPlace(mergeLabelRects[rectTwoIndex])
                     }
                 }

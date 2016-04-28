@@ -189,7 +189,11 @@ public class SwiftOCR {
                             } else if y > 0 { //Top pixel
                                 if data[pixelIndex(x-1,y)] != 255 { //Left Label
                                     if data[pixelIndex(x,y-1)] != 255 { //Top Label
-                                        labelsUnion.unionSetsContaining(data[pixelIndex(x,y-1)], and: data[pixelIndex(x-1,y)])
+    
+                                        if data[pixelIndex(x,y-1)] != data[pixelIndex(x-1,y)] {
+                                            labelsUnion.unionSetsContaining(data[pixelIndex(x,y-1)], and: data[pixelIndex(x-1,y)])
+                                        }
+    
                                         data[pixelInfo] = data[pixelIndex(x,y-1)]
                                     } else { //Top no Label
                                         data[pixelInfo] = data[pixelIndex(x-1,y)]
@@ -584,7 +588,11 @@ public class SwiftOCR {
                             } else if y > 0 { //Top pixel
                                 if data[pixelIndex(x-1,y)] != 255 { //Left Label
                                     if data[pixelIndex(x,y-1)] != 255 { //Top Label
-                                        labelsUnion.unionSetsContaining(data[pixelIndex(x,y-1)], and: data[pixelIndex(x-1,y)])
+                                        
+                                        if data[pixelIndex(x,y-1)] != data[pixelIndex(x-1,y)] {
+                                            labelsUnion.unionSetsContaining(data[pixelIndex(x,y-1)], and: data[pixelIndex(x-1,y)])
+                                        }
+                                        
                                         data[pixelInfo] = data[pixelIndex(x,y-1)]
                                     } else { //Top no Label
                                         data[pixelInfo] = data[pixelIndex(x-1,y)]

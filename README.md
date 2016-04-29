@@ -70,6 +70,10 @@ This image is difficult to recognize because of two reasons:
 - The lighting is uneven. This problem is solved by the inovative preprocessing algorithm os SwiftOCR.
 - The text in this image is distorted. Since SwiftOCR uses a neural network for the recognition, this isn't a real problem. A NN is flexible like a human brain and can recognize even the most distorted image (most of the time).
 
+## TODO
+
+- [ ] Port to [GPUImage 2](https://github.com/BradLarson/GPUImage2)
+
 ## Dependencies
 
 * [Swift-AI](https://github.com/collinhundley/Swift-AI)

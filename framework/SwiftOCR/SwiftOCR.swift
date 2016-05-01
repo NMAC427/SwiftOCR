@@ -350,8 +350,8 @@ public class SwiftOCR {
             
             let resizedCGImage = CGImageCreateWithImageInRect(CGBitmapContextCreateImage(context), CGRectMake(0, 0, cropSize.width, cropSize.height))!
             
-            let resizedNSImage = UIImage(CGImage: resizedCGImage)
-            resizedBlobs.append(resizedNSImage)
+            let resizedUIImage = UIImage(CGImage: resizedCGImage)
+            resizedBlobs.append(resizedUIImage)
         }
         
         return resizedBlobs

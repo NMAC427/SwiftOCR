@@ -682,7 +682,15 @@
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yRS-VM-got">
                                 <rect key="frame" x="18" y="8" width="444" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="QHA-o4-OPE">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="QHA-o4-OPE">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7AA-Xu-x04">
+                                <rect key="frame" x="135" y="143" width="210" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Drag here image to be recognized" id="GAH-ZN-7bh">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -700,6 +708,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="helperLabel" destination="GAH-ZN-7bh" id="iWY-d1-Nq0"/>
                         <outlet property="imageView" destination="ZHg-3V-gDD" id="Xl0-NA-MgT"/>
                         <outlet property="recognizedLabel" destination="QHA-o4-OPE" id="tve-Qj-YWQ"/>
                     </connections>

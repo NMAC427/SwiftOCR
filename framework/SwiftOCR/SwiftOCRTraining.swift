@@ -54,7 +54,7 @@ public class SwiftOCRTraining {
     }
     
     /**
-     Generates realistic images OCR and converts them to a flot array.
+     Generates realistic images OCR and converts them to a float array.
      
      - Parameter size: The number of images to generate. This does **not** correspond to the the count of elements in the array that gets returned.
      - Returns:        An array containing the input and answers for the neural network.
@@ -335,7 +335,7 @@ public class SwiftOCRTraining {
     }
     
     /**
-     Use this methode to test the neural network.
+     Use this method to test the neural network.
      */
     
     private func testOCR() {

@@ -22,7 +22,9 @@ import GPUImage
     public typealias OCRImage = NSImage
 #endif
 
-internal let globalNetwork = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil, subdirectory: nil, localization: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: 36, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
+internal let recognizableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+internal var globalNetwork = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil, subdirectory: nil, localization: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
 
 public class SwiftOCR {
     
@@ -70,7 +72,7 @@ public class SwiftOCR {
                         let networkResult  = try self.network.update(inputs: blobData)
                         
                         if networkResult.maxElement() >= confidenceThreshold {
-                            let recognizedChar = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
+                            let recognizedChar = Array(recognizableCharacters.characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
                             recognizedString.append(recognizedChar)
                         }
                         
@@ -81,7 +83,7 @@ public class SwiftOCR {
                         
                         for networkResultIndex in 0..<networkResult.count {
                             let characterConfidence = networkResult[networkResultIndex]
-                            let character           = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)[networkResultIndex]
+                            let character           = Array(recognizableCharacters.characters)[networkResultIndex]
                             
                             if characterConfidence >= ocrRecognizedBlobConfidenceThreshold {
                                 ocrRecognizedBlobCharactersWithConfidenceArray.append((character: character, confidence: characterConfidence))

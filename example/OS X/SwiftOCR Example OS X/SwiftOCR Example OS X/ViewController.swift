@@ -10,12 +10,13 @@ import Cocoa
 import SwiftOCR
 
 class ViewController: NSViewController {
-    
+
     @IBOutlet weak var imageView: NSImageView!
     @IBOutlet weak var recognizedLabel: NSTextFieldCell!
-    
+    @IBOutlet weak var helperLabel: NSTextFieldCell!
+
     var inputImage:NSImage?
-    
+
     let swiftOCRInstance = SwiftOCR()
 
     override func viewDidLoad() {
@@ -29,8 +30,9 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-    
+
     @IBAction func imageDidChange(sender: NSImageView) {
+        helperLabel.textColor = NSColor.clearColor()
         inputImage = sender.image
         ocr()
     }

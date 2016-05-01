@@ -49,7 +49,7 @@ swiftOCRInstance.recognize({recognizedString in
 })
 ```
 
-To improve your exterience with SwiftOCR you should set your Build Configuration to `Release`.
+To improve your experience with SwiftOCR you should set your Build Configuration to `Release`.
 
 #### Training
 
@@ -67,7 +67,7 @@ Here is an example image. SwiftOCR has no problem recognizing it. If you try to 
 ![Image 1](example/OS X/SwiftOCR Example OS X/SwiftOCR Example OS X/images/Test 2.png)
 
 This image is difficult to recognize because of two reasons:
-- The lighting is uneven. This problem is solved by the inovative preprocessing algorithm os SwiftOCR.
+- The lighting is uneven. This problem is solved by the innovative preprocessing algorithm of SwiftOCR.
 - The text in this image is distorted. Since SwiftOCR uses a neural network for the recognition, this isn't a real problem. A NN is flexible like a human brain and can recognize even the most distorted image (most of the time).
 
 ## TODO

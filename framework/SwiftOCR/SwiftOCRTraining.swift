@@ -93,11 +93,9 @@ public class SwiftOCRTraining {
         
         
         for _ in 0..<size {
-            #if os(iOS)
-                var currentImage = UIImage()
-            #else
-                var currentImage = NSImage()
-            #endif
+            
+            var currentImage = OCRImage()
+            
             let code = randomCode()
             
             #if os(iOS)
@@ -283,11 +281,7 @@ public class SwiftOCRTraining {
             transformFilter.useNextFrameForImageCapture()
             transformImage.processImage()
             
-            #if os(iOS)
-                var transformedImage:UIImage? = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
-            #else
-                var transformedImage:NSImage? = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
-            #endif
+            var transformedImage:OCRImage? = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
             
             while transformedImage?.size == CGSize.zero {
                 transformFilter.useNextFrameForImageCapture()

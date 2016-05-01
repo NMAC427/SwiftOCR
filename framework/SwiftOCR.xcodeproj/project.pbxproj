@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372BCEB21CD67C0A00BAABEB /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1401CC9521B00C4758B /* GPUImage.framework */; };
 		373ED0B31CC9071D00C4758B /* SwiftOCR.h in Headers */ = {isa = PBXBuildFile; fileRef = 373ED0B21CC9071D00C4758B /* SwiftOCR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		373ED0BA1CC9071D00C4758B /* SwiftOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED0AF1CC9071C00C4758B /* SwiftOCR.framework */; };
 		373ED0BF1CC9071D00C4758B /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0BE1CC9071D00C4758B /* SwiftOCRTests.swift */; };
@@ -52,11 +53,17 @@
 		377885721CCCF37400A41020 /* TrainingBackground_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856B1CCCF37400A41020 /* TrainingBackground_3.png */; };
 		377885731CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
 		377885741CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
-		377ECDCB1CCA43290050EFD4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1401CC9521B00C4758B /* GPUImage.framework */; };
 		377ECDCC1CCA432E0050EFD4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1491CC9521B00C4758B /* GPUImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		372BCEB31CD67C1100BAABEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 373ED0D21CC908BD00C4758B /* GPUImageMac.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BCA3F31B17239B6500E28AEC;
+			remoteInfo = GPUImage;
+		};
 		373ED0BB1CC9071D00C4758B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 373ED0A61CC9071C00C4758B /* Project object */;
@@ -147,7 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377ECDCB1CCA43290050EFD4 /* GPUImage.framework in Frameworks */,
+				372BCEB21CD67C0A00BAABEB /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +346,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				372BCEB41CD67C1100BAABEB /* PBXTargetDependency */,
 			);
 			name = "SwiftOCR Mac";
 			productName = "SwiftOCR Mac";
@@ -548,6 +556,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		372BCEB41CD67C1100BAABEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImage;
+			targetProxy = 372BCEB31CD67C1100BAABEB /* PBXContainerItemProxy */;
+		};
 		373ED0BC1CC9071D00C4758B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 373ED0AE1CC9071C00C4758B /* SwiftOCR */;

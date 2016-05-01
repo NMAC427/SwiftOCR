@@ -1,7 +1,7 @@
 # SwiftOCR
 
 SwiftOCR is a fast and simple OCR library written in Swift. It uses a neural network for image recognition.
-As of now, SwiftOCR is optimized for recognizing short, one line long alphanumeric codes (e.g. DI4C9CM). We currently  support iOS and OS X.
+As of now, SwiftOCR is optimized for recognizing short, one line long alphanumeric codes (e.g. DI4C9CM). We currently support iOS and OS X.
 
 ## Features
 - [x] Easy to use training class
@@ -15,7 +15,7 @@ As of now, SwiftOCR is optimized for recognizing short, one line long alphanumer
 
 This is a really good question. 
 
-If you want to recognize normal text like a poem or a news article, go with Tesseract , but if you want to recognize short, alphanumeric codes (e.g. gift cards), I would advise you to choose SwiftOCR because that's where it exceeds.
+If you want to recognize normal text like a poem or a news article, go with Tesseract, but if you want to recognize short, alphanumeric codes (e.g. gift cards), I would advise you to choose SwiftOCR because that's where it exceeds.
 
 Tesseract is written in C++ and over 30 years old. To use it you first have to write a Objective-C++ wrapper for it. The main issue that's slowing down Tesseract is the way memory is managed. Too many memory allocations and releases slow it down.
 

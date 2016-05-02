@@ -6,21 +6,9 @@
 //  Copyright © 2016 Nicolas Camenisch. All rights reserved.
 //
 
-#if os(iOS)
-    import UIKit
-#else
-    import Cocoa
-#endif
-
 import CoreGraphics
 
 import GPUImage
-
-#if os(iOS)
-    public typealias OCRImage = UIImage
-#else
-    public typealias OCRImage = NSImage
-#endif
 
 internal let recognizableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
@@ -543,8 +531,6 @@ public class SwiftOCR {
 
 @objc public protocol SwiftOCRDelegate {
     
-    #if os(iOS)
-    
     /**
      
      Implement this method for a custom image preprocessing algorithm. Only return a binary image.
@@ -554,23 +540,8 @@ public class SwiftOCR {
      
      */
     
-    optional func preprocessImageForOCR(inputImage: UIImage) -> UIImage?
+    optional func preprocessImageForOCR(inputImage: OCRImage) -> OCRImage?
     
-    #else
-    
-    /**
-     
-     Implement this method for a custom image preprocessing algorithm. Only return a binary image.
-     
-     - Parameter inputImage: The image to preprocess.
-     - Returns:              The preprocessed, binarized image that SwiftOCR should use for OCR. If you return nil SwiftOCR will use its standard preprocessing algorithm.
-     
-     */
-    
-    
-    optional func preprocessImageForOCR(inputImage: NSImage) -> NSImage?
-    
-    #endif
 }
 
 public struct SwiftOCRRecognizedBlob {

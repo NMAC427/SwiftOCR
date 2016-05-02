@@ -6,12 +6,6 @@
 //  Copyright © 2016 Nicolas Camenisch. All rights reserved.
 //
 
-#if os(iOS)
-    import UIKit
-#else
-    import Cocoa
-#endif
-
 import GPUImage
 
 public class SwiftOCRTraining {
@@ -98,38 +92,19 @@ public class SwiftOCRTraining {
             return self.trainingFontNames[randomIndex]
         }
         
-        #if os(iOS)
-            let randomFont: () -> UIFont = {
-                return UIFont(name: randomFontName(), size: 45 + randomFloat(5))!
-            }
-        #else
-            let randomFont: () -> NSFont = {
-                return NSFont(name: randomFontName(), size: 45 + randomFloat(5))!
-            }
-        #endif
-        
-        #if os(iOS)
-            let randomFontAttributes: () -> [String:NSObject] = {
-                let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-                paragraphStyle.alignment = NSTextAlignment.Center
-                
-                return [NSFontAttributeName: randomFont(),
-                        NSKernAttributeName: CGFloat(8),
-                        NSForegroundColorAttributeName: UIColor(red: 27/255 + randomFloat(0.2), green: 16/255 + randomFloat(0.2), blue: 16/255 + randomFloat(0.2), alpha: 80/100 + randomFloat(0.2)),
-                        NSParagraphStyleAttributeName: paragraphStyle]
-            }
-        #else
-            let randomFontAttributes: () -> [String:NSObject] = {
-                
-                let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-                paragraphStyle.alignment = NSTextAlignment.Center
-                
-                return [NSFontAttributeName: randomFont(),
-                        NSKernAttributeName: CGFloat(8),
-                        NSForegroundColorAttributeName: NSColor(red: 27/255 + randomFloat(0.2), green: 16/255 + randomFloat(0.2), blue: 16/255 + randomFloat(0.2), alpha: 80/100 + randomFloat(0.2)),
-                        NSParagraphStyleAttributeName: paragraphStyle]
-            }
-        #endif
+        let randomFont: () -> OCRFont = {
+            return OCRFont(name: randomFontName(), size: 45 + randomFloat(5))!
+        }
+    
+        let randomFontAttributes: () -> [String:NSObject] = {
+            let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+            paragraphStyle.alignment = NSTextAlignment.Center
+            
+            return [NSFontAttributeName: randomFont(),
+                    NSKernAttributeName: CGFloat(8),
+                    NSForegroundColorAttributeName: OCRColor(red: 27/255 + randomFloat(0.2), green: 16/255 + randomFloat(0.2), blue: 16/255 + randomFloat(0.2), alpha: 80/100 + randomFloat(0.2)),
+                    NSParagraphStyleAttributeName: paragraphStyle]
+        }
         
         //Image
         
@@ -139,18 +114,16 @@ public class SwiftOCRTraining {
             return self.trainingImageNames[randomIndex]
         }
         
-        #if os(iOS)
-            let randomImage: () -> UIImage = {
-                return UIImage(named: randomImageName(), inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! UIImage
-            }
-        #else
-            let randomImage: () -> NSImage = {
-                return NSImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource(randomImageName(), withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! NSImage
-            }
-        #endif
+        let randomImage: () -> OCRImage = {
+            #if os(iOS)
+                return OCRImage(named: randomImageName(), inBundle: NSBundle(forClass: SwiftOCR.self), compatibleWithTraitCollection: nil)!.copy() as! OCRImage
+            #else
+                return OCRImage(byReferencingURL: NSBundle(forClass: SwiftOCR.self).URLForResource(randomImageName(), withExtension: nil, subdirectory: nil, localization: nil)!).copy() as! OCRImage
+            #endif
+        }
         
         #if os(iOS)
-            let customImage: (String) -> UIImage = { code in
+            let customImage: (String) -> OCRImage = { code in
                 let randomImg = randomImage()
                 
                 UIGraphicsBeginImageContext(randomImg.size)
@@ -164,7 +137,7 @@ public class SwiftOCRTraining {
                 return customImage
             }
         #else
-            let customImage: (String) -> NSImage = { code in
+            let customImage: (String) -> OCRImage = { code in
                 let randomImg = randomImage()
                 randomImg.lockFocus()
                 

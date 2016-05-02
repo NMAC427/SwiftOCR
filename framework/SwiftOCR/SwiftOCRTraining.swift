@@ -16,7 +16,9 @@ import GPUImage
 
 public class SwiftOCRTraining {
     
-    private let ocrInstance       = SwiftOCR()
+    public  var shouldStopTraining = false
+    
+    private let ocrInstance        = SwiftOCR()
     
     //Training Variables
     private let trainingImageNames = ["TrainingBackground_1.png", "TrainingBackground_2.png", "TrainingBackground_3.png", "TrainingBackground_4.png"]
@@ -32,29 +34,25 @@ public class SwiftOCRTraining {
         let numberOfTrainImages  = 500
         let numberOfTestImages   = 100
         let errorThreshold:Float = 2
-
-        globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false)) //Generates new network for training.
         
-        while true {
-            autoreleasepool({
-                
-                let trainData = generateRealisticCharSet(numberOfTrainImages/4)
-                let testData  = generateRealisticCharSet(numberOfTestImages/4)
-                
-                let trainInputs  = trainData.map({return $0.0})
-                let trainAnswers = trainData.map({return $0.1})
-                let testInputs   =  testData.map({return $0.0})
-                let testAnswers  =  testData.map({return $0.1})
-                
-                do {
-                    try globalNetwork.train(inputs: trainInputs, answers: trainAnswers, testInputs: testInputs, testAnswers: testAnswers, errorThreshold: errorThreshold)
-                    saveOCR()
-                } catch {
-                    print(error)
-                }
-                
-            })
+        let trainData = generateRealisticCharSet(numberOfTrainImages/4)
+        let testData  = generateRealisticCharSet(numberOfTestImages/4)
+        
+        let trainInputs  = trainData.map({return $0.0})
+        let trainAnswers = trainData.map({return $0.1})
+        let testInputs   =  testData.map({return $0.0})
+        let testAnswers  =  testData.map({return $0.1})
+        
+        print(globalNetwork.getWeights().reduce(0, combine: +))
+        
+        do {
+            try globalNetwork.train(inputs: trainInputs, answers: trainAnswers, testInputs: testInputs, testAnswers: testAnswers, errorThreshold: errorThreshold, shouldContinue: {_ in return !self.shouldStopTraining})
+            saveOCR()
+        } catch {
+            print(error)
         }
+        
+        print(globalNetwork.getWeights().reduce(0, combine: +))
         
     }
     
@@ -212,11 +210,11 @@ public class SwiftOCRTraining {
                 transformedImage = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
             }
             
-            let preprocessedImage = ocrInstance.preprocessImageForOCR(transformedImage)
+            let distortedImage = ocrInstance.preprocessImageForOCR(transformedImage)
             
             //Generate Training set
             
-            let blobs = ocrInstance.extractBlobs(preprocessedImage)
+            let blobs = ocrInstance.extractBlobs(distortedImage)
             
             if blobs.count == 6 {
                 
@@ -246,29 +244,43 @@ public class SwiftOCRTraining {
      Saves the neural network to a file.
      */
     
-    private func saveOCR() {
+    public   func saveOCR() {
         //Set this path to the location of your OCR-Network file.
-        globalNetwork.writeToFile(NSURL(string: "file:///Users/nicolas/Desktop/SwiftOCR/framework/SwiftOCR/OCR-Network")!)
+        let path = NSString(string:"~/Desktop/OCR-Network").stringByExpandingTildeInPath
+        globalNetwork.writeToFile(NSURL(string: "file://\(path)")!)
     }
     
     /**
      Use this method to test the neural network.
      */
     
-    private func testOCR() {
+    public   func testOCR(completionHandler: (Double) -> Void) {
         let testData  = generateRealisticCharSet(25)
         
+        var correctCount = 0
+        var totalCount   = 0
+        
         for i in testData {
+            totalCount += 1
             do {
                 let networkResult = try globalNetwork.update(inputs: i.0)
                 
-                print(Array(recognizableCharacters.characters)[i.1.indexOf(1)!],
-                      Array(recognizableCharacters.characters)[networkResult.indexOf(networkResult.maxElement()!)!])
+                let input      = Array(recognizableCharacters.characters)[i.1.indexOf(1)!]
+                let recognized = Array(recognizableCharacters.characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
+                
+                print(input, recognized)
+                
+                if input == recognized {
+                    correctCount += 1
+                }
                 
             } catch {
                 
             }
         }
+        
+        completionHandler(Double(correctCount) / Double(totalCount))
+        
     }
     
 }

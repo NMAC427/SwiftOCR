@@ -313,7 +313,7 @@ public final class FFNN {
     ///     - errorThreshold: A `Float` indicating the maximum error allowed per epoch of validation data, before the network is considered 'trained'.
     ///             This value must be determined by the user, because it varies based on the type of data used and the desired accuracy.
     /// - Returns: The final calculated weights of the network after training has completed.
-    public func train(inputs inputs: [[Float]], answers: [[Float]], testInputs: [[Float]], testAnswers: [[Float]], errorThreshold: Float) throws -> [Float] {
+    public func train(inputs inputs: [[Float]], answers: [[Float]], testInputs: [[Float]], testAnswers: [[Float]], errorThreshold: Float, shouldContinue: (Float) -> Bool = {_ in return true}) throws -> [Float] {
         guard errorThreshold > 0 else {
             throw FFNNError.InvalidInputsError("Error threshold must be greater than zero!")
         }
@@ -331,7 +331,7 @@ public final class FFNN {
             
             print("\(NSDate()) ----> \(errorSum)")
             
-            if errorSum < errorThreshold {
+            if errorSum < errorThreshold || !shouldContinue(errorSum){
                 break
             }
         }

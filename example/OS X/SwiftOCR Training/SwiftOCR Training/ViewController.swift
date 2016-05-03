@@ -97,6 +97,11 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             trainingProgressIndicator.stopAnimation(nil)
             
         } else {
+            
+            guard !selectedFontNames.isEmpty else {
+                return
+            }
+            
             startTrainingButton.title = "Stop Training"
             self.trainingInstance.shouldStopTraining = false
             isTraining = true

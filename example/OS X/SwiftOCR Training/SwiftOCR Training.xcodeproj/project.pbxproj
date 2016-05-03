@@ -34,6 +34,30 @@
 		37CCABF01CD8D06500ECA264 /* GPUImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37711DE31CD7AF6600DC6B43 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		37CA6E431CD8D97C00562F20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37CCABC91CD8D03600ECA264 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
+			remoteInfo = GPUImage;
+		};
+		37CA6E451CD8D97C00562F20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37CCABC91CD8D03600ECA264 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCE209E51943F20C002FEED8;
+			remoteInfo = GPUImageFramework;
+		};
+		37CA6E481CD8D97C00562F20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37CCABCA1CD8D03600ECA264 /* GPUImageMac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCA3F31C17239B6500E28AEC;
+			remoteInfo = GPUImage;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		37CCABF11CD8D06500ECA264 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -121,6 +145,23 @@
 				37711D961CD78CB700DC6B43 /* Info.plist */,
 			);
 			path = "SwiftOCR Training";
+			sourceTree = "<group>";
+		};
+		37CA6E3C1CD8D97C00562F20 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37CA6E491CD8D97C00562F20 /* GPUImage.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		37CA6E3E1CD8D97C00562F20 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37CA6E441CD8D97C00562F20 /* libGPUImage.a */,
+				37CA6E461CD8D97C00562F20 /* GPUImage.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		37CCABCF1CD8D03600ECA264 /* Realistic Training Images */ = {
@@ -223,12 +264,46 @@
 			mainGroup = 37711D811CD78CB600DC6B43;
 			productRefGroup = 37711D8B1CD78CB700DC6B43 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 37CA6E3E1CD8D97C00562F20 /* Products */;
+					ProjectRef = 37CCABC91CD8D03600ECA264 /* GPUImage.xcodeproj */;
+				},
+				{
+					ProductGroup = 37CA6E3C1CD8D97C00562F20 /* Products */;
+					ProjectRef = 37CCABCA1CD8D03600ECA264 /* GPUImageMac.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				37711D891CD78CB600DC6B43 /* SwiftOCR Training */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		37CA6E441CD8D97C00562F20 /* libGPUImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGPUImage.a;
+			remoteRef = 37CA6E431CD8D97C00562F20 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37CA6E461CD8D97C00562F20 /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 37CA6E451CD8D97C00562F20 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37CA6E491CD8D97C00562F20 /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 37CA6E481CD8D97C00562F20 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		37711D881CD78CB600DC6B43 /* Resources */ = {

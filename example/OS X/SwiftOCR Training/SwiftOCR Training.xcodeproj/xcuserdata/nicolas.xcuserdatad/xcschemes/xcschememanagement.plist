@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SwiftOCR Example OS X.xcscheme</key>
+		<key>SwiftOCR Training.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>37A40DB41CCB620400337ACD</key>
+		<key>37711D891CD78CB600DC6B43</key>
 		<dict>
 			<key>primary</key>
 			<true/>

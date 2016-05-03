@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  SwiftOCR Example OS X
+//  SwiftOCR Training
 //
-//  Created by Nicolas Camenisch on 23.04.16.
+//  Created by Nicolas Camenisch on 02.05.16.
 //  Copyright © 2016 Nicolas Camenisch. All rights reserved.
 //
 

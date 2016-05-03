@@ -12,36 +12,36 @@
 		37711D921CD78CB700DC6B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37711D911CD78CB700DC6B43 /* Assets.xcassets */; };
 		37711D951CD78CB700DC6B43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37711D931CD78CB700DC6B43 /* Main.storyboard */; };
 		37711DB71CD7A84D00DC6B43 /* ButtonTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37711DB61CD7A84D00DC6B43 /* ButtonTableCellView.swift */; };
-		37711DE41CD7AF6600DC6B43 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37711DE31CD7AF6600DC6B43 /* GPUImage.framework */; };
-		37711DE51CD7AF6600DC6B43 /* GPUImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37711DE31CD7AF6600DC6B43 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		37CCAB8A1CD8CECD00ECA264 /* SwiftOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB711CD8CECD00ECA264 /* SwiftOCR.swift */; };
-		37CCAB8B1CD8CECD00ECA264 /* SwiftOCRTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB721CD8CECD00ECA264 /* SwiftOCRTraining.swift */; };
-		37CCAB8C1CD8CECD00ECA264 /* OCR-Network in Resources */ = {isa = PBXBuildFile; fileRef = 37CCAB731CD8CECD00ECA264 /* OCR-Network */; };
-		37CCAB8D1CD8CECD00ECA264 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37CCAB751CD8CECD00ECA264 /* Info.plist */; };
-		37CCAB8E1CD8CECD00ECA264 /* TrainingBackground_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CCAB781CD8CECD00ECA264 /* TrainingBackground_1.png */; };
-		37CCAB8F1CD8CECD00ECA264 /* TrainingBackground_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CCAB791CD8CECD00ECA264 /* TrainingBackground_2.png */; };
-		37CCAB901CD8CECD00ECA264 /* TrainingBackground_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CCAB7A1CD8CECD00ECA264 /* TrainingBackground_3.png */; };
-		37CCAB911CD8CECD00ECA264 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CCAB7B1CD8CECD00ECA264 /* TrainingBackground_4.png */; };
-		37CCAB921CD8CECD00ECA264 /* FFNN+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB7D1CD8CECD00ECA264 /* FFNN+Storage.swift */; };
-		37CCAB931CD8CECD00ECA264 /* FFNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB7E1CD8CECD00ECA264 /* FFNN.swift */; };
-		37CCAB941CD8CECD00ECA264 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB7F1CD8CECD00ECA264 /* Matrix.swift */; };
-		37CCAB951CD8CECD00ECA264 /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB801CD8CECD00ECA264 /* Operations.swift */; };
-		37CCAB961CD8CECD00ECA264 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB811CD8CECD00ECA264 /* Random.swift */; };
-		37CCAB971CD8CECD00ECA264 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB821CD8CECD00ECA264 /* Storage.swift */; };
-		37CCAB981CD8CECD00ECA264 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB831CD8CECD00ECA264 /* Vector.swift */; };
-		37CCAB991CD8CECD00ECA264 /* CrossPlatformSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB851CD8CECD00ECA264 /* CrossPlatformSupport.swift */; };
-		37CCAB9A1CD8CECD00ECA264 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB861CD8CECD00ECA264 /* Extensions.swift */; };
-		37CCAB9B1CD8CECD00ECA264 /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCAB871CD8CECD00ECA264 /* UnionFind.swift */; };
+		37CCABDD1CD8D03600ECA264 /* SwiftOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABC41CD8D03600ECA264 /* SwiftOCR.swift */; };
+		37CCABDE1CD8D03600ECA264 /* SwiftOCRTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABC51CD8D03600ECA264 /* SwiftOCRTraining.swift */; };
+		37CCABDF1CD8D03600ECA264 /* OCR-Network in Resources */ = {isa = PBXBuildFile; fileRef = 37CCABC61CD8D03600ECA264 /* OCR-Network */; };
+		37CCABE01CD8D03600ECA264 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37CCABC81CD8D03600ECA264 /* Info.plist */; };
+		37CCABE11CD8D03600ECA264 /* TrainingBackground_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CCABCB1CD8D03600ECA264 /* TrainingBackground_1.png */; };
+		37CCABE21CD8D03600ECA264 /* TrainingBackground_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CCABCC1CD8D03600ECA264 /* TrainingBackground_2.png */; };
+		37CCABE31CD8D03600ECA264 /* TrainingBackground_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CCABCD1CD8D03600ECA264 /* TrainingBackground_3.png */; };
+		37CCABE41CD8D03600ECA264 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CCABCE1CD8D03600ECA264 /* TrainingBackground_4.png */; };
+		37CCABE51CD8D03600ECA264 /* FFNN+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD01CD8D03600ECA264 /* FFNN+Storage.swift */; };
+		37CCABE61CD8D03600ECA264 /* FFNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD11CD8D03600ECA264 /* FFNN.swift */; };
+		37CCABE71CD8D03600ECA264 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD21CD8D03600ECA264 /* Matrix.swift */; };
+		37CCABE81CD8D03600ECA264 /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD31CD8D03600ECA264 /* Operations.swift */; };
+		37CCABE91CD8D03600ECA264 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD41CD8D03600ECA264 /* Random.swift */; };
+		37CCABEA1CD8D03600ECA264 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD51CD8D03600ECA264 /* Storage.swift */; };
+		37CCABEB1CD8D03600ECA264 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD61CD8D03600ECA264 /* Vector.swift */; };
+		37CCABEC1CD8D03600ECA264 /* CrossPlatformSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD81CD8D03600ECA264 /* CrossPlatformSupport.swift */; };
+		37CCABED1CD8D03600ECA264 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD91CD8D03600ECA264 /* Extensions.swift */; };
+		37CCABEE1CD8D03600ECA264 /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABDA1CD8D03600ECA264 /* UnionFind.swift */; };
+		37CCABEF1CD8D06500ECA264 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37711DE31CD7AF6600DC6B43 /* GPUImage.framework */; };
+		37CCABF01CD8D06500ECA264 /* GPUImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37711DE31CD7AF6600DC6B43 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		37711DB31CD78CD200DC6B43 /* Embed Frameworks */ = {
+		37CCABF11CD8D06500ECA264 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				37711DE51CD7AF6600DC6B43 /* GPUImage.framework in Embed Frameworks */,
+				37CCABF01CD8D06500ECA264 /* GPUImage.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,27 +57,27 @@
 		37711D961CD78CB700DC6B43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37711DB61CD7A84D00DC6B43 /* ButtonTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableCellView.swift; sourceTree = "<group>"; };
 		37711DE31CD7AF6600DC6B43 /* GPUImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = GPUImage.framework; path = "/Users/nicolas/Library/Developer/Xcode/DerivedData/SwiftOCR_Training-dpbycpdiieaokcamerijdhlthkbb/Build/Products/Release/GPUImage.framework"; sourceTree = "<absolute>"; };
-		37CCAB711CD8CECD00ECA264 /* SwiftOCR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCR.swift; sourceTree = "<group>"; };
-		37CCAB721CD8CECD00ECA264 /* SwiftOCRTraining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCRTraining.swift; sourceTree = "<group>"; };
-		37CCAB731CD8CECD00ECA264 /* OCR-Network */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "OCR-Network"; sourceTree = "<group>"; };
-		37CCAB741CD8CECD00ECA264 /* SwiftOCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftOCR.h; sourceTree = "<group>"; };
-		37CCAB751CD8CECD00ECA264 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		37CCAB761CD8CECD00ECA264 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
-		37CCAB771CD8CECD00ECA264 /* GPUImageMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImageMac.xcodeproj; path = "GPUImage-master/framework/GPUImageMac.xcodeproj"; sourceTree = "<group>"; };
-		37CCAB781CD8CECD00ECA264 /* TrainingBackground_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_1.png; path = "Realistic Training Images/TrainingBackground_1.png"; sourceTree = "<group>"; };
-		37CCAB791CD8CECD00ECA264 /* TrainingBackground_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_2.png; path = "Realistic Training Images/TrainingBackground_2.png"; sourceTree = "<group>"; };
-		37CCAB7A1CD8CECD00ECA264 /* TrainingBackground_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_3.png; path = "Realistic Training Images/TrainingBackground_3.png"; sourceTree = "<group>"; };
-		37CCAB7B1CD8CECD00ECA264 /* TrainingBackground_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_4.png; path = "Realistic Training Images/TrainingBackground_4.png"; sourceTree = "<group>"; };
-		37CCAB7D1CD8CECD00ECA264 /* FFNN+Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FFNN+Storage.swift"; sourceTree = "<group>"; };
-		37CCAB7E1CD8CECD00ECA264 /* FFNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFNN.swift; sourceTree = "<group>"; };
-		37CCAB7F1CD8CECD00ECA264 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
-		37CCAB801CD8CECD00ECA264 /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
-		37CCAB811CD8CECD00ECA264 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
-		37CCAB821CD8CECD00ECA264 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		37CCAB831CD8CECD00ECA264 /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
-		37CCAB851CD8CECD00ECA264 /* CrossPlatformSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPlatformSupport.swift; sourceTree = "<group>"; };
-		37CCAB861CD8CECD00ECA264 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		37CCAB871CD8CECD00ECA264 /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
+		37CCABC41CD8D03600ECA264 /* SwiftOCR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCR.swift; sourceTree = "<group>"; };
+		37CCABC51CD8D03600ECA264 /* SwiftOCRTraining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCRTraining.swift; sourceTree = "<group>"; };
+		37CCABC61CD8D03600ECA264 /* OCR-Network */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "OCR-Network"; sourceTree = "<group>"; };
+		37CCABC71CD8D03600ECA264 /* SwiftOCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftOCR.h; sourceTree = "<group>"; };
+		37CCABC81CD8D03600ECA264 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37CCABC91CD8D03600ECA264 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
+		37CCABCA1CD8D03600ECA264 /* GPUImageMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImageMac.xcodeproj; path = "GPUImage-master/framework/GPUImageMac.xcodeproj"; sourceTree = "<group>"; };
+		37CCABCB1CD8D03600ECA264 /* TrainingBackground_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_1.png; path = "Realistic Training Images/TrainingBackground_1.png"; sourceTree = "<group>"; };
+		37CCABCC1CD8D03600ECA264 /* TrainingBackground_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_2.png; path = "Realistic Training Images/TrainingBackground_2.png"; sourceTree = "<group>"; };
+		37CCABCD1CD8D03600ECA264 /* TrainingBackground_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_3.png; path = "Realistic Training Images/TrainingBackground_3.png"; sourceTree = "<group>"; };
+		37CCABCE1CD8D03600ECA264 /* TrainingBackground_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_4.png; path = "Realistic Training Images/TrainingBackground_4.png"; sourceTree = "<group>"; };
+		37CCABD01CD8D03600ECA264 /* FFNN+Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FFNN+Storage.swift"; sourceTree = "<group>"; };
+		37CCABD11CD8D03600ECA264 /* FFNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFNN.swift; sourceTree = "<group>"; };
+		37CCABD21CD8D03600ECA264 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		37CCABD31CD8D03600ECA264 /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
+		37CCABD41CD8D03600ECA264 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		37CCABD51CD8D03600ECA264 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		37CCABD61CD8D03600ECA264 /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		37CCABD81CD8D03600ECA264 /* CrossPlatformSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPlatformSupport.swift; sourceTree = "<group>"; };
+		37CCABD91CD8D03600ECA264 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		37CCABDA1CD8D03600ECA264 /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37711DE41CD7AF6600DC6B43 /* GPUImage.framework in Frameworks */,
+				37CCABEF1CD8D06500ECA264 /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 				37711D8D1CD78CB700DC6B43 /* AppDelegate.swift */,
 				37711D8F1CD78CB700DC6B43 /* ViewController.swift */,
 				37711DB61CD7A84D00DC6B43 /* ButtonTableCellView.swift */,
-				37CCAB891CD8CECD00ECA264 /* SwiftOCR */,
+				37CCABDC1CD8D03600ECA264 /* SwiftOCR */,
 				37711D911CD78CB700DC6B43 /* Assets.xcassets */,
 				37711D931CD78CB700DC6B43 /* Main.storyboard */,
 				37711D961CD78CB700DC6B43 /* Info.plist */,
@@ -123,57 +123,57 @@
 			path = "SwiftOCR Training";
 			sourceTree = "<group>";
 		};
-		37CCAB7C1CD8CECD00ECA264 /* Realistic Training Images */ = {
+		37CCABCF1CD8D03600ECA264 /* Realistic Training Images */ = {
 			isa = PBXGroup;
 			children = (
-				37CCAB781CD8CECD00ECA264 /* TrainingBackground_1.png */,
-				37CCAB791CD8CECD00ECA264 /* TrainingBackground_2.png */,
-				37CCAB7A1CD8CECD00ECA264 /* TrainingBackground_3.png */,
-				37CCAB7B1CD8CECD00ECA264 /* TrainingBackground_4.png */,
+				37CCABCB1CD8D03600ECA264 /* TrainingBackground_1.png */,
+				37CCABCC1CD8D03600ECA264 /* TrainingBackground_2.png */,
+				37CCABCD1CD8D03600ECA264 /* TrainingBackground_3.png */,
+				37CCABCE1CD8D03600ECA264 /* TrainingBackground_4.png */,
 			);
 			name = "Realistic Training Images";
 			sourceTree = "<group>";
 		};
-		37CCAB841CD8CECD00ECA264 /* FFNN */ = {
+		37CCABD71CD8D03600ECA264 /* FFNN */ = {
 			isa = PBXGroup;
 			children = (
-				37CCAB7D1CD8CECD00ECA264 /* FFNN+Storage.swift */,
-				37CCAB7E1CD8CECD00ECA264 /* FFNN.swift */,
-				37CCAB7F1CD8CECD00ECA264 /* Matrix.swift */,
-				37CCAB801CD8CECD00ECA264 /* Operations.swift */,
-				37CCAB811CD8CECD00ECA264 /* Random.swift */,
-				37CCAB821CD8CECD00ECA264 /* Storage.swift */,
-				37CCAB831CD8CECD00ECA264 /* Vector.swift */,
+				37CCABD01CD8D03600ECA264 /* FFNN+Storage.swift */,
+				37CCABD11CD8D03600ECA264 /* FFNN.swift */,
+				37CCABD21CD8D03600ECA264 /* Matrix.swift */,
+				37CCABD31CD8D03600ECA264 /* Operations.swift */,
+				37CCABD41CD8D03600ECA264 /* Random.swift */,
+				37CCABD51CD8D03600ECA264 /* Storage.swift */,
+				37CCABD61CD8D03600ECA264 /* Vector.swift */,
 			);
 			path = FFNN;
 			sourceTree = "<group>";
 		};
-		37CCAB881CD8CECD00ECA264 /* Supporting files */ = {
+		37CCABDB1CD8D03600ECA264 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
-				37CCAB741CD8CECD00ECA264 /* SwiftOCR.h */,
-				37CCAB751CD8CECD00ECA264 /* Info.plist */,
-				37CCAB761CD8CECD00ECA264 /* GPUImage.xcodeproj */,
-				37CCAB771CD8CECD00ECA264 /* GPUImageMac.xcodeproj */,
-				37CCAB7C1CD8CECD00ECA264 /* Realistic Training Images */,
-				37CCAB841CD8CECD00ECA264 /* FFNN */,
-				37CCAB851CD8CECD00ECA264 /* CrossPlatformSupport.swift */,
-				37CCAB861CD8CECD00ECA264 /* Extensions.swift */,
-				37CCAB871CD8CECD00ECA264 /* UnionFind.swift */,
+				37CCABC71CD8D03600ECA264 /* SwiftOCR.h */,
+				37CCABC81CD8D03600ECA264 /* Info.plist */,
+				37CCABC91CD8D03600ECA264 /* GPUImage.xcodeproj */,
+				37CCABCA1CD8D03600ECA264 /* GPUImageMac.xcodeproj */,
+				37CCABCF1CD8D03600ECA264 /* Realistic Training Images */,
+				37CCABD71CD8D03600ECA264 /* FFNN */,
+				37CCABD81CD8D03600ECA264 /* CrossPlatformSupport.swift */,
+				37CCABD91CD8D03600ECA264 /* Extensions.swift */,
+				37CCABDA1CD8D03600ECA264 /* UnionFind.swift */,
 			);
 			name = "Supporting files";
 			sourceTree = "<group>";
 		};
-		37CCAB891CD8CECD00ECA264 /* SwiftOCR */ = {
+		37CCABDC1CD8D03600ECA264 /* SwiftOCR */ = {
 			isa = PBXGroup;
 			children = (
-				37CCAB711CD8CECD00ECA264 /* SwiftOCR.swift */,
-				37CCAB721CD8CECD00ECA264 /* SwiftOCRTraining.swift */,
-				37CCAB731CD8CECD00ECA264 /* OCR-Network */,
-				37CCAB881CD8CECD00ECA264 /* Supporting files */,
+				37CCABC41CD8D03600ECA264 /* SwiftOCR.swift */,
+				37CCABC51CD8D03600ECA264 /* SwiftOCRTraining.swift */,
+				37CCABC61CD8D03600ECA264 /* OCR-Network */,
+				37CCABDB1CD8D03600ECA264 /* Supporting files */,
 			);
 			name = SwiftOCR;
-			path = ../../../framework/SwiftOCR;
+			path = ../../../../framework/SwiftOCR;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,7 +186,7 @@
 				37711D861CD78CB600DC6B43 /* Sources */,
 				37711D871CD78CB600DC6B43 /* Frameworks */,
 				37711D881CD78CB600DC6B43 /* Resources */,
-				37711DB31CD78CD200DC6B43 /* Embed Frameworks */,
+				37CCABF11CD8D06500ECA264 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,14 +235,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37CCAB8D1CD8CECD00ECA264 /* Info.plist in Resources */,
+				37CCABE01CD8D03600ECA264 /* Info.plist in Resources */,
 				37711D921CD78CB700DC6B43 /* Assets.xcassets in Resources */,
-				37CCAB911CD8CECD00ECA264 /* TrainingBackground_4.png in Resources */,
-				37CCAB8F1CD8CECD00ECA264 /* TrainingBackground_2.png in Resources */,
-				37CCAB901CD8CECD00ECA264 /* TrainingBackground_3.png in Resources */,
+				37CCABE41CD8D03600ECA264 /* TrainingBackground_4.png in Resources */,
+				37CCABE21CD8D03600ECA264 /* TrainingBackground_2.png in Resources */,
+				37CCABE31CD8D03600ECA264 /* TrainingBackground_3.png in Resources */,
 				37711D951CD78CB700DC6B43 /* Main.storyboard in Resources */,
-				37CCAB8E1CD8CECD00ECA264 /* TrainingBackground_1.png in Resources */,
-				37CCAB8C1CD8CECD00ECA264 /* OCR-Network in Resources */,
+				37CCABE11CD8D03600ECA264 /* TrainingBackground_1.png in Resources */,
+				37CCABDF1CD8D03600ECA264 /* OCR-Network in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,21 +253,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37CCAB951CD8CECD00ECA264 /* Operations.swift in Sources */,
-				37CCAB971CD8CECD00ECA264 /* Storage.swift in Sources */,
+				37CCABE81CD8D03600ECA264 /* Operations.swift in Sources */,
+				37CCABEA1CD8D03600ECA264 /* Storage.swift in Sources */,
 				37711D901CD78CB700DC6B43 /* ViewController.swift in Sources */,
-				37CCAB961CD8CECD00ECA264 /* Random.swift in Sources */,
+				37CCABE91CD8D03600ECA264 /* Random.swift in Sources */,
 				37711D8E1CD78CB700DC6B43 /* AppDelegate.swift in Sources */,
-				37CCAB8A1CD8CECD00ECA264 /* SwiftOCR.swift in Sources */,
-				37CCAB8B1CD8CECD00ECA264 /* SwiftOCRTraining.swift in Sources */,
-				37CCAB9B1CD8CECD00ECA264 /* UnionFind.swift in Sources */,
-				37CCAB941CD8CECD00ECA264 /* Matrix.swift in Sources */,
+				37CCABDD1CD8D03600ECA264 /* SwiftOCR.swift in Sources */,
+				37CCABDE1CD8D03600ECA264 /* SwiftOCRTraining.swift in Sources */,
+				37CCABEE1CD8D03600ECA264 /* UnionFind.swift in Sources */,
+				37CCABE71CD8D03600ECA264 /* Matrix.swift in Sources */,
 				37711DB71CD7A84D00DC6B43 /* ButtonTableCellView.swift in Sources */,
-				37CCAB931CD8CECD00ECA264 /* FFNN.swift in Sources */,
-				37CCAB991CD8CECD00ECA264 /* CrossPlatformSupport.swift in Sources */,
-				37CCAB981CD8CECD00ECA264 /* Vector.swift in Sources */,
-				37CCAB921CD8CECD00ECA264 /* FFNN+Storage.swift in Sources */,
-				37CCAB9A1CD8CECD00ECA264 /* Extensions.swift in Sources */,
+				37CCABE61CD8D03600ECA264 /* FFNN.swift in Sources */,
+				37CCABEC1CD8D03600ECA264 /* CrossPlatformSupport.swift in Sources */,
+				37CCABEB1CD8D03600ECA264 /* Vector.swift in Sources */,
+				37CCABE51CD8D03600ECA264 /* FFNN+Storage.swift in Sources */,
+				37CCABED1CD8D03600ECA264 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +372,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "SwiftOCR Training/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Training";
@@ -385,7 +384,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "SwiftOCR Training/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Training";

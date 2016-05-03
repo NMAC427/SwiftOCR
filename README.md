@@ -55,9 +55,9 @@ To improve your experience with SwiftOCR you should set your Build Configuration
 
 Training SwiftOCR is pretty easy. There are only a few steps you have to do, before it can recognize a new font.
 
-1. Set the `errorThreshold` value in the training file to something like 30.
-2. Add your font name to the `trainingFontNames` array at the beginning of the `SwiftOCRTraining.swift`file.
-3. Call `trainWithCharSet()` and wait.
+The easiest way to train SwiftOCR is using the training app that can be found under `/example/OS X/SwiftOCR Training`. First select the fonts you want to train from the list. After that, you can change the characters you want to train in the text field. Finally, you have to press the `Start Testing` button. The only thing that's left now, is waiting. Depending on your settings, this can take betwene a half and two minutes.
+Pressing the `Save` button will save trained network to your desktop.
+The `Test` button is used for evaluating the accuracy of the trained neural network.
 
 ## Examples
 

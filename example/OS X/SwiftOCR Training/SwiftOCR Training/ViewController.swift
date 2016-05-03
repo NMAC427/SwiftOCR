@@ -112,6 +112,13 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                 self.trainingInstance.trainWithCharSet()
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    if self.isTraining == true {
+                        self.startTrainingButton.title = "Start Training"
+                    }
+                })
+                
             })
             
         }
@@ -119,6 +126,10 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     }
 
     @IBAction func testButtonPressed(sender: NSButton) {
+        startTrainingButton.title = "Start Training"
+        self.trainingInstance.shouldStopTraining = true
+        isTraining = false
+
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             self.trainingInstance.testOCR() {accuracy in
                 dispatch_async(dispatch_get_main_queue(), {

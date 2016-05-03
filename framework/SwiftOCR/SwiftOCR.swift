@@ -39,63 +39,60 @@ public class SwiftOCR {
         let confidenceThreshold:Float = 0.1 //Confidence must be bigger than the threshold
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            if let imageToRecognize = self.image {
-                
-                var preprocessedImage = OCRImage()
-                
-                if let preprocessFunc = self.delegate?.preprocessImageForOCR, let processedImage = preprocessFunc(imageToRecognize){
-                    preprocessedImage = processedImage
-                } else {
-                    preprocessedImage = self.preprocessImageForOCR(self.image)!
-                }
-                
-                let blobs                  = self.extractBlobs(preprocessedImage)
-                var recognizedString       = ""
-                var ocrRecognizedBlobArray = [SwiftOCRRecognizedBlob]()
-                
-                for blob in blobs {
-                    
-                    do {
-                        let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
-                        let networkResult  = try self.network.update(inputs: blobData)
-                        
-                        if networkResult.maxElement() >= confidenceThreshold {
-                            let recognizedChar = Array(recognizableCharacters.characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
-                            recognizedString.append(recognizedChar)
-                        }
-                        
-                        //Generate SwiftOCRRecognizedBlob
-                        
-                        var ocrRecognizedBlobCharactersWithConfidenceArray = [(character: Character, confidence: Float)]()
-                        let ocrRecognizedBlobConfidenceThreshold = networkResult.reduce(0, combine: +)/Float(networkResult.count)
-                        
-                        for networkResultIndex in 0..<networkResult.count {
-                            let characterConfidence = networkResult[networkResultIndex]
-                            let character           = Array(recognizableCharacters.characters)[networkResultIndex]
-                            
-                            if characterConfidence >= ocrRecognizedBlobConfidenceThreshold {
-                                ocrRecognizedBlobCharactersWithConfidenceArray.append((character: character, confidence: characterConfidence))
-                            }
-                            
-                        }
-                        
-                        let currentRecognizedBlob = SwiftOCRRecognizedBlob(charactersWithConfidence: ocrRecognizedBlobCharactersWithConfidenceArray, boundingBox: blob.1)
-                        
-                        ocrRecognizedBlobArray.append(currentRecognizedBlob)
-                        
-                    } catch {
-                        print(error)
-                    }
-                    
-                }
-                
-                self.currentOCRRecognizedBlobs = ocrRecognizedBlobArray
-                completionHandler(recognizedString)
-                
-            } else {
+            guard let imageToRecognize = self.image else {
                 print("You first have to set a SwiftOCR().image")
                 completionHandler(String())
             }
+            var preprocessedImage = OCRImage()
+            
+            if let preprocessFunc = self.delegate?.preprocessImageForOCR, let processedImage = preprocessFunc(imageToRecognize){
+                preprocessedImage = processedImage
+            } else {
+                preprocessedImage = self.preprocessImageForOCR(self.image)!
+            }
+            
+            let blobs                  = self.extractBlobs(preprocessedImage)
+            var recognizedString       = ""
+            var ocrRecognizedBlobArray = [SwiftOCRRecognizedBlob]()
+            
+            for blob in blobs {
+                
+                do {
+                    let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
+                    let networkResult  = try self.network.update(inputs: blobData)
+                    
+                    if networkResult.maxElement() >= confidenceThreshold {
+                        let recognizedChar = Array(recognizableCharacters.characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
+                        recognizedString.append(recognizedChar)
+                    }
+                    
+                    //Generate SwiftOCRRecognizedBlob
+                    
+                    var ocrRecognizedBlobCharactersWithConfidenceArray = [(character: Character, confidence: Float)]()
+                    let ocrRecognizedBlobConfidenceThreshold = networkResult.reduce(0, combine: +)/Float(networkResult.count)
+                    
+                    for networkResultIndex in 0..<networkResult.count {
+                        let characterConfidence = networkResult[networkResultIndex]
+                        let character           = Array(recognizableCharacters.characters)[networkResultIndex]
+                        
+                        if characterConfidence >= ocrRecognizedBlobConfidenceThreshold {
+                            ocrRecognizedBlobCharactersWithConfidenceArray.append((character: character, confidence: characterConfidence))
+                        }
+                        
+                    }
+                    
+                    let currentRecognizedBlob = SwiftOCRRecognizedBlob(charactersWithConfidence: ocrRecognizedBlobCharactersWithConfidenceArray, boundingBox: blob.1)
+                    
+                    ocrRecognizedBlobArray.append(currentRecognizedBlob)
+                    
+                } catch {
+                    print(error)
+                }
+                
+            }
+            
+            self.currentOCRRecognizedBlobs = ocrRecognizedBlobArray
+            completionHandler(recognizedString)
         })
         
     }

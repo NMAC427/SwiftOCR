@@ -55,10 +55,9 @@ To improve your experience with SwiftOCR you should set your Build Configuration
 
 Training SwiftOCR is pretty easy. There are only a few steps you have to do, before it can recognize a new font.
 
-1. In the `SwiftOCR.swift` file replace `internal let network = FFNN.fromFile(...)` with `internal let network = FFNN(inputs: 321, hidden: 100, outputs: 36, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))`.
-2. Set the `errorThreshold` value in the training file to something like 15.
-3. Add your font name to the `trainingFontNames` array at the beginning of the `SwiftOCRTraining.swift`file.
-4. Call `trainWithCharSet()` and wait.
+1. Set the `errorThreshold` value in the training file to something like 30.
+2. Add your font name to the `trainingFontNames` array at the beginning of the `SwiftOCRTraining.swift`file.
+3. Call `trainWithCharSet()` and wait.
 
 ## Examples
 

@@ -124,11 +124,10 @@ public class SwiftOCR {
             let numberOfComponents = CGImageGetBitsPerPixel(cgImage) / CGImageGetBitsPerComponent(cgImage)
             
             //data <- bitmapData
-            
-            let inputImageHeight = inputImage.size.height
-            let inputImageWidth  = inputImage.size.width
-            
-            var data = [UInt16](count: (Int(inputImageWidth) * Int(inputImageHeight)) * numberOfComponents, repeatedValue: 0)
+            let bytesPerRow = CGImageGetBytesPerRow(cgImage)
+            let inputImageHeight = CGImageGetHeight(cgImage)
+            let inputImageWidth  = bytesPerRow / numberOfComponents
+            var data = [UInt16](count: bytesPerRow * Int(inputImageHeight), repeatedValue: 0)
             
             for dataIndex in 0..<data.count {
                 data[dataIndex] = UInt16(bitmapData[dataIndex])
@@ -147,9 +146,9 @@ public class SwiftOCR {
             
             for y in 0..<Int(inputImageHeight) {
                 for x in 0..<Int(inputImageWidth) {
-                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * numberOfComponents
+                    let pixelInfo: Int = ((Int(bytesPerRow) * Int(y)) + Int(x * numberOfComponents))
                     let pixelIndex:(Int, Int) -> Int = {x, y in
-                        return ((Int(inputImageWidth) * Int(y)) + Int(x))  * numberOfComponents
+                        return ((Int(bytesPerRow) * Int(y)) + Int(x * numberOfComponents))
                     }
                     
                     if data[pixelInfo] == 0 { //Is Black
@@ -210,8 +209,7 @@ public class SwiftOCR {
             
             for y in 0..<Int(inputImageHeight) {
                 for x in 0..<Int(inputImageWidth) {
-                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * numberOfComponents
-                    
+                    let pixelInfo: Int = ((Int(bytesPerRow) * Int(y)) + Int(x * numberOfComponents))
                     if data[pixelInfo] != 255 {
                         data[pixelInfo] = UInt16(parentArray.indexOf(labelsUnion.setOf(data[pixelInfo]) ?? 0) ?? 0)
                     }
@@ -237,7 +235,7 @@ public class SwiftOCR {
                 
                 for y in 0..<Int(inputImageHeight) {
                     for x in 0..<Int(inputImageWidth) {
-                        let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * numberOfComponents
+                        let pixelInfo: Int = ((Int(bytesPerRow) * Int(y)) + Int(x * numberOfComponents))
                         
                         if data[pixelInfo] == UInt16(label) {
                             minX = min(minX, x)

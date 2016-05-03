@@ -42,7 +42,9 @@ public class SwiftOCR {
             guard let imageToRecognize = self.image else {
                 print("You first have to set a SwiftOCR().image")
                 completionHandler(String())
+                return
             }
+            
             var preprocessedImage = OCRImage()
             
             if let preprocessFunc = self.delegate?.preprocessImageForOCR, let processedImage = preprocessFunc(imageToRecognize){

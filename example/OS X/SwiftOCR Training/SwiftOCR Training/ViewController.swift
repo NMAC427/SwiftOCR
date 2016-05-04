@@ -79,7 +79,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     }
     
     @IBAction func charactersTextFieldDidChange(sender: NSTextField) {
-        recognizableCharacters = charactersToTrainTextField.stringValue
+        recognizableCharacters = Array(Set(charactersToTrainTextField.stringValue.characters.map({return String($0)}))).joinWithSeparator("")
         globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
     }
     
@@ -108,7 +108,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             
             trainingProgressIndicator.startAnimation(nil)
             
-            recognizableCharacters = charactersToTrainTextField.stringValue
+            recognizableCharacters = Array(Set(charactersToTrainTextField.stringValue.characters.map({return String($0)}))).joinWithSeparator("")
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                 self.trainingInstance.trainWithCharSet()

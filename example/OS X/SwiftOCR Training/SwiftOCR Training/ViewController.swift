@@ -98,7 +98,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             
         } else {
             
-            guard !selectedFontNames.isEmpty else {
+            if selectedFontNames.isEmpty {
                 return
             }
             

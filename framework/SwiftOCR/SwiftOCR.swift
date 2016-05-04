@@ -130,7 +130,7 @@ public class SwiftOCR {
             var data = [UInt16](count: bytesPerRow * Int(inputImageHeight), repeatedValue: 0)
             
             for dataIndex in 0..<data.count {
-                data[dataIndex] = UInt16(bitmapData[dataIndex])
+                data[dataIndex] = UInt16(round(Double(bitmapData[dataIndex])/255)*255)
             }
             
             //First Pass

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "37A40DB41CCB620400337ACD"
-               BuildableName = "SwiftOCR Example OS X.app"
-               BlueprintName = "SwiftOCR Example OS X"
-               ReferencedContainer = "container:SwiftOCR Example OS X.xcodeproj">
+               BlueprintIdentifier = "37E1208F1CDA5E6B00FC2701"
+               BuildableName = "SwiftOCR Camera.app"
+               BlueprintName = "SwiftOCR Camera"
+               ReferencedContainer = "container:SwiftOCR Camera.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "37A40DB41CCB620400337ACD"
-            BuildableName = "SwiftOCR Example OS X.app"
-            BlueprintName = "SwiftOCR Example OS X"
-            ReferencedContainer = "container:SwiftOCR Example OS X.xcodeproj">
+            BlueprintIdentifier = "37E1208F1CDA5E6B00FC2701"
+            BuildableName = "SwiftOCR Camera.app"
+            BlueprintName = "SwiftOCR Camera"
+            ReferencedContainer = "container:SwiftOCR Camera.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "37A40DB41CCB620400337ACD"
-            BuildableName = "SwiftOCR Example OS X.app"
-            BlueprintName = "SwiftOCR Example OS X"
-            ReferencedContainer = "container:SwiftOCR Example OS X.xcodeproj">
+            BlueprintIdentifier = "37E1208F1CDA5E6B00FC2701"
+            BuildableName = "SwiftOCR Camera.app"
+            BlueprintName = "SwiftOCR Camera"
+            ReferencedContainer = "container:SwiftOCR Camera.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "37A40DB41CCB620400337ACD"
-            BuildableName = "SwiftOCR Example OS X.app"
-            BlueprintName = "SwiftOCR Example OS X"
-            ReferencedContainer = "container:SwiftOCR Example OS X.xcodeproj">
+            BlueprintIdentifier = "37E1208F1CDA5E6B00FC2701"
+            BuildableName = "SwiftOCR Camera.app"
+            BlueprintName = "SwiftOCR Camera"
+            ReferencedContainer = "container:SwiftOCR Camera.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

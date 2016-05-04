@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftOCR_Camera" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sir-0n-P0T" userLabel="Camera View">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXF-1j-qpb" userLabel="View Finder">
+                                <rect key="frame" x="0.0" y="282" width="375" height="104"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10250443262411348" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UXF-1j-qpb" secondAttribute="height" multiplier="400:110" id="Wf9-rR-8La"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcA-i2-TBm">
+                                <rect key="frame" x="16" y="20" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59q-Wb-tpV">
+                                <rect key="frame" x="148" y="567" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="YoE-4F-OiR"/>
+                                    <constraint firstAttribute="width" constant="80" id="vUJ-yu-Eae"/>
+                                </constraints>
+                                <state key="normal" title="Take Photo"/>
+                                <connections>
+                                    <action selector="takePhotoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ifM-Xu-LQo"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="J7k-W1-n8e">
+                                <rect key="frame" x="14" y="529" width="347" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueDidChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="RiE-Mr-P3g"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="59q-Wb-tpV" secondAttribute="bottom" constant="20" id="6wy-SK-hUa"/>
+                            <constraint firstAttribute="trailing" secondItem="sir-0n-P0T" secondAttribute="trailing" id="BRr-lq-ztQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PcA-i2-TBm" secondAttribute="trailing" id="CXd-aB-BKk"/>
+                            <constraint firstItem="59q-Wb-tpV" firstAttribute="top" secondItem="J7k-W1-n8e" secondAttribute="bottom" constant="8" id="FzZ-ND-zLR"/>
+                            <constraint firstItem="J7k-W1-n8e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Hn5-8D-iNu"/>
+                            <constraint firstItem="sir-0n-P0T" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="JIn-Cf-NHk"/>
+                            <constraint firstItem="PcA-i2-TBm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YOu-l0-6Sc"/>
+                            <constraint firstAttribute="trailing" secondItem="UXF-1j-qpb" secondAttribute="trailing" id="ZvS-aF-rF7"/>
+                            <constraint firstItem="PcA-i2-TBm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aot-f4-0ZN"/>
+                            <constraint firstItem="J7k-W1-n8e" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="dTG-Ok-YOe"/>
+                            <constraint firstItem="UXF-1j-qpb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eGt-aw-WMz"/>
+                            <constraint firstItem="59q-Wb-tpV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hgw-lh-HzH"/>
+                            <constraint firstItem="UXF-1j-qpb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="oCK-S5-cY0"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sir-0n-P0T" secondAttribute="bottom" id="pfG-Jd-em4"/>
+                            <constraint firstItem="sir-0n-P0T" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="rTq-1U-ope"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="cameraView" destination="sir-0n-P0T" id="Gq5-1p-gdr"/>
+                        <outlet property="label" destination="PcA-i2-TBm" id="roR-02-5wS"/>
+                        <outlet property="slider" destination="J7k-W1-n8e" id="Ar6-EE-9MQ"/>
+                        <outlet property="viewFinder" destination="UXF-1j-qpb" id="OdU-J1-6H9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244.5" y="305.5"/>
+        </scene>
+    </scenes>
+</document>

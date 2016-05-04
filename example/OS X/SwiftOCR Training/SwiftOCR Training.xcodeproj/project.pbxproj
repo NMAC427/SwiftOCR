@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372578D01CDA07D900785B68 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37CA6E491CD8D97C00562F20 /* GPUImage.framework */; };
+		372578D11CDA07D900785B68 /* GPUImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37CA6E491CD8D97C00562F20 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37711D8E1CD78CB700DC6B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37711D8D1CD78CB700DC6B43 /* AppDelegate.swift */; };
 		37711D901CD78CB700DC6B43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37711D8F1CD78CB700DC6B43 /* ViewController.swift */; };
 		37711D921CD78CB700DC6B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37711D911CD78CB700DC6B43 /* Assets.xcassets */; };
@@ -30,11 +32,16 @@
 		37CCABEC1CD8D03600ECA264 /* CrossPlatformSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD81CD8D03600ECA264 /* CrossPlatformSupport.swift */; };
 		37CCABED1CD8D03600ECA264 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD91CD8D03600ECA264 /* Extensions.swift */; };
 		37CCABEE1CD8D03600ECA264 /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABDA1CD8D03600ECA264 /* UnionFind.swift */; };
-		37CCABEF1CD8D06500ECA264 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37711DE31CD7AF6600DC6B43 /* GPUImage.framework */; };
-		37CCABF01CD8D06500ECA264 /* GPUImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 37711DE31CD7AF6600DC6B43 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		372578D21CDA07D900785B68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37CCABCA1CD8D03600ECA264 /* GPUImageMac.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BCA3F31B17239B6500E28AEC;
+			remoteInfo = GPUImage;
+		};
 		37CA6E431CD8D97C00562F20 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 37CCABC91CD8D03600ECA264 /* GPUImage.xcodeproj */;
@@ -59,13 +66,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		37CCABF11CD8D06500ECA264 /* Embed Frameworks */ = {
+		372578D71CDA07D900785B68 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				37CCABF01CD8D06500ECA264 /* GPUImage.framework in Embed Frameworks */,
+				372578D11CDA07D900785B68 /* GPUImage.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,7 +87,6 @@
 		37711D941CD78CB700DC6B43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		37711D961CD78CB700DC6B43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37711DB61CD7A84D00DC6B43 /* ButtonTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableCellView.swift; sourceTree = "<group>"; };
-		37711DE31CD7AF6600DC6B43 /* GPUImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = GPUImage.framework; path = "/Users/nicolas/Library/Developer/Xcode/DerivedData/SwiftOCR_Training-dpbycpdiieaokcamerijdhlthkbb/Build/Products/Release/GPUImage.framework"; sourceTree = "<absolute>"; };
 		37CCABC41CD8D03600ECA264 /* SwiftOCR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCR.swift; sourceTree = "<group>"; };
 		37CCABC51CD8D03600ECA264 /* SwiftOCRTraining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCRTraining.swift; sourceTree = "<group>"; };
 		37CCABC61CD8D03600ECA264 /* OCR-Network */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "OCR-Network"; sourceTree = "<group>"; };
@@ -109,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37CCABEF1CD8D06500ECA264 /* GPUImage.framework in Frameworks */,
+				372578D01CDA07D900785B68 /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,7 +125,6 @@
 		37711D811CD78CB600DC6B43 = {
 			isa = PBXGroup;
 			children = (
-				37711DE31CD7AF6600DC6B43 /* GPUImage.framework */,
 				37711D8C1CD78CB700DC6B43 /* SwiftOCR Training */,
 				37711D8B1CD78CB700DC6B43 /* Products */,
 			);
@@ -227,11 +232,12 @@
 				37711D861CD78CB600DC6B43 /* Sources */,
 				37711D871CD78CB600DC6B43 /* Frameworks */,
 				37711D881CD78CB600DC6B43 /* Resources */,
-				37CCABF11CD8D06500ECA264 /* Embed Frameworks */,
+				372578D71CDA07D900785B68 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				372578D31CDA07D900785B68 /* PBXTargetDependency */,
 			);
 			name = "SwiftOCR Training";
 			productName = "SwiftOCR Training";
@@ -347,6 +353,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		372578D31CDA07D900785B68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImage;
+			targetProxy = 372578D21CDA07D900785B68 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		37711D931CD78CB700DC6B43 /* Main.storyboard */ = {

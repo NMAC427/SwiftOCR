@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		372578B71CD9259600785B68 /* CrossPlatformSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37711DEE1CD7E8A300DC6B43 /* CrossPlatformSupport.swift */; };
-		372BCEB21CD67C0A00BAABEB /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1401CC9521B00C4758B /* GPUImage.framework */; };
+		372578BF1CDA026E00785B68 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1401CC9521B00C4758B /* GPUImage.framework */; };
+		372578C01CDA027800785B68 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1491CC9521B00C4758B /* GPUImage.framework */; };
 		373ED0B31CC9071D00C4758B /* SwiftOCR.h in Headers */ = {isa = PBXBuildFile; fileRef = 373ED0B21CC9071D00C4758B /* SwiftOCR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		373ED0BA1CC9071D00C4758B /* SwiftOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED0AF1CC9071C00C4758B /* SwiftOCR.framework */; };
 		373ED0BF1CC9071D00C4758B /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0BE1CC9071D00C4758B /* SwiftOCRTests.swift */; };
@@ -55,7 +56,6 @@
 		377885721CCCF37400A41020 /* TrainingBackground_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856B1CCCF37400A41020 /* TrainingBackground_3.png */; };
 		377885731CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
 		377885741CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
-		377ECDCC1CCA432E0050EFD4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1491CC9521B00C4758B /* GPUImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,7 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377ECDCC1CCA432E0050EFD4 /* GPUImage.framework in Frameworks */,
+				372578C01CDA027800785B68 /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				372BCEB21CD67C0A00BAABEB /* GPUImage.framework in Frameworks */,
+				372578BF1CDA026E00785B68 /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

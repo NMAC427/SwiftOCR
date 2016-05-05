@@ -9,9 +9,7 @@
 import GPUImage
 
 public class SwiftOCRTraining {
-    
-    public  var shouldStopTraining = false
-    
+
     private let ocrInstance        = SwiftOCR()
     
     //Training Variables
@@ -24,7 +22,7 @@ public class SwiftOCRTraining {
      Generates a training set for the neural network and uses that for training the neural network.
      */
     
-    public  func trainWithCharSet() {
+    public  func trainWithCharSet(shouldContinue: (Float) -> Bool = {_ in return true}) {
         let numberOfTrainImages  = 500
         let numberOfTestImages   = 100
         let errorThreshold:Float = 2
@@ -36,18 +34,14 @@ public class SwiftOCRTraining {
         let trainAnswers = trainData.map({return $0.1})
         let testInputs   =  testData.map({return $0.0})
         let testAnswers  =  testData.map({return $0.1})
-        
-        print(globalNetwork.getWeights().reduce(0, combine: +))
-        
+
         do {
-            try globalNetwork.train(inputs: trainInputs, answers: trainAnswers, testInputs: testInputs, testAnswers: testAnswers, errorThreshold: errorThreshold, shouldContinue: {_ in return !self.shouldStopTraining})
+            try globalNetwork.train(inputs: trainInputs, answers: trainAnswers, testInputs: testInputs, testAnswers: testAnswers, errorThreshold: errorThreshold, shouldContinue: {error in shouldContinue(error)})
             saveOCR()
         } catch {
             print(error)
         }
-        
-        print(globalNetwork.getWeights().reduce(0, combine: +))
-        
+
     }
     
     /**

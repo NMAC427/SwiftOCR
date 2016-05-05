@@ -45,12 +45,92 @@ public class SwiftOCR {
                 return
             }
             
-            var preprocessedImage = OCRImage()
+            guard let preprocessedImage = self.delegate?.preprocessImageForOCR(imageToRecognize) ?? self.preprocessImageForOCR(imageToRecognize)else {
+                print("There was an error while preprocessing the image for SwiftOCR")
+                completionHandler(String())
+                return
+            }
             
-            if let preprocessFunc = self.delegate?.preprocessImageForOCR, let processedImage = preprocessFunc(imageToRecognize){
-                preprocessedImage = processedImage
-            } else {
-                preprocessedImage = self.preprocessImageForOCR(self.image)!
+            let blobs                  = self.extractBlobs(preprocessedImage)
+            var recognizedString       = ""
+            var ocrRecognizedBlobArray = [SwiftOCRRecognizedBlob]()
+            
+            for blob in blobs {
+                
+                do {
+                    let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
+                    let networkResult  = try self.network.update(inputs: blobData)
+                    
+                    if networkResult.maxElement() >= confidenceThreshold {
+                        let recognizedChar = Array(recognizableCharacters.characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
+                        recognizedString.append(recognizedChar)
+                    }
+                    
+                    //Generate SwiftOCRRecognizedBlob
+                    
+                    var ocrRecognizedBlobCharactersWithConfidenceArray = [(character: Character, confidence: Float)]()
+                    let ocrRecognizedBlobConfidenceThreshold = networkResult.reduce(0, combine: +)/Float(networkResult.count)
+                    
+                    for networkResultIndex in 0..<networkResult.count {
+                        let characterConfidence = networkResult[networkResultIndex]
+                        let character           = Array(recognizableCharacters.characters)[networkResultIndex]
+                        
+                        if characterConfidence >= ocrRecognizedBlobConfidenceThreshold {
+                            ocrRecognizedBlobCharactersWithConfidenceArray.append((character: character, confidence: characterConfidence))
+                        }
+                        
+                    }
+                    
+                    let currentRecognizedBlob = SwiftOCRRecognizedBlob(charactersWithConfidence: ocrRecognizedBlobCharactersWithConfidenceArray, boundingBox: blob.1)
+                    
+                    ocrRecognizedBlobArray.append(currentRecognizedBlob)
+                    
+                } catch {
+                    print(error)
+                }
+                
+            }
+            
+            self.currentOCRRecognizedBlobs = ocrRecognizedBlobArray
+            completionHandler(recognizedString)
+        })
+        
+    }
+    
+    /**
+     
+     Performs ocr on `SwiftOCR().image` in a specified rect.
+     
+     - Parameter rect:              The rect in which recognition should take place.
+     - Parameter completionHandler: The completion handler that gets invoked after the ocr is finished.
+     
+     */
+    
+    public   func recognizeInRect(rect: CGRect, completionHandler: (String) -> Void){
+        
+        let confidenceThreshold:Float = 0.1 //Confidence must be bigger than the threshold
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            guard let imageToRecognize = self.image else {
+                print("You first have to set a SwiftOCR().image")
+                completionHandler(String())
+                return
+            }
+            
+            #if os(iOS)
+                let cgImage        = imageToRecognize.CGImage
+                let croppedCGImage = CGImageCreateWithImageInRect(cgImage, rect)!
+                let croppedImage   = OCRImage(CGImage: croppedCGImage)
+            #else
+                let cgImage        = imageToRecognize.CGImageForProposedRect(nil, context: nil, hints: nil)
+                let croppedCGImage = CGImageCreateWithImageInRect(cgImage, rect)!
+                let croppedImage   = OCRImage(CGImage: croppedCGImage, size: rect.size)
+            #endif
+            
+            guard let preprocessedImage = self.delegate?.preprocessImageForOCR(croppedImage) ?? self.preprocessImageForOCR(croppedImage)else {
+                print("There was an error while preprocessing the image for SwiftOCR")
+                completionHandler(String())
+                return
             }
             
             let blobs                  = self.extractBlobs(preprocessedImage)
@@ -526,7 +606,7 @@ public class SwiftOCR {
     
 }
 
-@objc public protocol SwiftOCRDelegate {
+public protocol SwiftOCRDelegate {
     
     /**
      
@@ -537,8 +617,14 @@ public class SwiftOCR {
      
      */
     
-    optional func preprocessImageForOCR(inputImage: OCRImage) -> OCRImage?
+    func preprocessImageForOCR(inputImage: OCRImage) -> OCRImage?
     
+}
+
+extension SwiftOCRDelegate {
+    func preprocessImageForOCR(inputImage: OCRImage) -> OCRImage? {
+        return nil
+    }
 }
 
 public struct SwiftOCRRecognizedBlob {

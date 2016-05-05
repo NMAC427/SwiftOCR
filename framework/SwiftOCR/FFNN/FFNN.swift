@@ -6,8 +6,8 @@
 //
 
 /*
-    NOTE: Include `Storage.swift` and `FFNN+Storage.swift` to add support for reading/writing files.
-*/
+ NOTE: Include `Storage.swift` and `FFNN+Storage.swift` to add support for reading/writing files.
+ */
 
 import Accelerate
 import Foundation
@@ -75,19 +75,19 @@ public final class FFNN {
     }
     
     /// The activation function to use during update cycles.
-    private var activationFunction : ActivationFunction = .Sigmoid
+    internal private(set) var activationFunction : ActivationFunction = .Sigmoid
     
     /// The error function used for training
-    private var errorFunction : ErrorFunction = .Default(average: false)
+    internal private(set) var errorFunction : ErrorFunction = .Default(average: false)
     /**
      The following private properties are allocated once during initializtion, in order to prevent frequent
      memory allocations for temporary variables during the update and backpropagation cycles.
      Some known properties are computed in advance in order to to avoid casting, integer division
      and modulus operations inside loops.
      */
-     
-     /// (1 - momentumFactor) * learningRate.
-     /// Used frequently during backpropagation.
+    
+    /// (1 - momentumFactor) * learningRate.
+    /// Used frequently during backpropagation.
     private var mfLR: Float
     
     /// The number of input nodes, INCLUDING the bias node.
@@ -136,10 +136,6 @@ public final class FFNN {
     private var hiddenErrorIndices = [Int]()
     /// The input indices corresponding to each hidden weight.
     private var inputIndices = [Int]()
-    
-    public func copy() -> FFNN {
-        return FFNN.init(inputs: self.numInputs, hidden: self.numHidden, outputs: self.numOutputs, learningRate: self.learningRate, momentum: self.momentumFactor, weights: self.getWeights(), activationFunction: self.activationFunction, errorFunction: self.errorFunction)
-    }
     
     /// Initializes a feed-forward neural network.
     public init(inputs: Int, hidden: Int, outputs: Int, learningRate: Float = 0.7, momentum: Float = 0.4, weights: [Float]? = nil, activationFunction: ActivationFunction = .Default, errorFunction: ErrorFunction = .Default(average: false)) {
@@ -220,9 +216,9 @@ public final class FFNN {
         
         // Calculate the weighted sums for the hidden layer
         vDSP_mmul(self.hiddenWeights, 1,
-            self.inputCache, 1,
-            &self.hiddenOutputCache, 1,
-            vDSP_Length(self.numHidden), vDSP_Length(1), vDSP_Length(self.numInputNodes))
+                  self.inputCache, 1,
+                  &self.hiddenOutputCache, 1,
+                  vDSP_Length(self.numHidden), vDSP_Length(1), vDSP_Length(self.numInputNodes))
         
         // Apply the activation function to the hidden layer nodes
         // Note: Array elements are shifted one index to the right, in order to efficiently insert the bias node at index 0
@@ -230,9 +226,9 @@ public final class FFNN {
         
         //  Calculate the weighted sums for the output layer
         vDSP_mmul(self.outputWeights, 1,
-            self.hiddenOutputCache, 1,
-            &self.outputCache, 1,
-            vDSP_Length(self.numOutputs), vDSP_Length(1), vDSP_Length(self.numHiddenNodes))
+                  self.hiddenOutputCache, 1,
+                  &self.outputCache, 1,
+                  vDSP_Length(self.numOutputs), vDSP_Length(1), vDSP_Length(self.numHiddenNodes))
         
         // Apply the activation function to the output layer nodes
         self.activateOutput()
@@ -263,9 +259,9 @@ public final class FFNN {
         
         // Calculate hidden errors
         vDSP_mmul(self.outputErrorsCache, 1,
-            self.outputWeights, 1,
-            &self.hiddenErrorSumsCache, 1,
-            vDSP_Length(1), vDSP_Length(self.numHiddenNodes), vDSP_Length(self.numOutputs))
+                  self.outputWeights, 1,
+                  &self.hiddenErrorSumsCache, 1,
+                  vDSP_Length(1), vDSP_Length(self.numHiddenNodes), vDSP_Length(self.numOutputs))
         for (errorIndex, error) in self.hiddenErrorSumsCache.enumerate() {
             self.hiddenErrorsCache[errorIndex] = self.activationDerivative(self.hiddenOutputCache[errorIndex]) * error
         }

@@ -17,12 +17,12 @@ internal var globalNetwork = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URL
 public class SwiftOCR {
     
     ///The image used for OCR
-    public var image:OCRImage?
+    public      var image:OCRImage?
 
-    private  let network = globalNetwork.copy()
+    private     let network = globalNetwork.copy()
     
-    public   var delegate:SwiftOCRDelegate?
-    public   var currentOCRRecognizedBlobs = [SwiftOCRRecognizedBlob]()
+    public weak var delegate:SwiftOCRDelegate?
+    public      var currentOCRRecognizedBlobs = [SwiftOCRRecognizedBlob]()
     
     public   init(){}
     
@@ -210,7 +210,7 @@ public class SwiftOCR {
             var data = [UInt16](count: bytesPerRow * Int(inputImageHeight), repeatedValue: 0)
             
             for dataIndex in 0..<data.count {
-                data[dataIndex] = UInt16(round(Double(bitmapData[dataIndex])/255)*255)
+                data[dataIndex] = UInt16(bitmapData[dataIndex])
             }
             
             //First Pass
@@ -590,9 +590,12 @@ public class SwiftOCR {
         
         var imageData = [Float]()
         
-        for y in 0..<Int(resizedBlob.size.height) {
-            for x in 0..<Int(resizedBlob.size.width) {
-                let pixelInfo: Int = ((Int(resizedBlob.size.width) * Int(y)) + Int(x)) * numberOfComponents
+        let height = resizedBlob.size.height
+        let width  = resizedBlob.size.width
+        
+        for y in 0..<Int(height) {
+            for x in 0..<Int(width) {
+                let pixelInfo: Int = ((Int(width) * Int(y)) + Int(x)) * numberOfComponents
                 imageData.append(Float(bitmapData[pixelInfo])/255)
             }
         }
@@ -606,7 +609,7 @@ public class SwiftOCR {
     
 }
 
-public protocol SwiftOCRDelegate {
+public protocol SwiftOCRDelegate: class {
     
     /**
      

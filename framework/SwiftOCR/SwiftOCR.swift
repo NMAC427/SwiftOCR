@@ -18,13 +18,19 @@ public class SwiftOCR {
     
     ///The image used for OCR
     public      var image:OCRImage?
-
-    private     let network = globalNetwork.copy()
+    
+    private     var network = globalNetwork
     
     public weak var delegate:SwiftOCRDelegate?
     public      var currentOCRRecognizedBlobs = [SwiftOCRRecognizedBlob]()
     
     public   init(){}
+    
+    public   init(image: OCRImage, delegate: SwiftOCRDelegate?, _ completionHandler: (String) -> Void){
+        self.image    = image
+        self.delegate = delegate
+        self.recognize(completionHandler)
+    }
     
     /**
      
@@ -213,7 +219,7 @@ public class SwiftOCR {
                 data[dataIndex] = UInt16(bitmapData[dataIndex])
             }
             
-            //First Pass
+            //MARK: First Pass
             
             var currentLabel:UInt16 = 0 {
                 didSet {
@@ -224,11 +230,12 @@ public class SwiftOCR {
             }
             var labelsUnion = UnionFind<UInt16>()
             
-            for y in 0..<Int(inputImageHeight) {
-                for x in 0..<Int(inputImageWidth) {
-                    let pixelInfo: Int = ((Int(bytesPerRow) * Int(y)) + Int(x * numberOfComponents))
-                    let pixelIndex:(Int, Int) -> Int = {x, y in
-                        return ((Int(bytesPerRow) * Int(y)) + Int(x * numberOfComponents))
+            for (y, yPixelInfo) in Array(0.stride(to: inputImageHeight*bytesPerRow, by: bytesPerRow)).enumerate() {
+                for (x, xPixelInfo) in Array(0.stride(to: inputImageWidth*numberOfComponents, by: numberOfComponents)).enumerate() {
+                    let pixelInfo  = yPixelInfo + xPixelInfo
+                    
+                    let pixelIndex:(Int, Int) -> Int = {inputX, inputY in
+                        return pixelInfo - ((x-inputX)*numberOfComponents) - ((y-inputY)*bytesPerRow)
                     }
                     
                     if data[pixelInfo] == 0 { //Is Black
@@ -258,11 +265,11 @@ public class SwiftOCR {
                             } else if y > 0 { //Top pixel
                                 if data[pixelIndex(x-1,y)] != 255 { //Left Label
                                     if data[pixelIndex(x,y-1)] != 255 { //Top Label
-    
+                                        
                                         if data[pixelIndex(x,y-1)] != data[pixelIndex(x-1,y)] {
                                             labelsUnion.unionSetsContaining(data[pixelIndex(x,y-1)], and: data[pixelIndex(x-1,y)])
                                         }
-    
+                                        
                                         data[pixelInfo] = data[pixelIndex(x,y-1)]
                                     } else { //Top no Label
                                         data[pixelInfo] = data[pixelIndex(x-1,y)]
@@ -283,23 +290,60 @@ public class SwiftOCR {
                 }
             }
             
-            //Second Pass
+            //MARK: Second Pass
             
             let parentArray = Array(labelsUnion.parent.uniq())
             
-            for y in 0..<Int(inputImageHeight) {
-                for x in 0..<Int(inputImageWidth) {
-                    let pixelInfo: Int = ((Int(bytesPerRow) * Int(y)) + Int(x * numberOfComponents))
-                    if data[pixelInfo] != 255 {
-                        data[pixelInfo] = UInt16(parentArray.indexOf(labelsUnion.setOf(data[pixelInfo]) ?? 0) ?? 0)
+            var labelUnionSetOfXArray = Dictionary<UInt16, Int>()
+            
+            for label in 0...currentLabel {
+                if label != 255 {
+                    labelUnionSetOfXArray[label] = parentArray.indexOf(labelsUnion.setOf(label) ?? 255)
+                }
+            }
+
+            for yPixelInfo in 0.stride(to: inputImageHeight*bytesPerRow, by: bytesPerRow) {
+                for xPixelInfo in 0.stride(to: inputImageWidth*numberOfComponents, by: numberOfComponents) {
+                    let pixelInfo  = yPixelInfo + xPixelInfo
+                    let luminosity = data[pixelInfo]
+                    
+                    if luminosity != 255 {
+                        data[pixelInfo] = UInt16(labelUnionSetOfXArray[luminosity] ?? 255)
                     }
                     
                 }
             }
             
-            //Extract Images
+            //MARK: MinX, MaxX, MinY, MaxY
             
-            //Merge rects
+            var minMaxXYLabelDict = Dictionary<UInt16, (minX: Int, maxX: Int, minY: Int, maxY: Int)>()
+            
+            for label in 0..<parentArray.count {
+                minMaxXYLabelDict[UInt16(label)] = (minX: Int(inputImageWidth), maxX: 0, minY: Int(inputImageHeight), maxY: 0)
+            }
+            
+            for (y, yPixelInfo) in Array(0.stride(to: inputImageHeight*bytesPerRow, by: bytesPerRow)).enumerate() {
+                for (x, xPixelInfo) in Array(0.stride(to: inputImageWidth*numberOfComponents, by: numberOfComponents)).enumerate() {
+                    let pixelInfo  = yPixelInfo + xPixelInfo
+                    let luminosity = data[pixelInfo]
+                    
+                    if luminosity != 255 {
+                        
+                        var value = minMaxXYLabelDict[luminosity]!
+                        
+                        value.minX = min(value.minX, x)
+                        value.maxX = max(value.maxX, x)
+                        value.minY = min(value.minY, y)
+                        value.maxY = max(value.maxY, y)
+                        
+                        minMaxXYLabelDict[luminosity] = value
+                        
+                    }
+                    
+                }
+            }
+            
+            //MARK: Merge labels
             
             var mergeUnion = UnionFind<UInt16>()
             var mergeLabelRects = [CGRect]()
@@ -307,25 +351,13 @@ public class SwiftOCR {
             let xMergeRadius:CGFloat = 1
             let yMergeRadius:CGFloat = 3
             
-            for label in 0..<parentArray.count {
-                var minX = Int(inputImageWidth)
-                var maxX = 0
-                var minY = Int(inputImageHeight)
-                var maxY = 0
+            for label in minMaxXYLabelDict.keys {
+                let value = minMaxXYLabelDict[label]!
                 
-                for y in 0..<Int(inputImageHeight) {
-                    for x in 0..<Int(inputImageWidth) {
-                        let pixelInfo: Int = ((Int(bytesPerRow) * Int(y)) + Int(x * numberOfComponents))
-                        
-                        if data[pixelInfo] == UInt16(label) {
-                            minX = min(minX, x)
-                            maxX = max(maxX, x)
-                            minY = min(minY, y)
-                            maxY = max(maxY, y)
-                        }
-                        
-                    }
-                }
+                let minX = value.minX
+                let maxX = value.maxX
+                let minY = value.minY
+                let maxY = value.maxY
                 
                 //Filter blobs
                 
@@ -365,9 +397,7 @@ public class SwiftOCR {
             
             var outputImages = [(OCRImage, CGRect)]()
             
-            mergeLabelRects.uniqInPlace()
-            
-            //Extract images
+            //MARK: Crop image to blob
             
             for rect in mergeLabelRects {
                 let cropRect = rect.insetBy(dx: CGFloat(xMergeRadius), dy: CGFloat(yMergeRadius))

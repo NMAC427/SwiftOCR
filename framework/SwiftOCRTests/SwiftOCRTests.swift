@@ -21,6 +21,22 @@ class SwiftOCRTests: XCTestCase {
         super.tearDown()
     }
     
+    func testBigImageSwiftOCR() {
+        let testImage = UIImage(contentsOfFile: NSBundle(forClass: SwiftOCR.self).pathForResource("Test 3", ofType: "png")!)!
+        
+        self.measureBlock({
+            let expection = self.expectationWithDescription("testSingleSwiftOCR Expection")
+            
+            let swiftOCRInstance = SwiftOCR()
+            swiftOCRInstance.image = testImage
+            swiftOCRInstance.recognize({ recognizedString in
+                expection.fulfill()
+            })
+            self.waitForExpectationsWithTimeout(10, handler: nil)
+        })
+        
+    }
+    
     func testSingleSwiftOCR() {
         let testImage = UIImage(contentsOfFile: NSBundle(forClass: SwiftOCR.self).pathForResource("Test 2", ofType: "png")!)!
         

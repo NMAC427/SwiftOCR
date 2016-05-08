@@ -8,25 +8,14 @@
 
 import Foundation
 
-internal extension Array where Element: Equatable {
+internal extension Array where Element: Hashable {
     
     func uniq() -> [Element] {
-        var arrayCopy = self
-        arrayCopy.uniqInPlace()
-        return arrayCopy
+        return Array(Set(self))
     }
     
     mutating func uniqInPlace() {
-        var seen = [Element]()
-        var index = 0
-        for element in self {
-            if seen.contains(element) {
-                removeAtIndex(index)
-            } else {
-                seen.append(element)
-                index += 1
-            }
-        }
+        self = Array(Set(self))
     }
 }
 

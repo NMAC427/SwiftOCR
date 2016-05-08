@@ -38,6 +38,10 @@
 		373ED1311CC917A500C4758B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED12F1CC917A500C4758B /* Extensions.swift */; };
 		373ED19A1CC9634500C4758B /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1991CC9634400C4758B /* UnionFind.swift */; };
 		373ED19B1CC9634500C4758B /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1991CC9634400C4758B /* UnionFind.swift */; };
+		375558181CDF7DA8008CED46 /* Test 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 375558171CDF7DA8008CED46 /* Test 3.png */; };
+		375558191CDF7DA8008CED46 /* Test 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 375558171CDF7DA8008CED46 /* Test 3.png */; };
+		3755581A1CDF7DA8008CED46 /* Test 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 375558171CDF7DA8008CED46 /* Test 3.png */; };
+		3755581B1CDF7DA8008CED46 /* Test 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 375558171CDF7DA8008CED46 /* Test 3.png */; };
 		37711DEF1CD7E8A300DC6B43 /* CrossPlatformSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37711DEE1CD7E8A300DC6B43 /* CrossPlatformSupport.swift */; };
 		3778855D1CCCF11900A41020 /* SwiftOCRTests OS X.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778855C1CCCF11900A41020 /* SwiftOCRTests OS X.swift */; };
 		377885611CCCF16600A41020 /* Test 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778855F1CCCF16600A41020 /* Test 1.png */; };
@@ -126,6 +130,7 @@
 		373ED1281CC912C000C4758B /* OCR-Network */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "OCR-Network"; sourceTree = "<group>"; };
 		373ED12F1CC917A500C4758B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		373ED1991CC9634400C4758B /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
+		375558171CDF7DA8008CED46 /* Test 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Test 3.png"; sourceTree = "<group>"; };
 		37711DEE1CD7E8A300DC6B43 /* CrossPlatformSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPlatformSupport.swift; sourceTree = "<group>"; };
 		3778855C1CCCF11900A41020 /* SwiftOCRTests OS X.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftOCRTests OS X.swift"; sourceTree = "<group>"; };
 		3778855F1CCCF16600A41020 /* Test 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Test 1.png"; sourceTree = "<group>"; };
@@ -277,6 +282,7 @@
 			children = (
 				3778855F1CCCF16600A41020 /* Test 1.png */,
 				377885601CCCF16600A41020 /* Test 2.png */,
+				375558171CDF7DA8008CED46 /* Test 3.png */,
 			);
 			path = "Test Images";
 			sourceTree = "<group>";
@@ -460,6 +466,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				375558181CDF7DA8008CED46 /* Test 3.png in Resources */,
 				373ED12E1CC914E400C4758B /* OCR-Network in Resources */,
 				3778856F1CCCF37400A41020 /* TrainingBackground_2.png in Resources */,
 				377885711CCCF37400A41020 /* TrainingBackground_3.png in Resources */,
@@ -476,6 +483,7 @@
 			files = (
 				377885611CCCF16600A41020 /* Test 1.png in Resources */,
 				377885631CCCF16600A41020 /* Test 2.png in Resources */,
+				375558191CDF7DA8008CED46 /* Test 3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +491,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3755581A1CDF7DA8008CED46 /* Test 3.png in Resources */,
 				373ED12A1CC912E400C4758B /* OCR-Network in Resources */,
 				377885661CCCF32900A41020 /* Test 2.png in Resources */,
 				377885651CCCF32900A41020 /* Test 1.png in Resources */,
@@ -499,6 +508,7 @@
 			files = (
 				377885621CCCF16600A41020 /* Test 1.png in Resources */,
 				377885641CCCF16600A41020 /* Test 2.png in Resources */,
+				3755581B1CDF7DA8008CED46 /* Test 3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

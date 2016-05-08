@@ -49,7 +49,7 @@ public enum ErrorFunction {
 
 
 /// A 3-Layer Feed-Forward Artificial Neural Network
-public final class FFNN {
+public struct FFNN {
     
     /// The number of input nodes to the network (read only).
     let numInputs: Int
@@ -201,7 +201,7 @@ public final class FFNN {
     /// Propagates the given inputs through the neural network, returning the network's output.
     /// - Parameter inputs: An array of `Float`s, each element corresponding to one input node.
     /// - Returns: The network's output after applying the given inputs, as an array of `Float`s.
-    public func update(inputs inputs: [Float]) throws -> [Float] {
+    public mutating func update(inputs inputs: [Float]) throws -> [Float] {
         // Ensure that the correct number of inputs is given
         guard inputs.count == self.numInputs else {
             throw FFNNError.InvalidAnswerError("Invalid number of inputs given: \(inputs.count). Expected: \(self.numInputs)")
@@ -240,7 +240,7 @@ public final class FFNN {
     /// Trains the network by comparing its most recent output to the given 'answers', adjusting the network's weights as needed.
     /// - Parameter answer: The 'correct' desired output for the most recent update to the network, as an array of `Float`s.
     /// - Returns: The total calculated error from the most recent update.
-    public func backpropagate(answer answer: [Float]) throws -> Float {
+    public mutating func backpropagate(answer answer: [Float]) throws -> Float {
         // Verify valid answer
         guard answer.count == self.numOutputs else {
             throw FFNNError.InvalidAnswerError("Invalid number of outputs given in answer: \(answer.count). Expected: \(self.numOutputs)")
@@ -309,7 +309,7 @@ public final class FFNN {
     ///     - errorThreshold: A `Float` indicating the maximum error allowed per epoch of validation data, before the network is considered 'trained'.
     ///             This value must be determined by the user, because it varies based on the type of data used and the desired accuracy.
     /// - Returns: The final calculated weights of the network after training has completed.
-    public func train(inputs inputs: [[Float]], answers: [[Float]], testInputs: [[Float]], testAnswers: [[Float]], errorThreshold: Float, shouldContinue: (Float) -> Bool = {_ in return true}) throws -> [Float] {
+    public mutating func train(inputs inputs: [[Float]], answers: [[Float]], testInputs: [[Float]], testAnswers: [[Float]], errorThreshold: Float, shouldContinue: (Float) -> Bool = {_ in return true}) throws -> [Float] {
         guard errorThreshold > 0 else {
             throw FFNNError.InvalidInputsError("Error threshold must be greater than zero!")
         }
@@ -344,7 +344,7 @@ public final class FFNN {
     /// - Parameter weights: An array of `Float`s, to be used as the weights for the network.
     /// - Important: The number of weights must equal numHidden * (numInputs + 1) + numOutputs * (numHidden + 1),
     /// or the weights will be rejected.
-    public func resetWithWeights(weights: [Float]) throws {
+    public mutating func resetWithWeights(weights: [Float]) throws {
         guard weights.count == self.numHiddenWeights + self.numOutputWeights else {
             throw FFNNError.InvalidWeightsError("Invalid number of weights provided: \(weights.count). Expected: \(self.numHiddenWeights + self.numOutputWeights)")
         }
@@ -416,7 +416,7 @@ public extension FFNN {
     }
     
     /// Computes the error over the given training set.
-    private func error(result: [[Float]], expected: [[Float]]) throws -> Float {
+    private mutating func error(result: [[Float]], expected: [[Float]]) throws -> Float {
         var errorSum: Float = 0
         switch self.errorFunction {
         case .Default(let average):
@@ -445,7 +445,7 @@ public extension FFNN {
     }
     
     /// Applies the activation function to the hidden layer nodes.
-    private func activateHidden() {
+    private mutating func activateHidden() {
         switch self.activationFunction {
         case .None:
             for i in (1...self.numHidden).reverse() {
@@ -482,7 +482,7 @@ public extension FFNN {
     }
     
     /// Applies the activation function to the output layer nodes.
-    private func activateOutput() {
+    private mutating func activateOutput() {
         switch self.activationFunction {
         case .None:
             for i in 0..<self.numOutputs {
@@ -545,7 +545,7 @@ public extension FFNN {
     }
     
     /// Randomizes all of the network's weights, from each layer.
-    private func randomizeWeights() {
+    private mutating func randomizeWeights() {
         for i in 0..<self.numHiddenWeights {
             self.hiddenWeights[i] = randomWeight(numInputNodes: self.numInputNodes)
         }

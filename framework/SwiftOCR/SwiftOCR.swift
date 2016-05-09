@@ -44,14 +44,14 @@ public class SwiftOCR {
         
         let confidenceThreshold:Float = 0.1 //Confidence must be bigger than the threshold
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             guard let imageToRecognize = self.image else {
                 print("You first have to set a SwiftOCR().image")
                 completionHandler(String())
                 return
             }
             
-            guard let preprocessedImage = self.delegate?.preprocessImageForOCR(imageToRecognize) ?? self.preprocessImageForOCR(imageToRecognize)else {
+            guard let preprocessedImage = self.delegate?.preprocessImageForOCR(imageToRecognize) ?? self.preprocessImageForOCR(imageToRecognize) else {
                 print("There was an error while preprocessing the image for SwiftOCR")
                 completionHandler(String())
                 return
@@ -115,8 +115,8 @@ public class SwiftOCR {
     public   func recognizeInRect(rect: CGRect, completionHandler: (String) -> Void){
         
         let confidenceThreshold:Float = 0.1 //Confidence must be bigger than the threshold
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             guard let imageToRecognize = self.image else {
                 print("You first have to set a SwiftOCR().image")
                 completionHandler(String())
@@ -216,8 +216,11 @@ public class SwiftOCR {
             var data = [UInt16](count: bytesPerRow * Int(inputImageHeight), repeatedValue: 0)
             
             for dataIndex in 0..<data.count {
-                data[dataIndex] = UInt16(bitmapData[dataIndex])
+                data[dataIndex] = bitmapData[dataIndex] < 127 ? 0 : 255
             }
+            
+            let yPixelInfoStride = Array(0.stride(to: inputImageHeight*bytesPerRow, by: bytesPerRow)).enumerate()
+            let xPixelInfoStride = Array(0.stride(to: inputImageWidth*numberOfComponents, by: numberOfComponents)).enumerate()
             
             //MARK: First Pass
             
@@ -230,8 +233,8 @@ public class SwiftOCR {
             }
             var labelsUnion = UnionFind<UInt16>()
             
-            for (y, yPixelInfo) in Array(0.stride(to: inputImageHeight*bytesPerRow, by: bytesPerRow)).enumerate() {
-                for (x, xPixelInfo) in Array(0.stride(to: inputImageWidth*numberOfComponents, by: numberOfComponents)).enumerate() {
+            for (y, yPixelInfo) in yPixelInfoStride {
+                for (x, xPixelInfo) in xPixelInfoStride {
                     let pixelInfo  = yPixelInfo + xPixelInfo
                     
                     let pixelIndex:(Int, Int) -> Int = {inputX, inputY in
@@ -302,8 +305,8 @@ public class SwiftOCR {
                 }
             }
 
-            for yPixelInfo in 0.stride(to: inputImageHeight*bytesPerRow, by: bytesPerRow) {
-                for xPixelInfo in 0.stride(to: inputImageWidth*numberOfComponents, by: numberOfComponents) {
+            for (_, yPixelInfo) in yPixelInfoStride {
+                for (_, xPixelInfo) in xPixelInfoStride {
                     let pixelInfo  = yPixelInfo + xPixelInfo
                     let luminosity = data[pixelInfo]
                     
@@ -322,8 +325,8 @@ public class SwiftOCR {
                 minMaxXYLabelDict[UInt16(label)] = (minX: Int(inputImageWidth), maxX: 0, minY: Int(inputImageHeight), maxY: 0)
             }
             
-            for (y, yPixelInfo) in Array(0.stride(to: inputImageHeight*bytesPerRow, by: bytesPerRow)).enumerate() {
-                for (x, xPixelInfo) in Array(0.stride(to: inputImageWidth*numberOfComponents, by: numberOfComponents)).enumerate() {
+            for (y, yPixelInfo) in yPixelInfoStride {
+                for (x, xPixelInfo) in xPixelInfoStride {
                     let pixelInfo  = yPixelInfo + xPixelInfo
                     let luminosity = data[pixelInfo]
                     
@@ -485,30 +488,30 @@ public class SwiftOCR {
     public func preprocessImageForOCR(image:OCRImage?) -> OCRImage? {
         
         func getDodgeBlendImage(inputImage: OCRImage) -> OCRImage {
-            let image = GPUImagePicture(image: inputImage)
+            let image  = GPUImagePicture(image: inputImage)
             let image2 = GPUImagePicture(image: inputImage)
             
-            //Img 1
+            //First image
             
-            let grayFilter = GPUImageGrayscaleFilter()
-            image.addTarget(grayFilter)
+            let grayFilter      = GPUImageGrayscaleFilter()
+            let invertFilter    = GPUImageColorInvertFilter()
+            let blurFilter      = GPUImageSingleComponentGaussianBlurFilter()
+            let opacityFilter   = GPUImageOpacityFilter()
             
-            let invertFilter = GPUImageColorInvertFilter()
-            grayFilter.addTarget(invertFilter)
-            
-            let blurFilter = GPUImageGaussianBlurFilter()
             blurFilter.blurRadiusInPixels = 10
-            invertFilter.addTarget(blurFilter)
+            opacityFilter.opacity         = 0.93
             
-            let opacityFilter = GPUImageOpacityFilter()
-            opacityFilter.opacity = 0.93
-            blurFilter.addTarget(opacityFilter)
+            image       .addTarget(grayFilter)
+            grayFilter  .addTarget(invertFilter)
+            invertFilter.addTarget(blurFilter)
+            blurFilter  .addTarget(opacityFilter)
             
             opacityFilter.useNextFrameForImageCapture()
             
-            //Img 2
+            //Second image
             
             let grayFilter2 = GPUImageGrayscaleFilter()
+            
             image2.addTarget(grayFilter2)
             
             grayFilter2.useNextFrameForImageCapture()
@@ -524,10 +527,10 @@ public class SwiftOCR {
             
             dodgeBlendFilter.useNextFrameForImageCapture()
             image.processImage()
-            
+
             var processedImage:OCRImage? = dodgeBlendFilter.imageFromCurrentFramebufferWithOrientation(UIImageOrientation.Up)
-            
-            while processedImage?.size == CGSize.zero {
+
+            while processedImage?.size == CGSize.zero || processedImage == nil {
                 dodgeBlendFilter.useNextFrameForImageCapture()
                 image.processImage()
                 processedImage = dodgeBlendFilter.imageFromCurrentFramebufferWithOrientation(.Up)
@@ -537,27 +540,25 @@ public class SwiftOCR {
         }
         
         if let image = image ?? self.image {
+            
             let dodgeBlendImage        = getDodgeBlendImage(image)
             let picture                = GPUImagePicture(image: dodgeBlendImage)
             
             let medianFilter           = GPUImageMedianFilter()
-            
             let openingFilter          = GPUImageOpeningFilter()
-            
             let biliteralFilter        = GPUImageBilateralFilter()
+            let firstBrightnessFilter  = GPUImageBrightnessFilter()
+            let contrastFilter         = GPUImageContrastFilter()
+            let secondBrightnessFilter = GPUImageBrightnessFilter()
+            let thresholdFilter        = GPUImageLuminanceThresholdFilter()
+            
             biliteralFilter.texelSpacingMultiplier      = 0.8
             biliteralFilter.distanceNormalizationFactor = 1.6
-            
-            let firstBrightnessFilter  = GPUImageBrightnessFilter()
             firstBrightnessFilter.brightness            = -0.28
-            
-            let contrastFilter         = GPUImageContrastFilter()
             contrastFilter.contrast                     = 2.35
-            
-            let secondBrightnessFilter = GPUImageBrightnessFilter()
             secondBrightnessFilter.brightness           = -0.08
-            
-            let thresholdFilter        = GPUImageLuminanceThresholdFilter()
+            biliteralFilter.texelSpacingMultiplier      = 0.8
+            biliteralFilter.distanceNormalizationFactor = 1.6
             thresholdFilter.threshold                   = 0.5
             
             picture               .addTarget(medianFilter)
@@ -573,7 +574,7 @@ public class SwiftOCR {
             
             var processedImage:OCRImage? = thresholdFilter.imageFromCurrentFramebufferWithOrientation(UIImageOrientation.Up)
             
-            while processedImage?.size == CGSize.zero {
+            while processedImage?.size == CGSize.zero || processedImage == nil{
                 thresholdFilter.useNextFrameForImageCapture()
                 picture.processImage()
                 processedImage = thresholdFilter.imageFromCurrentFramebufferWithOrientation(.Up)
@@ -620,13 +621,13 @@ public class SwiftOCR {
         
         var imageData = [Float]()
         
-        let height = resizedBlob.size.height
-        let width  = resizedBlob.size.width
+        let height = Int(resizedBlob.size.height)
+        let width  = Int(resizedBlob.size.width)
         
-        for y in 0..<Int(height) {
-            for x in 0..<Int(width) {
-                let pixelInfo: Int = ((Int(width) * Int(y)) + Int(x)) * numberOfComponents
-                imageData.append(Float(bitmapData[pixelInfo])/255)
+        for yPixelInfo in 0.stride(to: height*width*numberOfComponents, by: width*numberOfComponents) {
+            for xPixelInfo in 0.stride(to: width*numberOfComponents, by: numberOfComponents) {
+                let pixelInfo: Int = yPixelInfo + xPixelInfo
+                imageData.append(bitmapData[pixelInfo] < 127 ? 0 : 1)
             }
         }
         

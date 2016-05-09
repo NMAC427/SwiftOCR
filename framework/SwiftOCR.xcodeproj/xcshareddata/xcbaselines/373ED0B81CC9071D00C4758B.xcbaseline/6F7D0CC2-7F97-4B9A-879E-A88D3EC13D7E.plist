@@ -11,11 +11,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>1.143</real>
+					<real>1.0843</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>Local Baseline</string>
-					<key>maxPercentRelativeStandardDeviation</key>
-					<real>20</real>
+					<string>08.05.2016, 19:19:17</string>
 				</dict>
 			</dict>
 			<key>testConvertImageToFloatArray()</key>
@@ -23,9 +21,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.0020227</real>
+					<real>0.031374</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>08.05.2016, 18:22:18</string>
+					<string>08.05.2016, 19:19:17</string>
 				</dict>
 			</dict>
 			<key>testConvertImageToFloatArrayWithResize()</key>
@@ -33,9 +31,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.0042573</real>
+					<real>0.0080155</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>08.05.2016, 18:22:18</string>
+					<string>08.05.2016, 19:19:17</string>
 				</dict>
 			</dict>
 			<key>testExtractBlobs()</key>
@@ -43,24 +41,19 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.010946</real>
+					<real>0.18379</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>08.05.2016, 18:22:18</string>
+					<string>08.05.2016, 19:19:17</string>
 				</dict>
-			</dict>
-			<key>testFFNNCopy()</key>
-			<dict>
-				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
-				<dict/>
 			</dict>
 			<key>testMultipleSwiftOCR()</key>
 			<dict>
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.24113</real>
+					<real>5.5657</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>08.05.2016, 18:22:18</string>
+					<string>08.05.2016, 19:19:17</string>
 				</dict>
 			</dict>
 			<key>testPreprocessImageForOCR()</key>
@@ -68,9 +61,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.11529</real>
+					<real>4.0838</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>08.05.2016, 18:22:18</string>
+					<string>08.05.2016, 19:19:17</string>
 				</dict>
 			</dict>
 			<key>testSingleSwiftOCR()</key>
@@ -78,9 +71,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.11893</real>
+					<real>0.91506</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>08.05.2016, 18:22:18</string>
+					<string>08.05.2016, 19:19:17</string>
 				</dict>
 			</dict>
 		</dict>

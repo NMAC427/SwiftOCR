@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		372578B71CD9259600785B68 /* CrossPlatformSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37711DEE1CD7E8A300DC6B43 /* CrossPlatformSupport.swift */; };
 		372578BF1CDA026E00785B68 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1401CC9521B00C4758B /* GPUImage.framework */; };
-		372578C01CDA027800785B68 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1491CC9521B00C4758B /* GPUImage.framework */; };
 		373ED0B31CC9071D00C4758B /* SwiftOCR.h in Headers */ = {isa = PBXBuildFile; fileRef = 373ED0B21CC9071D00C4758B /* SwiftOCR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		373ED0BA1CC9071D00C4758B /* SwiftOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED0AF1CC9071C00C4758B /* SwiftOCR.framework */; };
-		373ED0BF1CC9071D00C4758B /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0BE1CC9071D00C4758B /* SwiftOCRTests.swift */; };
 		373ED0CB1CC9076300C4758B /* SwiftOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0C91CC9076300C4758B /* SwiftOCR.swift */; };
 		373ED0CC1CC9076300C4758B /* SwiftOCRTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0CA1CC9076300C4758B /* SwiftOCRTraining.swift */; };
 		373ED0F01CC909A500C4758B /* SwiftOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED0E61CC909A500C4758B /* SwiftOCR.framework */; };
@@ -43,7 +41,7 @@
 		3755581A1CDF7DA8008CED46 /* Test 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 375558171CDF7DA8008CED46 /* Test 3.png */; };
 		3755581B1CDF7DA8008CED46 /* Test 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 375558171CDF7DA8008CED46 /* Test 3.png */; };
 		37711DEF1CD7E8A300DC6B43 /* CrossPlatformSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37711DEE1CD7E8A300DC6B43 /* CrossPlatformSupport.swift */; };
-		3778855D1CCCF11900A41020 /* SwiftOCRTests OS X.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778855C1CCCF11900A41020 /* SwiftOCRTests OS X.swift */; };
+		3778855D1CCCF11900A41020 /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778855C1CCCF11900A41020 /* SwiftOCRTests.swift */; };
 		377885611CCCF16600A41020 /* Test 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778855F1CCCF16600A41020 /* Test 1.png */; };
 		377885621CCCF16600A41020 /* Test 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778855F1CCCF16600A41020 /* Test 1.png */; };
 		377885631CCCF16600A41020 /* Test 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 377885601CCCF16600A41020 /* Test 2.png */; };
@@ -60,6 +58,8 @@
 		377885721CCCF37400A41020 /* TrainingBackground_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856B1CCCF37400A41020 /* TrainingBackground_3.png */; };
 		377885731CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
 		377885741CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
+		37A2346A1CDF9A1800CB3323 /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778855C1CCCF11900A41020 /* SwiftOCRTests.swift */; };
+		37A2346B1CDFA5B200CB3323 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1491CC9521B00C4758B /* GPUImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,7 +112,6 @@
 		373ED0B21CC9071D00C4758B /* SwiftOCR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftOCR.h; sourceTree = "<group>"; };
 		373ED0B41CC9071D00C4758B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		373ED0B91CC9071D00C4758B /* SwiftOCRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftOCRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		373ED0BE1CC9071D00C4758B /* SwiftOCRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftOCRTests.swift; sourceTree = "<group>"; };
 		373ED0C01CC9071D00C4758B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		373ED0C91CC9076300C4758B /* SwiftOCR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCR.swift; sourceTree = "<group>"; };
 		373ED0CA1CC9076300C4758B /* SwiftOCRTraining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCRTraining.swift; sourceTree = "<group>"; };
@@ -132,7 +131,7 @@
 		373ED1991CC9634400C4758B /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
 		375558171CDF7DA8008CED46 /* Test 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Test 3.png"; sourceTree = "<group>"; };
 		37711DEE1CD7E8A300DC6B43 /* CrossPlatformSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPlatformSupport.swift; sourceTree = "<group>"; };
-		3778855C1CCCF11900A41020 /* SwiftOCRTests OS X.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftOCRTests OS X.swift"; sourceTree = "<group>"; };
+		3778855C1CCCF11900A41020 /* SwiftOCRTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCRTests.swift; sourceTree = "<group>"; };
 		3778855F1CCCF16600A41020 /* Test 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Test 1.png"; sourceTree = "<group>"; };
 		377885601CCCF16600A41020 /* Test 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Test 2.png"; sourceTree = "<group>"; };
 		377885691CCCF37400A41020 /* TrainingBackground_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_1.png; path = "Realistic Training Images/TrainingBackground_1.png"; sourceTree = "<group>"; };
@@ -146,7 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				372578C01CDA027800785B68 /* GPUImage.framework in Frameworks */,
+				37A2346B1CDFA5B200CB3323 /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,8 +210,7 @@
 		373ED0BD1CC9071D00C4758B /* SwiftOCRTests */ = {
 			isa = PBXGroup;
 			children = (
-				373ED0BE1CC9071D00C4758B /* SwiftOCRTests.swift */,
-				3778855C1CCCF11900A41020 /* SwiftOCRTests OS X.swift */,
+				3778855C1CCCF11900A41020 /* SwiftOCRTests.swift */,
 				3778855E1CCCF16600A41020 /* Test Images */,
 				373ED0C01CC9071D00C4758B /* Info.plist */,
 			);
@@ -538,7 +536,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				373ED0BF1CC9071D00C4758B /* SwiftOCRTests.swift in Sources */,
+				37A2346A1CDF9A1800CB3323 /* SwiftOCRTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,7 +563,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3778855D1CCCF11900A41020 /* SwiftOCRTests OS X.swift in Sources */,
+				3778855D1CCCF11900A41020 /* SwiftOCRTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,6 +723,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = camenisch.nicolas.SwiftOCR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -746,6 +745,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = camenisch.nicolas.SwiftOCRTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -789,6 +789,7 @@
 				PRODUCT_NAME = SwiftOCR;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -820,6 +821,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-MacTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};

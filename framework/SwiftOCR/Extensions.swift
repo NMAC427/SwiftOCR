@@ -18,9 +18,3 @@ internal extension Array where Element: Hashable {
         self = Array(Set(self))
     }
 }
-
-public extension FFNN {
-    public func copy() -> FFNN {
-        return FFNN.init(inputs: self.numInputs, hidden: self.numHidden, outputs: self.numOutputs, learningRate: self.learningRate, momentum: self.momentumFactor, weights: self.getWeights(), activationFunction: self.activationFunction, errorFunction: self.errorFunction)
-    }
-}

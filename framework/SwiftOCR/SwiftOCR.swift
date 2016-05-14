@@ -535,10 +535,10 @@ public class SwiftOCR {
             
             let grayFilter      = GPUImageGrayscaleFilter()
             let invertFilter    = GPUImageColorInvertFilter()
-            let blurFilter      = GPUImageGaussianBlurFilter()
+            let blurFilter      = GPUImageBoxBlurFilter()
             let opacityFilter   = GPUImageOpacityFilter()
             
-            blurFilter.blurRadiusInPixels = 8
+            blurFilter.blurRadiusInPixels = 9
             opacityFilter.opacity         = 0.93
             
             image       .addTarget(grayFilter)
@@ -599,7 +599,7 @@ public class SwiftOCR {
             secondBrightnessFilter.brightness           = -0.08
             biliteralFilter.texelSpacingMultiplier      = 0.8
             biliteralFilter.distanceNormalizationFactor = 1.6
-            thresholdFilter.threshold                   = 0.5
+            thresholdFilter.threshold                   = 0.7
             
             picture               .addTarget(medianFilter)
             medianFilter          .addTarget(openingFilter)

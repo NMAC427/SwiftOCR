@@ -44,9 +44,9 @@ import SwiftOCR
 let swiftOCRInstance   = SwiftOCR()
 swiftOCRInstance.image = myImage
     
-swiftOCRInstance.recognize({recognizedString in
+swiftOCRInstance.recognize() {recognizedString in
     print(recognizedString)
-})
+}
 ```
 
 To improve your experience with SwiftOCR you should set your Build Configuration to `Release`.

@@ -7,7 +7,7 @@ As of now, SwiftOCR is optimized for recognizing short, one line long alphanumer
 - [x] Easy to use training class
 - [x] High accuracy
 - [x] Great default image preprocessing
-- [ ] Fast and accurate character segmentation algorithm
+- [x] Fast and accurate character segmentation algorithm
 - [ ] Add support for lowercase characters
 - [ ] Add support for connected character segmentation
 

@@ -89,9 +89,10 @@ class SwiftOCRTests: XCTestCase {
     
     func testExtractBlobs() {
         let ocrInstance = SwiftOCR()
+        let preprocessedImage = ocrInstance.preprocessImageForOCR(self.testImageOne)
         
         measureBlock({
-            let extractedBlobs = ocrInstance.extractBlobs(self.testImageOne)
+            let extractedBlobs = ocrInstance.extractBlobs(preprocessedImage)
             XCTAssertEqual(extractedBlobs.count, 6)
         })
     }

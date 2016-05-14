@@ -18,3 +18,17 @@ internal extension Array where Element: Hashable {
         self = Array(Set(self))
     }
 }
+
+extension Array where Element: _ArrayType, Element.Generator.Element: Any {
+    func transpose() -> [Element] {
+        if self.isEmpty { return [Element]() }
+        let count = self[0].count
+        var out = [Element](count: count, repeatedValue: Element())
+        for outer in self {
+            for (index, inner) in outer.enumerate() {
+                out[index].append(inner)
+            }
+        }
+        return out
+    }
+}

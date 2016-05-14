@@ -370,7 +370,7 @@ public class SwiftOCR {
                 let aspectRatio  = 0.5 //Double(maxX - minX) / Double(maxY - minY)
                 
                 if minMaxCorrect && notToTall && notToWide && notToShort && notToThin && notToSmall && positionIsOK &&
-                    aspectRatio < 1{
+                    aspectRatio < 1 {
                     let labelRect = CGRectMake(CGFloat(CGFloat(minX) - xMergeRadius), CGFloat(CGFloat(minY) - yMergeRadius), CGFloat(CGFloat(maxX - minX) + 2*xMergeRadius + 1), CGFloat(CGFloat(maxY - minY) + 2*yMergeRadius + 1))
                     mergeLabelRects.append(labelRect)
                 } else if minMaxCorrect && notToTall && notToShort && notToThin && notToSmall && positionIsOK && aspectRatio <= 2.5 && aspectRatio >= 1 {
@@ -429,8 +429,8 @@ public class SwiftOCR {
             filteredMergeLabelRects.removeAll()
             
             for rect in insetMergeLabelRects {
-                let widthOK  = rect.size.width  >= 10
-                let heightOK = rect.size.height >= 20
+                let widthOK  = rect.size.width  >= 7
+                let heightOK = rect.size.height >= 14
                 
                 if widthOK && heightOK {
                     filteredMergeLabelRects.append(rect)
@@ -454,8 +454,6 @@ public class SwiftOCR {
                     #endif
                     
                     outputImages.append((croppedImage, rect))
-                } else {
-                    print(rect)
                 }
             }
             
@@ -537,10 +535,10 @@ public class SwiftOCR {
             
             let grayFilter      = GPUImageGrayscaleFilter()
             let invertFilter    = GPUImageColorInvertFilter()
-            let blurFilter      = GPUImageBoxBlurFilter()
+            let blurFilter      = GPUImageGaussianBlurFilter()
             let opacityFilter   = GPUImageOpacityFilter()
             
-            blurFilter.blurRadiusInPixels = 10
+            blurFilter.blurRadiusInPixels = 8
             opacityFilter.opacity         = 0.93
             
             image       .addTarget(grayFilter)

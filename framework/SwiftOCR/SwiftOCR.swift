@@ -367,7 +367,7 @@ public class SwiftOCR {
                 
                 let notToSmall   = (maxX - minX)*(maxY - minY) > 100
                 let positionIsOK = minY != 0 && minX != 0 && maxY != Int(inputImageHeight - 1) && maxX != Int(inputImageWidth - 1)
-                let aspectRatio  = 0.5 //Double(maxX - minX) / Double(maxY - minY)
+                let aspectRatio  = Double(maxX - minX) / Double(maxY - minY)
                 
                 if minMaxCorrect && notToTall && notToWide && notToShort && notToThin && notToSmall && positionIsOK &&
                     aspectRatio < 1 {

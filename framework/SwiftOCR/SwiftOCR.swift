@@ -6,26 +6,22 @@
 //  Copyright © 2016 Nicolas Camenisch. All rights reserved.
 //
 
-import CoreGraphics
-
 import GPUImage
 
 internal var recognizableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
-internal var globalNetwork = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil, subdirectory: nil, localization: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
+internal var globalNetwork = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
 
 public class SwiftOCR {
     
-    ///The image used for OCR
-    public      var image:OCRImage?
-    
     private     var network = globalNetwork
     
+    ///The image used for OCR
+    public      var image:OCRImage?
     public weak var delegate:SwiftOCRDelegate?
     public      var currentOCRRecognizedBlobs = [SwiftOCRRecognizedBlob]()
     
     public   init(){}
-    
     public   init(image: OCRImage, delegate: SwiftOCRDelegate?, _ completionHandler: (String) -> Void){
         self.image    = image
         self.delegate = delegate
@@ -115,7 +111,7 @@ public class SwiftOCR {
     public   func recognizeInRect(rect: CGRect, completionHandler: (String) -> Void){
         
         let confidenceThreshold:Float = 0.1 //Confidence must be bigger than the threshold
-
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             guard let imageToRecognize = self.image else {
                 print("You first have to set a SwiftOCR().image")
@@ -207,20 +203,24 @@ public class SwiftOCR {
                 let cgImage   = bitmapRep.CGImage
             #endif
             
-            let numberOfComponents = CGImageGetBitsPerPixel(cgImage) / CGImageGetBitsPerComponent(cgImage)
-            
             //data <- bitmapData
-            let bytesPerRow = CGImageGetBytesPerRow(cgImage)
-            let inputImageHeight = CGImageGetHeight(cgImage)
-            let inputImageWidth  = bytesPerRow / numberOfComponents
-            var data = [UInt16](count: bytesPerRow * Int(inputImageHeight), repeatedValue: 0)
             
-            for dataIndex in 0..<data.count {
-                data[dataIndex] = bitmapData[dataIndex] < 127 ? 0 : 255
+            let numberOfComponents = CGImageGetBitsPerPixel(cgImage) / CGImageGetBitsPerComponent(cgImage)
+            let bytesPerRow        = CGImageGetBytesPerRow(cgImage)
+            let inputImageHeight   = CGImageGetHeight(cgImage)
+            let inputImageWidth    = bytesPerRow / numberOfComponents
+            
+            var data = [[UInt16]](count: Int(inputImageHeight), repeatedValue: [UInt16](count: Int(inputImageWidth), repeatedValue: 0))
+            
+            let yBitmapDataIndexStride = Array(0.stride(to: inputImageHeight*bytesPerRow, by: bytesPerRow)).enumerate()
+            let xBitmapDataIndexStride = Array(0.stride(to: inputImageWidth*numberOfComponents, by: numberOfComponents)).enumerate()
+            
+            for (y, yBitmapDataIndex) in yBitmapDataIndexStride {
+                for (x, xBitmapDataIndex) in xBitmapDataIndexStride {
+                    let bitmapDataIndex = yBitmapDataIndex + xBitmapDataIndex
+                    data[y][x] = bitmapData[bitmapDataIndex] < 127 ? 0 : 255
+                }
             }
-            
-            let yPixelInfoStride = Array(0.stride(to: inputImageHeight*bytesPerRow, by: bytesPerRow)).enumerate()
-            let xPixelInfoStride = Array(0.stride(to: inputImageWidth*numberOfComponents, by: numberOfComponents)).enumerate()
             
             //MARK: First Pass
             
@@ -233,57 +233,52 @@ public class SwiftOCR {
             }
             var labelsUnion = UnionFind<UInt16>()
             
-            for (y, yPixelInfo) in yPixelInfoStride {
-                for (x, xPixelInfo) in xPixelInfoStride {
-                    let pixelInfo  = yPixelInfo + xPixelInfo
+            for y in 0..<Int(inputImageHeight) {
+                for x in 0..<Int(inputImageWidth) {
                     
-                    let pixelIndex:(Int, Int) -> Int = {inputX, inputY in
-                        return pixelInfo - ((x-inputX)*numberOfComponents) - ((y-inputY)*bytesPerRow)
-                    }
-                    
-                    if data[pixelInfo] == 0 { //Is Black
+                    if data[y][x] == 0 { //Is Black
                         if x == 0 { //Left no pixel
                             if y == 0 { //Top no pixel
                                 currentLabel += 1
                                 labelsUnion.addSetWith(currentLabel)
-                                data[pixelInfo] = currentLabel
+                                data[y][x] = currentLabel
                             } else if y > 0 { //Top pixel
-                                if data[pixelIndex(x, y-1)] != 255 { //Top Label
-                                    data[pixelInfo] = data[pixelIndex(x, y-1)]
+                                if data[y - 1][x] != 255 { //Top Label
+                                    data[y][x] = data[y - 1][x]
                                 } else { //Top no Label
                                     currentLabel += 1
                                     labelsUnion.addSetWith(currentLabel)
-                                    data[pixelInfo] = currentLabel
+                                    data[y][x] = currentLabel
                                 }
                             }
                         } else { //Left pixel
                             if y == 0 { //Top no pixel
-                                if data[pixelIndex(x-1,y)] != 255 { //Left Label
-                                    data[pixelInfo] = data[pixelIndex(x-1,y)]
+                                if data[y][x - 1] != 255 { //Left Label
+                                    data[y][x] = data[y][x - 1]
                                 } else { //Left no Label
                                     currentLabel += 1
                                     labelsUnion.addSetWith(currentLabel)
-                                    data[pixelInfo] = currentLabel
+                                    data[y][x] = currentLabel
                                 }
                             } else if y > 0 { //Top pixel
-                                if data[pixelIndex(x-1,y)] != 255 { //Left Label
-                                    if data[pixelIndex(x,y-1)] != 255 { //Top Label
+                                if data[y][x - 1] != 255 { //Left Label
+                                    if data[y - 1][x] != 255 { //Top Label
                                         
-                                        if data[pixelIndex(x,y-1)] != data[pixelIndex(x-1,y)] {
-                                            labelsUnion.unionSetsContaining(data[pixelIndex(x,y-1)], and: data[pixelIndex(x-1,y)])
+                                        if data[y - 1][x] != data[y][x - 1] {
+                                            labelsUnion.unionSetsContaining(data[y - 1][x], and: data[y][x - 1])
                                         }
                                         
-                                        data[pixelInfo] = data[pixelIndex(x,y-1)]
+                                        data[y][x] = data[y - 1][x]
                                     } else { //Top no Label
-                                        data[pixelInfo] = data[pixelIndex(x-1,y)]
+                                        data[y][x] = data[y][x - 1]
                                     }
                                 } else { //Left no Label
-                                    if data[pixelIndex(x,y-1)] != 255 { //Top Label
-                                        data[pixelInfo] = data[pixelIndex(x,y-1)]
+                                    if data[y - 1][x] != 255 { //Top Label
+                                        data[y][x] = data[y - 1][x]
                                     } else { //Top no Label
                                         currentLabel += 1
                                         labelsUnion.addSetWith(currentLabel)
-                                        data[pixelInfo] = currentLabel
+                                        data[y][x] = currentLabel
                                     }
                                 }
                             }
@@ -295,7 +290,7 @@ public class SwiftOCR {
             
             //MARK: Second Pass
             
-            let parentArray = Array(labelsUnion.parent.uniq())
+            let parentArray = Array(Set(labelsUnion.parent))
             
             var labelUnionSetOfXArray = Dictionary<UInt16, Int>()
             
@@ -304,14 +299,14 @@ public class SwiftOCR {
                     labelUnionSetOfXArray[label] = parentArray.indexOf(labelsUnion.setOf(label) ?? 255)
                 }
             }
-
-            for (_, yPixelInfo) in yPixelInfoStride {
-                for (_, xPixelInfo) in xPixelInfoStride {
-                    let pixelInfo  = yPixelInfo + xPixelInfo
-                    let luminosity = data[pixelInfo]
+            
+            for y in 0..<Int(inputImageHeight) {
+                for x in 0..<Int(inputImageWidth) {
+                    
+                    let luminosity = data[y][x]
                     
                     if luminosity != 255 {
-                        data[pixelInfo] = UInt16(labelUnionSetOfXArray[luminosity] ?? 255)
+                        data[y][x] = UInt16(labelUnionSetOfXArray[luminosity] ?? 255)
                     }
                     
                 }
@@ -325,10 +320,10 @@ public class SwiftOCR {
                 minMaxXYLabelDict[UInt16(label)] = (minX: Int(inputImageWidth), maxX: 0, minY: Int(inputImageHeight), maxY: 0)
             }
             
-            for (y, yPixelInfo) in yPixelInfoStride {
-                for (x, xPixelInfo) in xPixelInfoStride {
-                    let pixelInfo  = yPixelInfo + xPixelInfo
-                    let luminosity = data[pixelInfo]
+            for y in 0..<Int(inputImageHeight) {
+                for x in 0..<Int(inputImageWidth) {
+                    
+                    let luminosity = data[y][x]
                     
                     if luminosity != 255 {
                         
@@ -348,7 +343,6 @@ public class SwiftOCR {
             
             //MARK: Merge labels
             
-            var mergeUnion = UnionFind<UInt16>()
             var mergeLabelRects = [CGRect]()
             
             let xMergeRadius:CGFloat = 1
@@ -365,55 +359,103 @@ public class SwiftOCR {
                 //Filter blobs
                 
                 let minMaxCorrect = (minX < maxX && minY < maxY)
-                let correctFormat:Bool = {
-                    if (maxY - minY) != 0 {
-                        return Double(maxX - minX)/Double(maxY - minY) < 1.6
-                    } else {
-                        return false
-                    }
-                }()
                 
                 let notToTall    = Double(maxY - minY) < Double(inputImage.size.height) * 0.75
                 let notToWide    = Double(maxX - minX) < Double(inputImage.size.width ) * 0.25
-                let notToShort   = Double(maxY - minY) > Double(inputImage.size.height) * 0.25
+                let notToShort   = Double(maxY - minY) > Double(inputImage.size.height) * 0.08
                 let notToThin    = Double(maxX - minX) > Double(inputImage.size.width ) * 0.01
                 
                 let notToSmall   = (maxX - minX)*(maxY - minY) > 100
-                
                 let positionIsOK = minY != 0 && minX != 0 && maxY != Int(inputImageHeight - 1) && maxX != Int(inputImageWidth - 1)
+                let aspectRatio  = 0.5 //Double(maxX - minX) / Double(maxY - minY)
                 
-                if minMaxCorrect && correctFormat && notToTall && notToWide && notToShort && notToThin && notToSmall && positionIsOK{
+                if minMaxCorrect && notToTall && notToWide && notToShort && notToThin && notToSmall && positionIsOK &&
+                    aspectRatio < 1{
                     let labelRect = CGRectMake(CGFloat(CGFloat(minX) - xMergeRadius), CGFloat(CGFloat(minY) - yMergeRadius), CGFloat(CGFloat(maxX - minX) + 2*xMergeRadius + 1), CGFloat(CGFloat(maxY - minY) + 2*yMergeRadius + 1))
-                    mergeUnion.addSetWith(UInt16(label))
                     mergeLabelRects.append(labelRect)
+                } else if minMaxCorrect && notToTall && notToShort && notToThin && notToSmall && positionIsOK && aspectRatio <= 2.5 && aspectRatio >= 1 {
+                    
+                    // MARK: Connected components: Find thinnest part of connected components
+                    
+                    guard minX + 2 < maxX - 2 else {
+                        continue
+                    }
+                    
+                    let transposedData = Array(data[minY...maxY].map({return $0[(minX + 2)...(maxX - 2)]})).transpose() // [y][x] -> [x][y]
+                    let maxIndex       = transposedData.map({return $0.reduce(0, combine: +)}).enumerate().maxElement({return $0.1 < $1.1})?.0 ?? 0
+                    let cutXPosition   = minX + 2 + maxIndex
+                    
+                    let firstLabelRect = CGRectMake(CGFloat(CGFloat(minX) - xMergeRadius), CGFloat(CGFloat(minY) - yMergeRadius), CGFloat(CGFloat(maxIndex) + 2 * xMergeRadius), CGFloat(CGFloat(maxY - minY) + 2 * yMergeRadius))
+                    
+                    let secondLabelRect = CGRectMake(CGFloat(CGFloat(cutXPosition) - xMergeRadius), CGFloat(CGFloat(minY) - yMergeRadius), CGFloat(CGFloat(Int(maxX - minX) - maxIndex) + 2 * xMergeRadius), CGFloat(CGFloat(maxY - minY) + 2 * yMergeRadius))
+                    
+                    if firstLabelRect.width >= 5 + (2 * xMergeRadius) && secondLabelRect.width >= 5 + (2 * xMergeRadius) {
+                        mergeLabelRects.append(firstLabelRect)
+                        mergeLabelRects.append(secondLabelRect)
+                    } else {
+                        let labelRect = CGRectMake(CGFloat(CGFloat(minX) - xMergeRadius), CGFloat(CGFloat(minY) - yMergeRadius), CGFloat(CGFloat(maxX - minX) + 2*xMergeRadius + 1), CGFloat(CGFloat(maxY - minY) + 2*yMergeRadius + 1))
+                        mergeLabelRects.append(labelRect)
+                    }
+                    
+                }
+                
+            }
+            
+            //Merge rects
+            
+            var filteredMergeLabelRects = [CGRect]()
+            
+            for rect in mergeLabelRects {
+                
+                var intersectCount = 0
+                
+                for (filteredRectIndex, filteredRect) in filteredMergeLabelRects.enumerate() {
+                    if rect.intersects(filteredRect) {
+                        intersectCount += 1
+                        filteredMergeLabelRects[filteredRectIndex] = filteredRect.union(rect)
+                    }
+                }
+                
+                if intersectCount == 0 {
+                    filteredMergeLabelRects.append(rect)
                 }
             }
             
-            for rectOneIndex in 0..<mergeLabelRects.count {
-                for rectTwoIndex in 0..<mergeLabelRects.count {
-                    if mergeLabelRects[rectOneIndex].intersects(mergeLabelRects[rectTwoIndex]) && rectOneIndex != rectTwoIndex{
-                        mergeUnion.unionSetsContaining(UInt16(rectOneIndex), and: UInt16(rectTwoIndex))
-                        mergeLabelRects[rectOneIndex].unionInPlace(mergeLabelRects[rectTwoIndex])
-                    }
+            mergeLabelRects = filteredMergeLabelRects
+            
+            //Filter rects: - Not to small
+            
+            let insetMergeLabelRects = mergeLabelRects.map({return $0.insetBy(dx: CGFloat(xMergeRadius), dy: CGFloat(yMergeRadius))})
+            filteredMergeLabelRects.removeAll()
+            
+            for rect in insetMergeLabelRects {
+                let widthOK  = rect.size.width  >= 10
+                let heightOK = rect.size.height >= 20
+                
+                if widthOK && heightOK {
+                    filteredMergeLabelRects.append(rect)
                 }
             }
+            
+            mergeLabelRects = filteredMergeLabelRects
             
             var outputImages = [(OCRImage, CGRect)]()
             
             //MARK: Crop image to blob
             
             for rect in mergeLabelRects {
-                let cropRect = rect.insetBy(dx: CGFloat(xMergeRadius), dy: CGFloat(yMergeRadius))
                 
-                if let croppedCGImage = CGImageCreateWithImageInRect(cgImage, cropRect) {
+                if let croppedCGImage = CGImageCreateWithImageInRect(cgImage, rect) {
                     
                     #if os(iOS)
                         let croppedImage = UIImage(CGImage: croppedCGImage)
                     #else
-                        let croppedImage = NSImage(CGImage: croppedCGImage, size: cropRect.size)
+                        let croppedImage = NSImage(CGImage: croppedCGImage, size: rect.size)
                     #endif
                     
-                    outputImages.append((croppedImage, cropRect))
+                    outputImages.append((croppedImage, rect))
+                } else {
+                    print(rect)
                 }
             }
             
@@ -527,9 +569,9 @@ public class SwiftOCR {
             
             dodgeBlendFilter.useNextFrameForImageCapture()
             image.processImage()
-
+            
             var processedImage:OCRImage? = dodgeBlendFilter.imageFromCurrentFramebufferWithOrientation(UIImageOrientation.Up)
-
+            
             while processedImage?.size == CGSize.zero || processedImage == nil {
                 dodgeBlendFilter.useNextFrameForImageCapture()
                 image.processImage()
@@ -640,6 +682,8 @@ public class SwiftOCR {
     
 }
 
+// MARK: SwiftOCRDelegate
+
 public protocol SwiftOCRDelegate: class {
     
     /**
@@ -660,6 +704,8 @@ extension SwiftOCRDelegate {
         return nil
     }
 }
+
+// MARK: SwiftOCRRecognizedBlob
 
 public struct SwiftOCRRecognizedBlob {
     

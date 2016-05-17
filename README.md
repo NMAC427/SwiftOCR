@@ -1,6 +1,6 @@
-# SwiftOCR
-
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
+# SwiftOCR
 
 SwiftOCR is a fast and simple OCR library written in Swift. It uses a neural network for image recognition.
 As of now, SwiftOCR is optimized for recognizing short, one line long alphanumeric codes (e.g. DI4C9CM). We currently support iOS and OS X.

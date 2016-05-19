@@ -1,6 +1,6 @@
-# SwiftOCR
-
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
+# SwiftOCR
 
 SwiftOCR is a fast and simple OCR library written in Swift. It uses a neural network for image recognition.
 As of now, SwiftOCR is optimized for recognizing short, one line long alphanumeric codes (e.g. DI4C9CM). We currently support iOS and OS X.
@@ -10,8 +10,8 @@ As of now, SwiftOCR is optimized for recognizing short, one line long alphanumer
 - [x] High accuracy
 - [x] Great default image preprocessing
 - [x] Fast and accurate character segmentation algorithm
-- [ ] Add support for lowercase characters
-- [ ] Add support for connected character segmentation
+- [x] Add support for lowercase characters
+- [x] Add support for connected character segmentation
 
 ## Why should I choose SwiftOCR instead of Tesseract?
 

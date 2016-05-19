@@ -10,8 +10,8 @@ As of now, SwiftOCR is optimized for recognizing short, one line long alphanumer
 - [x] High accuracy
 - [x] Great default image preprocessing
 - [x] Fast and accurate character segmentation algorithm
-- [ ] Add support for lowercase characters
-- [ ] Add support for connected character segmentation
+- [x] Add support for lowercase characters
+- [x] Add support for connected character segmentation
 
 ## Why should I choose SwiftOCR instead of Tesseract?
 

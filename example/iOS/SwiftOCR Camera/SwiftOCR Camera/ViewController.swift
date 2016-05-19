@@ -107,11 +107,15 @@ class ViewController: UIViewController {
             }
             
             let croppedImage = self.cropImage(image)
+            UIImageWriteToSavedPhotosAlbum(croppedImage, nil, nil, nil)
             
             let ocrInstance = SwiftOCR()
             ocrInstance.image = croppedImage
             ocrInstance.recognize() { recognizedString in
-                self.label.text = recognizedString
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.label.text = recognizedString
+                    print(ocrInstance.currentOCRRecognizedBlobs)
+                })
             }
             
         }
@@ -140,6 +144,21 @@ class ViewController: UIViewController {
     
     func cropImage(image: UIImage) -> UIImage {
         
+        let degreesToRadians: (CGFloat) -> CGFloat = {
+            return $0 / 180.0 * CGFloat(M_PI)
+        }
+        
+        let imageOrientation = image.imageOrientation
+        
+        var degree:CGFloat
+        
+        switch imageOrientation {
+        case .Right, .RightMirrored:    degree = 90
+        case .Left, .LeftMirrored:      degree = -90
+        case .Up, .UpMirrored:          degree = 180
+        case .Down, .DownMirrored:      degree = 0
+        }
+        
         let cropSize = CGSizeMake(400, 110)
         
         //Downscale
@@ -149,17 +168,33 @@ class ViewController: UIViewController {
         let width = cropSize.width
         let height = image.size.height / image.size.width * cropSize.width
         
-        let bitsPerComponent = 8
-        let bytesPerRow = 0
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo = CGImageAlphaInfo.NoneSkipLast.rawValue
+        let bitsPerComponent = CGImageGetBitsPerComponent(cgImage)
+        let bytesPerRow = CGImageGetBytesPerRow(cgImage)
+        let colorSpace = CGImageGetColorSpace(cgImage)
+        let bitmapInfo = CGImageGetBitmapInfo(cgImage)
         
-        let context = CGBitmapContextCreate(nil, Int(width), Int(height), bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo)
+        let context = CGBitmapContextCreate(nil, Int(width), Int(height), bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo.rawValue)
         
         CGContextSetInterpolationQuality(context, CGInterpolationQuality.None)
         
-        CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgImage)
+        // Rotate the image context
+        CGContextRotateCTM(context, degreesToRadians(degree));
         
+        // Now, draw the rotated/scaled image into the context
+        CGContextScaleCTM(context, -1.0, -1.0)
+        
+        //Crop
+        
+        switch imageOrientation {
+        case .Right, .RightMirrored:
+            CGContextDrawImage(context, CGRectMake(-height, 0, height, width), cgImage)
+        case .Left, .LeftMirrored:
+            CGContextDrawImage(context, CGRectMake(0, -width, height, width), cgImage)
+        case .Up, .UpMirrored:
+            CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgImage)
+        case .Down, .DownMirrored:
+            CGContextDrawImage(context, CGRectMake(-width, -height, width, height), cgImage)
+        }
         
         let scaledCGImage = CGImageCreateWithImageInRect(CGBitmapContextCreateImage(context), CGRectMake(0, CGFloat((height - cropSize.height)/2.0), cropSize.width, cropSize.height))
         

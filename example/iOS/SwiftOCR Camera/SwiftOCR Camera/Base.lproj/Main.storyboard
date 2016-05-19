@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sir-0n-P0T" userLabel="Camera View">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXF-1j-qpb" userLabel="View Finder">
@@ -30,18 +30,19 @@
                                     <constraint firstAttribute="width" secondItem="UXF-1j-qpb" secondAttribute="height" multiplier="400:110" id="Wf9-rR-8La"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcA-i2-TBm">
-                                <rect key="frame" x="16" y="20" width="343" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcA-i2-TBm">
+                                <rect key="frame" x="16" y="40" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59q-Wb-tpV">
-                                <rect key="frame" x="148" y="567" width="80" height="80"/>
+                                <rect key="frame" x="140" y="567" width="95" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="YoE-4F-OiR"/>
-                                    <constraint firstAttribute="width" constant="80" id="vUJ-yu-Eae"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="vUJ-yu-Eae"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Take Photo"/>
                                 <connections>
                                     <action selector="takePhotoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ifM-Xu-LQo"/>
@@ -62,7 +63,7 @@
                             <constraint firstItem="59q-Wb-tpV" firstAttribute="top" secondItem="J7k-W1-n8e" secondAttribute="bottom" constant="8" id="FzZ-ND-zLR"/>
                             <constraint firstItem="J7k-W1-n8e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Hn5-8D-iNu"/>
                             <constraint firstItem="sir-0n-P0T" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="JIn-Cf-NHk"/>
-                            <constraint firstItem="PcA-i2-TBm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YOu-l0-6Sc"/>
+                            <constraint firstItem="PcA-i2-TBm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="YOu-l0-6Sc"/>
                             <constraint firstAttribute="trailing" secondItem="UXF-1j-qpb" secondAttribute="trailing" id="ZvS-aF-rF7"/>
                             <constraint firstItem="PcA-i2-TBm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aot-f4-0ZN"/>
                             <constraint firstItem="J7k-W1-n8e" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="dTG-Ok-YOe"/>
@@ -70,7 +71,7 @@
                             <constraint firstItem="59q-Wb-tpV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hgw-lh-HzH"/>
                             <constraint firstItem="UXF-1j-qpb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="oCK-S5-cY0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sir-0n-P0T" secondAttribute="bottom" id="pfG-Jd-em4"/>
-                            <constraint firstItem="sir-0n-P0T" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="rTq-1U-ope"/>
+                            <constraint firstItem="sir-0n-P0T" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="rTq-1U-ope"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

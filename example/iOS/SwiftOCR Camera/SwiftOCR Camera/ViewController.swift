@@ -107,8 +107,7 @@ class ViewController: UIViewController {
             }
             
             let croppedImage = self.cropImage(image)
-            UIImageWriteToSavedPhotosAlbum(croppedImage, nil, nil, nil)
-            
+
             let ocrInstance = SwiftOCR()
             ocrInstance.image = croppedImage
             ocrInstance.recognize() { recognizedString in

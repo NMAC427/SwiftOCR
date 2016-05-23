@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
 
     @IBOutlet weak var fontsTableView: NSTableView!
     @IBOutlet weak var startTrainingButton: NSButton!
@@ -32,6 +32,9 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
         
         allFontNames = NSFontManager.sharedFontManager().availableFonts
+        
+        charactersToTrainTextField.delegate = self
+        
         fontsTableView.reloadData()
     }
 
@@ -79,7 +82,8 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         }
     }
     
-    @IBAction func charactersTextFieldDidChange(sender: NSTextField) {
+    override func controlTextDidChange(obj: NSNotification) {
+        //Generate new training network
         recognizableCharacters = Array(Set(charactersToTrainTextField.stringValue.characters.map({return String($0)}))).joinWithSeparator("")
         globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
     }

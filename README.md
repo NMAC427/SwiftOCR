@@ -44,9 +44,8 @@ SwiftOCR is the exact opposite of Tesseract. It can be implemented using **just 
 import SwiftOCR
 
 let swiftOCRInstance   = SwiftOCR()
-swiftOCRInstance.image = myImage
     
-swiftOCRInstance.recognize() {recognizedString in
+swiftOCRInstance.recognize(myImage) {recognizedString in
     print(recognizedString)
 }
 ```

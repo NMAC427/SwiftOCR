@@ -63,13 +63,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		372BCEB31CD67C1100BAABEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 373ED0D21CC908BD00C4758B /* GPUImageMac.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BCA3F31B17239B6500E28AEC;
-			remoteInfo = GPUImage;
-		};
 		373ED0BB1CC9071D00C4758B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 373ED0A61CC9071C00C4758B /* Project object */;
@@ -354,7 +347,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				372BCEB41CD67C1100BAABEB /* PBXTargetDependency */,
 			);
 			name = "SwiftOCR Mac";
 			productName = "SwiftOCR Mac";
@@ -570,11 +562,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		372BCEB41CD67C1100BAABEB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GPUImage;
-			targetProxy = 372BCEB31CD67C1100BAABEB /* PBXContainerItemProxy */;
-		};
 		373ED0BC1CC9071D00C4758B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 373ED0AE1CC9071C00C4758B /* SwiftOCR */;

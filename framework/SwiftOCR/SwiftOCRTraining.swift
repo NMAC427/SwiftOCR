@@ -144,8 +144,6 @@ public class SwiftOCRTraining {
         #endif
 
         
-        
-        
         for _ in 0..<size {
 
             let code               = randomCode()
@@ -171,13 +169,13 @@ public class SwiftOCRTraining {
             
             var transformedImage:OCRImage? = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
             
-            while transformedImage?.size == CGSize.zero {
+            while transformedImage == nil || transformedImage?.size == CGSize.zero {
                 transformFilter.useNextFrameForImageCapture()
                 transformImage.processImage()
                 transformedImage = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
             }
             
-            let distortedImage = ocrInstance.preprocessImageForOCR(transformedImage)
+            let distortedImage = ocrInstance.preprocessImageForOCR(transformedImage!)
             
             //Generate Training set
             

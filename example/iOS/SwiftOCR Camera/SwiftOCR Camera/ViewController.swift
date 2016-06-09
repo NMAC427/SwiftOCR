@@ -109,8 +109,7 @@ class ViewController: UIViewController {
             let croppedImage = self.cropImage(image)
 
             let ocrInstance = SwiftOCR()
-            ocrInstance.image = croppedImage
-            ocrInstance.recognize() { recognizedString in
+            ocrInstance.recognize(croppedImage) { recognizedString in
                 dispatch_async(dispatch_get_main_queue(), {
                     self.label.text = recognizedString
                     print(ocrInstance.currentOCRRecognizedBlobs)

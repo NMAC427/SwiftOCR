@@ -347,7 +347,10 @@ public class SwiftOCR {
                 }
                 
                 let transposedData = Array(data[minY...maxY].map({return $0[(minX + 2)...(maxX - 2)]})).transpose() // [y][x] -> [x][y]
-                let maxIndex       = transposedData.map({return $0.reduce(0, combine: +)}).enumerate().maxElement({return $0.1 < $1.1})?.0 ?? 0
+                let reducedMaxIndexArray = transposedData.map({return $0.reduce(0, combine: {return UInt32($0.0) + UInt32($0.1)})}) //Covert to UInt32 to prevent overflow
+                let maxIndex = reducedMaxIndexArray.enumerate().maxElement({return $0.1 < $1.1})?.0 ?? 0
+                
+
                 let cutXPosition   = minX + 2 + maxIndex
                 
                 let firstLabelRect = CGRectMake(CGFloat(CGFloat(minX) - xMergeRadius), CGFloat(CGFloat(minY) - yMergeRadius), CGFloat(CGFloat(maxIndex) + 2 * xMergeRadius), CGFloat(CGFloat(maxY - minY) + 2 * yMergeRadius))

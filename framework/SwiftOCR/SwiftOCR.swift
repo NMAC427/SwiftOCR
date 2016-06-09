@@ -159,12 +159,12 @@ public class SwiftOCR {
      
      */
     
-    internal func extractBlobs(image:OCRImage) -> [(OCRImage, CGRect)] {
+    internal func extractBlobs(image: OCRImage) -> [(OCRImage, CGRect)] {
 
         #if os(iOS)
             let pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image.CGImage))
             let bitmapData: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-            let cgImage   = inputImage.CGImage
+            let cgImage   = image.CGImage
         #else
             let bitmapRep = NSBitmapImageRep(data: image.TIFFRepresentation!)!
             let bitmapData: UnsafeMutablePointer<UInt8> = bitmapRep.bitmapData

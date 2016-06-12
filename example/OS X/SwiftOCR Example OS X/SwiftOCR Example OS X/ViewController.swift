@@ -38,8 +38,13 @@ class ViewController: NSViewController {
     }
 
     func ocr() {
-        self.swiftOCRInstance.image = self.inputImage
-        self.swiftOCRInstance.recognize({recognizedString in
+      
+      guard let image = inputImage else {
+        print("invalid image...")
+        return
+      }
+      
+      swiftOCRInstance.recognize(image, {recognizedString in
             dispatch_async(dispatch_get_main_queue(), {
                 self.recognizedLabel.title = recognizedString
             })

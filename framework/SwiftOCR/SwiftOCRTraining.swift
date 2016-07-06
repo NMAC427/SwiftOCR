@@ -287,6 +287,8 @@ public class SwiftOCRTraining {
             
         }
         
+        trainingSet.shuffle()
+        
         return trainingSet
     }
 

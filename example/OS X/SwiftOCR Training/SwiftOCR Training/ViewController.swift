@@ -119,6 +119,8 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
                         minimumError = min(oldValue, minimumError)
                     }
                 }
+                
+                self.trainingInstance.trainingFontNames = self.selectedFontNames
                 self.trainingInstance.trainWithCharSet() { error in
                     minimumError   = error
                     callbackCount += 1

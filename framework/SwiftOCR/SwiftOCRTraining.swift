@@ -14,7 +14,7 @@ public class SwiftOCRTraining {
     
     //Training Variables
     private let trainingImageNames = ["TrainingBackground_1.png", "TrainingBackground_2.png", "TrainingBackground_3.png", "TrainingBackground_4.png"]
-    private let trainingFontNames  = ["Arial Narrow", "Arial Narrow Bold"]
+    public var trainingFontNames  = ["Arial Narrow", "Arial Narrow Bold"]
 
     public  init() {}
     
@@ -43,7 +43,7 @@ public class SwiftOCRTraining {
         }
 
     }
-    
+
     /**
      Generates realistic images OCR and converts them to a float array.
      

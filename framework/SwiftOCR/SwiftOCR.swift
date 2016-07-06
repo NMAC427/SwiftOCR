@@ -62,6 +62,10 @@ public class SwiftOCR {
     
     public   func recognize(image: OCRImage, _ completionHandler: (String) -> Void){
         
+        func indexToCharacter(index: Int) -> Character {
+            return Array(recognizableCharacters.characters)[index]
+        }
+        
         func checkWhiteAndBlackListForCharacter(character: Character) -> Bool {
             let whiteList =   characterWhiteList?.characters.contains(character) ?? true
             let blackList = !(characterBlackList?.characters.contains(character) ?? false)
@@ -83,9 +87,28 @@ public class SwiftOCR {
                     let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
                     let networkResult  = try self.network.update(inputs: blobData)
                     
+                    //Generate Output Character
+                    
                     if networkResult.maxElement() >= self.confidenceThreshold {
+                        /*
                         let recognizedChar = Array(recognizableCharacters.characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
                         recognizedString.append(recognizedChar)
+                        */
+                        
+                        for (networkIndex, _) in networkResult.enumerate().sort({$0.0.element > $0.1.element}) {
+                            let character = indexToCharacter(networkIndex)
+                            
+                            print(character)
+                            
+                            guard checkWhiteAndBlackListForCharacter(character) else {
+                                continue
+                            }
+ 
+                            
+                            print(character)
+                            recognizedString.append(character)
+                            break
+                        }
                     }
                     
                     //Generate SwiftOCRRecognizedBlob
@@ -95,7 +118,7 @@ public class SwiftOCR {
                     
                     for networkResultIndex in 0..<networkResult.count {
                         let characterConfidence = networkResult[networkResultIndex]
-                        let character           = Array(recognizableCharacters.characters)[networkResultIndex]
+                        let character           = indexToCharacter(networkResultIndex)
                         
                         guard characterConfidence >= ocrRecognizedBlobConfidenceThreshold && checkWhiteAndBlackListForCharacter(character) else {
                             continue

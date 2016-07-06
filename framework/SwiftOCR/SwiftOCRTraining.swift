@@ -206,6 +206,91 @@ public class SwiftOCRTraining {
     }
     
     /**
+     Converts images to a float array for training.
+     
+     - Parameter images: The number of images to generate. This does **not** correspond to the the count of elements in the array that gets returned.
+     - Parameter withNumberOfDistortions: How many distorted images should get generated from each input image.
+     - Returns:        An array containing the input and answers for the neural network.
+     */
+    
+    private func generateCharSetFromImages(images: [(image: OCRImage, characters: [Character])], withNumberOfDistortions distortions: Int) -> [([Float],[Float])] {
+        
+        var trainingSet = [([Float],[Float])]()
+        
+        let randomFloat: (CGFloat) -> CGFloat = { modi in
+            return  (0 - modi) + CGFloat(arc4random()) / CGFloat(UINT32_MAX) * (modi * 2)
+        }
+        
+        for (image, characters) in images {
+            
+            var imagesToExtractBlobsFrom = [OCRImage]()
+            
+            //Original
+            imagesToExtractBlobsFrom.append(ocrInstance.preprocessImageForOCR(image))
+            
+            //Distortions
+            for _ in 0..<distortions {
+                let transformImage  = GPUImagePicture(image: image)
+                let transformFilter = GPUImageTransformFilter()
+                
+                var affineTransform = CGAffineTransform()
+                
+                affineTransform.a  = 1.05 + (       CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.1 )
+                affineTransform.b  = 0    + (0.01 - CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.02)
+                affineTransform.c  = 0    + (0.03 - CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.06)
+                affineTransform.d  = 1.05 + (       CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.1 )
+                
+                affineTransform.a  = 1.05 + (randomFloat(0.05) + 0.05)
+                affineTransform.b  = 0    + (randomFloat(0.01))
+                affineTransform.c  = 0    + (randomFloat(0.03))
+                affineTransform.d  = 1.05 + (randomFloat(0.1) + 0.05)
+                
+                transformFilter.affineTransform = affineTransform
+                transformImage.addTarget(transformFilter)
+                
+                transformFilter.useNextFrameForImageCapture()
+                transformImage.processImage()
+                
+                var transformedImage:OCRImage? = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
+                
+                while transformedImage == nil || transformedImage?.size == CGSize.zero {
+                    transformFilter.useNextFrameForImageCapture()
+                    transformImage.processImage()
+                    transformedImage = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
+                }
+                
+                let distortedImage = ocrInstance.preprocessImageForOCR(transformedImage!)
+                imagesToExtractBlobsFrom.append(distortedImage)
+            }
+            
+            //Convert to data
+            
+            for preprocessedImage in imagesToExtractBlobsFrom {
+                
+                let blobs = ocrInstance.extractBlobs(preprocessedImage)
+                
+                if blobs.count == characters.count {
+                    
+                    for (blobIndex, blob) in blobs.enumerate() {
+                        let imageData = ocrInstance.convertImageToFloatArray(blob.0)
+                        
+                        var imageAnswer = [Float](count: recognizableCharacters.characters.count, repeatedValue: 0)
+                        if let index = Array(recognizableCharacters.characters).indexOf(characters[blobIndex]) {
+                            imageAnswer[index] = 1
+                        }
+                        
+                        trainingSet.append((imageData,imageAnswer))
+                    }
+                }
+            }
+            
+            
+        }
+        
+        return trainingSet
+    }
+
+    /**
      Saves the neural network to a file.
      */
     

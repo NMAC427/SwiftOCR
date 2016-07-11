@@ -1,0 +1,456 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3753E9D01CF4ACBF00532652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E9CF1CF4ACBF00532652 /* AppDelegate.swift */; };
+		3753E9D21CF4ACBF00532652 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E9D11CF4ACBF00532652 /* ViewController.swift */; };
+		3753E9D41CF4ACBF00532652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3753E9D31CF4ACBF00532652 /* Assets.xcassets */; };
+		3753E9D71CF4ACC000532652 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3753E9D51CF4ACC000532652 /* Main.storyboard */; };
+		3753ED341CF4B76B00532652 /* CrossPlatformSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753EA081CF4B76700532652 /* CrossPlatformSupport.swift */; };
+		3753ED351CF4B76B00532652 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753EA091CF4B76700532652 /* Extensions.swift */; };
+		3753ED361CF4B76B00532652 /* FFNN+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753EA0B1CF4B76700532652 /* FFNN+Storage.swift */; };
+		3753ED371CF4B76B00532652 /* FFNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753EA0C1CF4B76700532652 /* FFNN.swift */; };
+		3753ED381CF4B76B00532652 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753EA0D1CF4B76700532652 /* Matrix.swift */; };
+		3753ED391CF4B76B00532652 /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753EA0E1CF4B76700532652 /* Operations.swift */; };
+		3753ED3A1CF4B76B00532652 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753EA0F1CF4B76700532652 /* Random.swift */; };
+		3753ED3B1CF4B76B00532652 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 3753EA101CF4B76700532652 /* README.md */; };
+		3753ED3C1CF4B76B00532652 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753EA111CF4B76700532652 /* Storage.swift */; };
+		3753ED3D1CF4B76B00532652 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753EA121CF4B76700532652 /* Vector.swift */; };
+		3753EEBA1CF4B76B00532652 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3753ED291CF4B76B00532652 /* Info.plist */; };
+		3753EEBB1CF4B76B00532652 /* OCR-Network in Resources */ = {isa = PBXBuildFile; fileRef = 3753ED2A1CF4B76B00532652 /* OCR-Network */; };
+		3753EEBC1CF4B76B00532652 /* TrainingBackground_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753ED2C1CF4B76B00532652 /* TrainingBackground_1.png */; };
+		3753EEBD1CF4B76B00532652 /* TrainingBackground_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753ED2D1CF4B76B00532652 /* TrainingBackground_2.png */; };
+		3753EEBE1CF4B76B00532652 /* TrainingBackground_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753ED2E1CF4B76B00532652 /* TrainingBackground_3.png */; };
+		3753EEBF1CF4B76B00532652 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753ED2F1CF4B76B00532652 /* TrainingBackground_4.png */; };
+		3753EEC01CF4B76B00532652 /* SwiftOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753ED311CF4B76B00532652 /* SwiftOCR.swift */; };
+		3753EEC11CF4B76B00532652 /* SwiftOCRTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753ED321CF4B76B00532652 /* SwiftOCRTraining.swift */; };
+		3753EEC21CF4B76B00532652 /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753ED331CF4B76B00532652 /* UnionFind.swift */; };
+		3753EF351CF4B98700532652 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3753EF341CF4B98200532652 /* GPUImage.framework */; };
+		3753EF361CF4B98700532652 /* GPUImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3753EF341CF4B98200532652 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3753EF331CF4B98200532652 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3753EF2F1CF4B98200532652 /* GPUImageMac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCA3F31C17239B6500E28AEC;
+			remoteInfo = GPUImage;
+		};
+		3753EF371CF4B98700532652 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3753EF2F1CF4B98200532652 /* GPUImageMac.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BCA3F31B17239B6500E28AEC;
+			remoteInfo = GPUImage;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3753EF391CF4B98700532652 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3753EF361CF4B98700532652 /* GPUImage.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3753E9CC1CF4ACBF00532652 /* SwiftOCR Debug OS X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftOCR Debug OS X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3753E9CF1CF4ACBF00532652 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3753E9D11CF4ACBF00532652 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3753E9D31CF4ACBF00532652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3753E9D61CF4ACC000532652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3753E9D81CF4ACC000532652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3753EA081CF4B76700532652 /* CrossPlatformSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPlatformSupport.swift; sourceTree = "<group>"; };
+		3753EA091CF4B76700532652 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3753EA0B1CF4B76700532652 /* FFNN+Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FFNN+Storage.swift"; sourceTree = "<group>"; };
+		3753EA0C1CF4B76700532652 /* FFNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFNN.swift; sourceTree = "<group>"; };
+		3753EA0D1CF4B76700532652 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		3753EA0E1CF4B76700532652 /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
+		3753EA0F1CF4B76700532652 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		3753EA101CF4B76700532652 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3753EA111CF4B76700532652 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		3753EA121CF4B76700532652 /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		3753ED291CF4B76B00532652 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3753ED2A1CF4B76B00532652 /* OCR-Network */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "OCR-Network"; sourceTree = "<group>"; };
+		3753ED2C1CF4B76B00532652 /* TrainingBackground_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrainingBackground_1.png; sourceTree = "<group>"; };
+		3753ED2D1CF4B76B00532652 /* TrainingBackground_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrainingBackground_2.png; sourceTree = "<group>"; };
+		3753ED2E1CF4B76B00532652 /* TrainingBackground_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrainingBackground_3.png; sourceTree = "<group>"; };
+		3753ED2F1CF4B76B00532652 /* TrainingBackground_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrainingBackground_4.png; sourceTree = "<group>"; };
+		3753ED301CF4B76B00532652 /* SwiftOCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftOCR.h; sourceTree = "<group>"; };
+		3753ED311CF4B76B00532652 /* SwiftOCR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCR.swift; sourceTree = "<group>"; };
+		3753ED321CF4B76B00532652 /* SwiftOCRTraining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCRTraining.swift; sourceTree = "<group>"; };
+		3753ED331CF4B76B00532652 /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
+		3753EF2F1CF4B98200532652 /* GPUImageMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImageMac.xcodeproj; path = "../../../framework/SwiftOCR/GPUImage-master/framework/GPUImageMac.xcodeproj"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3753E9C91CF4ACBF00532652 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3753EF351CF4B98700532652 /* GPUImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3753E9C31CF4ACBF00532652 = {
+			isa = PBXGroup;
+			children = (
+				3753EF2F1CF4B98200532652 /* GPUImageMac.xcodeproj */,
+				3753EA071CF4B76700532652 /* SwiftOCR */,
+				3753E9CE1CF4ACBF00532652 /* SwiftOCR Debug OS X */,
+				3753E9CD1CF4ACBF00532652 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3753E9CD1CF4ACBF00532652 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3753E9CC1CF4ACBF00532652 /* SwiftOCR Debug OS X.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3753E9CE1CF4ACBF00532652 /* SwiftOCR Debug OS X */ = {
+			isa = PBXGroup;
+			children = (
+				3753E9CF1CF4ACBF00532652 /* AppDelegate.swift */,
+				3753E9D11CF4ACBF00532652 /* ViewController.swift */,
+				3753E9D31CF4ACBF00532652 /* Assets.xcassets */,
+				3753E9D51CF4ACC000532652 /* Main.storyboard */,
+				3753E9D81CF4ACC000532652 /* Info.plist */,
+			);
+			path = "SwiftOCR Debug OS X";
+			sourceTree = "<group>";
+		};
+		3753EA071CF4B76700532652 /* SwiftOCR */ = {
+			isa = PBXGroup;
+			children = (
+				3753EA081CF4B76700532652 /* CrossPlatformSupport.swift */,
+				3753EA091CF4B76700532652 /* Extensions.swift */,
+				3753EA0A1CF4B76700532652 /* FFNN */,
+				3753ED291CF4B76B00532652 /* Info.plist */,
+				3753ED2A1CF4B76B00532652 /* OCR-Network */,
+				3753ED2B1CF4B76B00532652 /* Realistic Training Images */,
+				3753ED301CF4B76B00532652 /* SwiftOCR.h */,
+				3753ED311CF4B76B00532652 /* SwiftOCR.swift */,
+				3753ED321CF4B76B00532652 /* SwiftOCRTraining.swift */,
+				3753ED331CF4B76B00532652 /* UnionFind.swift */,
+			);
+			name = SwiftOCR;
+			path = ../../../framework/SwiftOCR;
+			sourceTree = "<group>";
+		};
+		3753EA0A1CF4B76700532652 /* FFNN */ = {
+			isa = PBXGroup;
+			children = (
+				3753EA0B1CF4B76700532652 /* FFNN+Storage.swift */,
+				3753EA0C1CF4B76700532652 /* FFNN.swift */,
+				3753EA0D1CF4B76700532652 /* Matrix.swift */,
+				3753EA0E1CF4B76700532652 /* Operations.swift */,
+				3753EA0F1CF4B76700532652 /* Random.swift */,
+				3753EA101CF4B76700532652 /* README.md */,
+				3753EA111CF4B76700532652 /* Storage.swift */,
+				3753EA121CF4B76700532652 /* Vector.swift */,
+			);
+			path = FFNN;
+			sourceTree = "<group>";
+		};
+		3753ED2B1CF4B76B00532652 /* Realistic Training Images */ = {
+			isa = PBXGroup;
+			children = (
+				3753ED2C1CF4B76B00532652 /* TrainingBackground_1.png */,
+				3753ED2D1CF4B76B00532652 /* TrainingBackground_2.png */,
+				3753ED2E1CF4B76B00532652 /* TrainingBackground_3.png */,
+				3753ED2F1CF4B76B00532652 /* TrainingBackground_4.png */,
+			);
+			path = "Realistic Training Images";
+			sourceTree = "<group>";
+		};
+		3753EF301CF4B98200532652 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3753EF341CF4B98200532652 /* GPUImage.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3753E9CB1CF4ACBF00532652 /* SwiftOCR Debug OS X */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3753E9DB1CF4ACC000532652 /* Build configuration list for PBXNativeTarget "SwiftOCR Debug OS X" */;
+			buildPhases = (
+				3753E9C81CF4ACBF00532652 /* Sources */,
+				3753E9C91CF4ACBF00532652 /* Frameworks */,
+				3753E9CA1CF4ACBF00532652 /* Resources */,
+				3753EF391CF4B98700532652 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3753EF381CF4B98700532652 /* PBXTargetDependency */,
+			);
+			name = "SwiftOCR Debug OS X";
+			productName = "SwiftOCR Debug OS X";
+			productReference = 3753E9CC1CF4ACBF00532652 /* SwiftOCR Debug OS X.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3753E9C41CF4ACBF00532652 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Nicolas Camenisch";
+				TargetAttributes = {
+					3753E9CB1CF4ACBF00532652 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 3753E9C71CF4ACBF00532652 /* Build configuration list for PBXProject "SwiftOCR Debug OS X" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3753E9C31CF4ACBF00532652;
+			productRefGroup = 3753E9CD1CF4ACBF00532652 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3753EF301CF4B98200532652 /* Products */;
+					ProjectRef = 3753EF2F1CF4B98200532652 /* GPUImageMac.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				3753E9CB1CF4ACBF00532652 /* SwiftOCR Debug OS X */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3753EF341CF4B98200532652 /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 3753EF331CF4B98200532652 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3753E9CA1CF4ACBF00532652 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3753EEBB1CF4B76B00532652 /* OCR-Network in Resources */,
+				3753EEBE1CF4B76B00532652 /* TrainingBackground_3.png in Resources */,
+				3753EEBD1CF4B76B00532652 /* TrainingBackground_2.png in Resources */,
+				3753E9D41CF4ACBF00532652 /* Assets.xcassets in Resources */,
+				3753EEBA1CF4B76B00532652 /* Info.plist in Resources */,
+				3753EEBF1CF4B76B00532652 /* TrainingBackground_4.png in Resources */,
+				3753E9D71CF4ACC000532652 /* Main.storyboard in Resources */,
+				3753EEBC1CF4B76B00532652 /* TrainingBackground_1.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3753E9C81CF4ACBF00532652 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3753ED381CF4B76B00532652 /* Matrix.swift in Sources */,
+				3753ED3C1CF4B76B00532652 /* Storage.swift in Sources */,
+				3753E9D21CF4ACBF00532652 /* ViewController.swift in Sources */,
+				3753EEC11CF4B76B00532652 /* SwiftOCRTraining.swift in Sources */,
+				3753EEC01CF4B76B00532652 /* SwiftOCR.swift in Sources */,
+				3753ED3B1CF4B76B00532652 /* README.md in Sources */,
+				3753ED361CF4B76B00532652 /* FFNN+Storage.swift in Sources */,
+				3753ED341CF4B76B00532652 /* CrossPlatformSupport.swift in Sources */,
+				3753ED371CF4B76B00532652 /* FFNN.swift in Sources */,
+				3753E9D01CF4ACBF00532652 /* AppDelegate.swift in Sources */,
+				3753ED351CF4B76B00532652 /* Extensions.swift in Sources */,
+				3753ED391CF4B76B00532652 /* Operations.swift in Sources */,
+				3753ED3D1CF4B76B00532652 /* Vector.swift in Sources */,
+				3753EEC21CF4B76B00532652 /* UnionFind.swift in Sources */,
+				3753ED3A1CF4B76B00532652 /* Random.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3753EF381CF4B98700532652 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImage;
+			targetProxy = 3753EF371CF4B98700532652 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3753E9D51CF4ACC000532652 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3753E9D61CF4ACC000532652 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3753E9D91CF4ACC000532652 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3753E9DA1CF4ACC000532652 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3753E9DC1CF4ACC000532652 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "SwiftOCR Debug OS X/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Debug-OS-X";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3753E9DD1CF4ACC000532652 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "SwiftOCR Debug OS X/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Debug-OS-X";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3753E9C71CF4ACBF00532652 /* Build configuration list for PBXProject "SwiftOCR Debug OS X" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3753E9D91CF4ACC000532652 /* Debug */,
+				3753E9DA1CF4ACC000532652 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3753E9DB1CF4ACC000532652 /* Build configuration list for PBXNativeTarget "SwiftOCR Debug OS X" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3753E9DC1CF4ACC000532652 /* Debug */,
+				3753E9DD1CF4ACC000532652 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3753E9C41CF4ACBF00532652 /* Project object */;
+}

@@ -21,7 +21,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     var allFontNames      = [String]()
     var selectedFontNames = [String]()
     var isTraining        = false
-    
+
     let trainingInstance  = SwiftOCRTraining()
     
     override func viewDidLoad() {
@@ -84,7 +84,16 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     
     override func controlTextDidChange(obj: NSNotification) {
         //Generate new training network
-        recognizableCharacters = Array(Set(charactersToTrainTextField.stringValue.characters.map({return String($0)}))).joinWithSeparator("")
+
+        recognizableCharacters = ""
+        
+        charactersToTrainTextField.stringValue.characters.forEach({
+            guard !recognizableCharacters.characters.contains($0) else {return}
+            recognizableCharacters.append($0)
+        })
+        
+        charactersToTrainTextField.stringValue = recognizableCharacters
+        
         globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
     }
     
@@ -108,9 +117,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             isTraining = true
             
             trainingProgressIndicator.startAnimation(nil)
-            
-            recognizableCharacters = Array(Set(charactersToTrainTextField.stringValue.characters.map({return String($0)}))).joinWithSeparator("")
-            
+
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                 
                 var callbackCount      = 0
@@ -124,7 +131,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
                 self.trainingInstance.trainWithCharSet() { error in
                     minimumError   = error
                     callbackCount += 1
-                    
+
                     if !self.isTraining {
                         return false
                     } else if minimumError + 2 < error && callbackCount >= 150 {

@@ -307,7 +307,7 @@ public class SwiftOCRTraining {
      */
     
     public   func testOCR(completionHandler: (Double) -> Void) {
-        let testData  = generateRealisticCharSet(25)
+        let testData  = generateRealisticCharSet(recognizableCharacters.characters.count)
         
         var correctCount = 0
         var totalCount   = 0

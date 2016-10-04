@@ -30,10 +30,11 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 ///The characters the globalNetwork can recognize.
 ///It **must** be in the **same order** as the network got trained
-internal var recognizableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-
+//internal var recognizableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+internal var recognizableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxzy"
 ///The FFNN network used for OCR
-internal var globalNetwork = FFNN.fromFile(Bundle(for: SwiftOCR.self).url(forResource: "OCR-Network", withExtension: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .crossEntropy(average: false))
+// internal var globalNetwork = FFNN.fromFile(Bundle(for: SwiftOCR.self).url(forResource: "OCR-Network", withExtension: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .crossEntropy(average: false))
+internal var globalNetwork = FFNN.fromFile(Bundle(for: SwiftOCR.self).url(forResource: "OCR-Network", withExtension: nil)!)!
 
 open class SwiftOCR {
     
@@ -50,9 +51,9 @@ open class SwiftOCR {
     open      var yMergeRadius:CGFloat = 3
     
     ///Only recognize characters on White List
-    open      var characterWhiteList: String? = String()
+    open      var characterWhiteList: String? = nil
     ///Don't recognize characters on Black List
-    open      var characterBlackList: String? = String()
+    open      var characterBlackList: String? = nil
     
     ///Confidence must be bigger than the threshold
     open      var confidenceThreshold:Float = 0.1
@@ -89,7 +90,6 @@ open class SwiftOCR {
         func checkWhiteAndBlackListForCharacter(_ character: Character) -> Bool {
             let whiteList =   characterWhiteList?.characters.contains(character) ?? true
             let blackList = !(characterBlackList?.characters.contains(character) ?? false)
-            
             return whiteList && blackList
         }
 
@@ -117,15 +117,11 @@ open class SwiftOCR {
                         
                         for (networkIndex, _) in networkResult.enumerated().sorted(by: {$0.0.element > $0.1.element}) {
                             let character = indexToCharacter(networkIndex)
-                            
-                            print(character)
-                            
+                                                        
                             guard checkWhiteAndBlackListForCharacter(character) else {
                                 continue
                             }
  
-                            
-                            print(character)
                             recognizedString.append(character)
                             break
                         }
@@ -139,7 +135,7 @@ open class SwiftOCR {
                     for networkResultIndex in 0..<networkResult.count {
                         let characterConfidence = networkResult[networkResultIndex]
                         let character           = indexToCharacter(networkResultIndex)
-                        
+
                         guard characterConfidence >= ocrRecognizedBlobConfidenceThreshold && checkWhiteAndBlackListForCharacter(character) else {
                             continue
                         }

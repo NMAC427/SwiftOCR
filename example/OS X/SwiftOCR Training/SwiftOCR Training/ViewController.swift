@@ -29,34 +29,34 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         
         // Do any additional setup after loading the view.
         
-        globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
+        globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .crossEntropy(average: false))
         
-        allFontNames = NSFontManager.sharedFontManager().availableFonts
+        allFontNames = NSFontManager.shared().availableFonts
         
         charactersToTrainTextField.delegate = self
         
         fontsTableView.reloadData()
     }
 
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
     }
     
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return allFontNames.count
     }
     
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         if tableColumn?.identifier == "0" {
-            let cell = tableView.makeViewWithIdentifier("fontCell", owner: self) as! NSTableCellView
+            let cell = tableView.make(withIdentifier: "fontCell", owner: self) as! NSTableCellView
             let fontName = allFontNames[row]
             cell.textField?.stringValue = NSFont(name: fontName, size: 0)?.displayName ?? ""
             return cell
         } else {
-            let cell = tableView.makeViewWithIdentifier("buttonCell", owner: self) as! ButtonTableCellView
+            let cell = tableView.make(withIdentifier: "buttonCell", owner: self) as! ButtonTableCellView
             let fontName = allFontNames[row]
             
             if selectedFontNames.contains(fontName) {
@@ -70,10 +70,10 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         
     }
 
-    @IBAction func buttonTableCellViewButtonPressed(sender: NSButton) {
+    @objc @IBAction func buttonTableCellViewButtonPressed(_ sender: NSButton) {
         if sender.integerValue == 0 {
-            if let index = selectedFontNames.indexOf(sender.identifier ?? "") {
-                selectedFontNames.removeAtIndex(index)
+            if let index = selectedFontNames.index(of: sender.identifier ?? "") {
+                selectedFontNames.remove(at: index)
             }
         } else {
             if let fontName = sender.identifier {
@@ -82,7 +82,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         }
     }
     
-    override func controlTextDidChange(obj: NSNotification) {
+    override func controlTextDidChange(_ obj: Notification) {
         //Generate new training network
 
         recognizableCharacters = ""
@@ -94,14 +94,14 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         
         charactersToTrainTextField.stringValue = recognizableCharacters
         
-        globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
+        globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .crossEntropy(average: false))
     }
     
-    @IBAction func saveButtonPressed(sender: NSButton) {
+    @objc @IBAction func saveButtonPressed(_ sender: NSButton) {
         trainingInstance.saveOCR()
     }
     
-    @IBAction func startTrainingButtonPressed(sender: NSButton) {
+    @objc @IBAction func startTrainingButtonPressed(_ sender: NSButton) {
         
         if isTraining {
             startTrainingButton.title = "Start Training"
@@ -117,8 +117,8 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             isTraining = true
             
             trainingProgressIndicator.startAnimation(nil)
-
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            
+            DispatchQueue.global(priority: .high).async {
                 
                 var callbackCount      = 0
                 var minimumError:Float = Float.infinity {
@@ -142,21 +142,22 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
    
                 }
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async {
+                    
                     if self.isTraining == true {
                         self.startTrainingButton.title = "Start Training"
                         self.isTraining                = false
                         self.trainingProgressIndicator.stopAnimation(nil)
                     }
-                })
+                }
                 
-            })
+            }
             
         }
         
     }
 
-    @IBAction func addAllFontsButtonPressed(sender: NSButton) {
+    @objc @IBAction func addAllFontsButtonPressed(_ sender: NSButton) {
         if allFontNames == selectedFontNames {
             selectedFontNames.removeAll()
             addAllFontsButton.title = "Add all Fonts"
@@ -168,17 +169,17 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         }
     }
     
-    @IBAction func testButtonPressed(sender: NSButton) {
+    @objc @IBAction func testButtonPressed(_ sender: NSButton) {
         startTrainingButton.title = "Start Training"
         isTraining = false
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(priority: .default).async {
             self.trainingInstance.testOCR() {accuracy in
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async {
                     self.accuracyLabel.stringValue = "Accuracy: \(round(accuracy * 1000) / 10)%"
-                })
+                }
             }
-        })
+        }
     }
 }
 

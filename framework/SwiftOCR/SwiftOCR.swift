@@ -414,7 +414,6 @@ public class SwiftOCR {
         
         mergeLabelRects = filteredMergeLabelRects
         
-        //Filter rects: - Not to small
         
         let insetMergeLabelRects = mergeLabelRects.map({return $0.insetBy(dx: CGFloat(xMergeRadius), dy: CGFloat(yMergeRadius))})
         filteredMergeLabelRects.removeAll()

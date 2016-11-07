@@ -40,19 +40,19 @@ class ViewController: NSViewController {
         updateMergeRadiusLabels()
     }
 
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
     }
     
-    @IBAction func imageDidChange(sender: NSImageView) {
-        helperLabel.hidden = true
+    @IBAction func imageDidChange(_ sender: NSImageView) {
+        helperLabel.isHidden = true
         inputImage = sender.image
         ocr()
     }
 
-    @IBAction func sliderDidChange(sender: NSSlider) {
+    @IBAction func sliderDidChange(_ sender: NSSlider) {
         updateMergeRadiusLabels()
     }
     
@@ -71,11 +71,12 @@ class ViewController: NSViewController {
         ocrInstance.yMergeRadius = CGFloat(yMergeRadiusSlider.floatValue)
         
         ocrInstance.recognize(image) {recognizedString in
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
+
                 self.recognizedStringLabel.stringValue = recognizedString
-                self.thirdImageView.image              = self.drawBoundingBoxesInImage(image, blobs: ocrInstance.currentOCRRecognizedBlobs)
+                self.thirdImageView.image              = self.drawBoundingBoxesInImage(image: image, blobs: ocrInstance.currentOCRRecognizedBlobs)
                 self.recognizedBlobsTextView.string    = ocrInstance.currentOCRRecognizedBlobs.description
-            })
+            }
         }
         
         secondImageView.image = ocrInstance.preprocessImageForOCR(image)
@@ -89,10 +90,10 @@ class ViewController: NSViewController {
         
         for blob in blobs {
             let rect     = blob.boundingBox
-            let flipRect = CGRectMake(rect.origin.x, image.size.height - rect.origin.y - rect.size.height, rect.size.width, rect.size.height)
+            let flipRect = CGRect(x:(rect?.origin.x)!, y:image.size.height - (rect?.origin.y)! - (rect?.size.height)!, width: (rect?.size.width)!, height: (rect?.size.height)!)
             let path     = NSBezierPath(rect: flipRect)
             
-            NSColor.redColor().setStroke()
+            NSColor.red.setStroke()
             
             path.lineWidth = 2
             path.stroke()

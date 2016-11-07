@@ -31,8 +31,8 @@ class ViewController: NSViewController {
         }
     }
 
-    @IBAction func imageDidChange(sender: NSImageView) {
-        helperLabel.textColor = NSColor.clearColor()
+    @IBAction func imageDidChange(_ sender: NSImageView) {
+        helperLabel.textColor = NSColor.clear
         inputImage = sender.image
         ocr()
     }
@@ -45,7 +45,7 @@ class ViewController: NSViewController {
       }
       
       swiftOCRInstance.recognize(image, {recognizedString in
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.recognizedLabel.title = recognizedString
             })
         })

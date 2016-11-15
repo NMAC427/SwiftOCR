@@ -428,6 +428,7 @@ open class SwiftOCR {
         
         mergeLabelRects = filteredMergeLabelRects
         
+        //Filter rects: - Not to small
         
         let insetMergeLabelRects = mergeLabelRects.map({return $0.insetBy(dx: CGFloat(xMergeRadius), dy: CGFloat(yMergeRadius))})
         filteredMergeLabelRects.removeAll()
@@ -650,7 +651,7 @@ open class SwiftOCR {
             let cgImage    = resizedBlob.cgImage
         #else
             let bitmapRep  = NSBitmapImageRep(data: resizedBlob.tiffRepresentation!)!
-            let bitmapData = bitmapRep.bitmapData
+            let bitmapData = bitmapRep.bitmapData ?? []
             let cgImage    = bitmapRep.cgImage
         #endif
         
@@ -664,7 +665,9 @@ open class SwiftOCR {
         for yPixelInfo in stride(from: 0, to: height*width*numberOfComponents, by: width*numberOfComponents) {
             for xPixelInfo in stride(from: 0, to: width*numberOfComponents, by: numberOfComponents) {
                 let pixelInfo: Int = yPixelInfo + xPixelInfo
-                imageData.append(bitmapData?[pixelInfo] < 127 ? 0 : 1)
+
+                imageData.append(bitmapData[pixelInfo] < 127 ? 0 : 1)
+                
             }
         }
         

@@ -38,12 +38,6 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         fontsTableView.reloadData()
     }
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-    
     func numberOfRows(in tableView: NSTableView) -> Int {
         return allFontNames.count
     }

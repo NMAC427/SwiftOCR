@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController, SwiftOCRDelegate {
+class ViewController: NSViewController {
     
     //Image View
 
@@ -38,12 +38,6 @@ class ViewController: NSViewController, SwiftOCRDelegate {
         super.viewDidLoad()
 
         updateMergeRadiusLabels()
-    }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
     }
     
     @IBAction func imageDidChange(_ sender: NSImageView) {

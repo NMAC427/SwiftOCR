@@ -12,7 +12,7 @@ class Random {
     
     static let maximumInteger = UInt32.max
     
-    static func random(number : UInt32) -> UInt32 {
+    static func random(_ number : UInt32) -> UInt32 {
         return arc4random_uniform(number)
     }
     
@@ -20,7 +20,7 @@ class Random {
         return Double(random(maximumInteger))/Double(maximumInteger)
     }
     
-    static func randomBounded(min: Double, max: Double) -> Double {
+    static func randomBounded(_ min: Double, max: Double) -> Double {
         let amplitude = max - min
         let offset = min
         return offset + amplitude * Random.numberFromZeroToOne()

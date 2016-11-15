@@ -384,13 +384,16 @@
 					373ED0AE1CC9071C00C4758B = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 2VE8J8K99V;
+						LastSwiftMigration = 0800;
 					};
 					373ED0B81CC9071D00C4758B = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 2VE8J8K99V;
+						LastSwiftMigration = 0800;
 					};
 					373ED0E51CC909A400C4758B = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					373ED0EE1CC909A500C4758B = {
 						CreatedOnToolsVersion = 7.3;
@@ -686,6 +689,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -711,6 +715,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -722,6 +727,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = camenisch.nicolas.SwiftOCRTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -733,6 +739,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = camenisch.nicolas.SwiftOCRTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -754,6 +761,7 @@
 				PRODUCT_NAME = SwiftOCR;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -777,6 +785,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

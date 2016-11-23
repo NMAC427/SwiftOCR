@@ -651,7 +651,7 @@ open class SwiftOCR {
             let cgImage    = resizedBlob.cgImage
         #else
             let bitmapRep  = NSBitmapImageRep(data: resizedBlob.tiffRepresentation!)!
-            let bitmapData = bitmapRep.bitmapData ?? []
+            let bitmapData = bitmapRep.bitmapData!
             let cgImage    = bitmapRep.cgImage
         #endif
         

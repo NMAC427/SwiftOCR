@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BCF1A33314DDB1EC00852800"
-               BuildableName = "libGPUImage.a"
-               BlueprintName = "GPUImage"
-               ReferencedContainer = "container:GPUImage.xcodeproj">
+               BlueprintIdentifier = "37E1208F1CDA5E6B00FC2701"
+               BuildableName = "SwiftOCR Camera.app"
+               BlueprintName = "SwiftOCR Camera"
+               ReferencedContainer = "container:SwiftOCR Camera.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,17 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BCF1A34314DDB1EC00852800"
-               BuildableName = "GPUImageTests.octest"
-               BlueprintName = "GPUImageTests"
-               ReferencedContainer = "container:GPUImage.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "37E1208F1CDA5E6B00FC2701"
+            BuildableName = "SwiftOCR Camera.app"
+            BlueprintName = "SwiftOCR Camera"
+            ReferencedContainer = "container:SwiftOCR Camera.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -52,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BCF1A33314DDB1EC00852800"
-            BuildableName = "libGPUImage.a"
-            BlueprintName = "GPUImage"
-            ReferencedContainer = "container:GPUImage.xcodeproj">
+            BlueprintIdentifier = "37E1208F1CDA5E6B00FC2701"
+            BuildableName = "SwiftOCR Camera.app"
+            BlueprintName = "SwiftOCR Camera"
+            ReferencedContainer = "container:SwiftOCR Camera.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,6 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "37E1208F1CDA5E6B00FC2701"
+            BuildableName = "SwiftOCR Camera.app"
+            BlueprintName = "SwiftOCR Camera"
+            ReferencedContainer = "container:SwiftOCR Camera.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -36,7 +36,7 @@ open class SwiftOCRTraining {
         let testAnswers  =  testData.map({return $0.1})
 
         do {
-            try globalNetwork.train(inputs: trainInputs, answers: trainAnswers, testInputs: testInputs, testAnswers: testAnswers, errorThreshold: errorThreshold, shouldContinue: {error in shouldContinue(error)})
+            _ = try globalNetwork.train(inputs: trainInputs, answers: trainAnswers, testInputs: testInputs, testAnswers: testAnswers, errorThreshold: errorThreshold, shouldContinue: {error in shouldContinue(error)})
             saveOCR()
         } catch {
             print(error)

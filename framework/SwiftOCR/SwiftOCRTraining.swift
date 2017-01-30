@@ -156,32 +156,17 @@ open class SwiftOCRTraining {
             let currentCustomImage = customImage(code)
             
             //Distort Image
-            
-            let transformImage  = GPUImagePicture(image: currentCustomImage)
-            let transformFilter = GPUImageTransformFilter()
+            let transformOperation = TransformOperation()
             
             var affineTransform = CGAffineTransform()
-            
             affineTransform.a  = 1.05 + (       CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.1 )
             affineTransform.b  = 0    + (0.01 - CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.02)
             affineTransform.c  = 0    + (0.03 - CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.06)
             affineTransform.d  = 1.05 + (       CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.1 )
             
-            transformFilter.affineTransform = affineTransform
-            transformImage?.addTarget(transformFilter)
-            
-            transformFilter.useNextFrameForImageCapture()
-            transformImage?.processImage()
-            
-            var transformedImage:OCRImage? = transformFilter.imageFromCurrentFramebuffer(with: .up)
-            
-            while transformedImage == nil || transformedImage?.size == CGSize.zero {
-                transformFilter.useNextFrameForImageCapture()
-                transformImage?.processImage()
-                transformedImage = transformFilter.imageFromCurrentFramebuffer(with: .up)
-            }
-            
-            let distortedImage = ocrInstance.preprocessImageForOCR(transformedImage!)
+            transformOperation.transform = Matrix4x4(affineTransform)
+            let transformedImage = currentCustomImage.filterWithOperation(transformOperation)
+            let distortedImage = ocrInstance.preprocessImageForOCR(transformedImage)
             
             //Generate Training set
             
@@ -236,8 +221,7 @@ open class SwiftOCRTraining {
             
             //Distortions
             for _ in 0..<distortions {
-                let transformImage  = GPUImagePicture(image: image)
-                let transformFilter = GPUImageTransformFilter()
+                let transformOperation = TransformOperation()
                 
                 var affineTransform = CGAffineTransform()
                 
@@ -251,21 +235,9 @@ open class SwiftOCRTraining {
                 affineTransform.c  = 0    + (randomFloat(0.03))
                 affineTransform.d  = 1.05 + (randomFloat(0.1) + 0.05)
                 
-                transformFilter.affineTransform = affineTransform
-                transformImage?.addTarget(transformFilter)
-                
-                transformFilter.useNextFrameForImageCapture()
-                transformImage?.processImage()
-                
-                var transformedImage:OCRImage? = transformFilter.imageFromCurrentFramebuffer(with: .up)
-                
-                while transformedImage == nil || transformedImage?.size == CGSize.zero {
-                    transformFilter.useNextFrameForImageCapture()
-                    transformImage?.processImage()
-                    transformedImage = transformFilter.imageFromCurrentFramebuffer(with: .up)
-                }
-                
-                let distortedImage = ocrInstance.preprocessImageForOCR(transformedImage!)
+                transformOperation.transform = Matrix4x4(affineTransform)
+                let transformedImage = image.filterWithOperation(transformOperation)
+                let distortedImage = ocrInstance.preprocessImageForOCR(transformedImage)
                 imagesToExtractBlobsFrom.append(distortedImage)
             }
             

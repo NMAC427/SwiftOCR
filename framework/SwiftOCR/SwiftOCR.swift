@@ -30,7 +30,7 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 ///The characters the globalNetwork can recognize.
 ///It **must** be in the **same order** as the network got trained
-public var recognizableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+public var recognizableCharacters = "0123456789+-/*="
 ///The FFNN network used for OCR
 public var globalNetwork = FFNN.fromFile(Bundle(for: SwiftOCR.self).url(forResource: "OCR-Network", withExtension: nil)!)!
 

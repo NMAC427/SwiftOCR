@@ -58,7 +58,8 @@ class ViewController: UIViewController {
                     self?.ocrInstance.recognize(croppedImage!) { [weak self] recognizedString in
                         DispatchQueue.main.async {
                             self?.label.text = recognizedString
-                            print(self?.ocrInstance.currentOCRRecognizedBlobs ?? "Recoginzed Blob is empty")
+                            print("recognizedString - \(recognizedString)")
+//                            print(self?.ocrInstance.currentOCRRecognizedBlobs ?? "Recoginzed Blob is empty")
                         }
                     }
                 } else {

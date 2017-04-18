@@ -30,8 +30,6 @@
 		373ED1171CC90A2300C4758B /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1071CC90A2300C4758B /* Vector.swift */; };
 		373ED1181CC90A2500C4758B /* SwiftOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0C91CC9076300C4758B /* SwiftOCR.swift */; };
 		373ED1191CC90A2700C4758B /* SwiftOCRTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0CA1CC9076300C4758B /* SwiftOCRTraining.swift */; };
-		373ED12A1CC912E400C4758B /* OCR-Network in Resources */ = {isa = PBXBuildFile; fileRef = 373ED1281CC912C000C4758B /* OCR-Network */; };
-		373ED12E1CC914E400C4758B /* OCR-Network in Resources */ = {isa = PBXBuildFile; fileRef = 373ED1281CC912C000C4758B /* OCR-Network */; };
 		373ED1301CC917A500C4758B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED12F1CC917A500C4758B /* Extensions.swift */; };
 		373ED1311CC917A500C4758B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED12F1CC917A500C4758B /* Extensions.swift */; };
 		373ED19A1CC9634500C4758B /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED1991CC9634400C4758B /* UnionFind.swift */; };
@@ -60,6 +58,7 @@
 		377885741CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
 		37A2346A1CDF9A1800CB3323 /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778855C1CCCF11900A41020 /* SwiftOCRTests.swift */; };
 		37A2346B1CDFA5B200CB3323 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1491CC9521B00C4758B /* GPUImage.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		929331181E6C5C8000F3D5AE /* OCR-Network in Resources */ = {isa = PBXBuildFile; fileRef = 929331171E6C5C8000F3D5AE /* OCR-Network */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,7 +118,6 @@
 		373ED1041CC90A2300C4758B /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		373ED1061CC90A2300C4758B /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		373ED1071CC90A2300C4758B /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
-		373ED1281CC912C000C4758B /* OCR-Network */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "OCR-Network"; sourceTree = "<group>"; };
 		373ED12F1CC917A500C4758B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		373ED1991CC9634400C4758B /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
 		375558171CDF7DA8008CED46 /* Test 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Test 3.png"; sourceTree = "<group>"; };
@@ -131,6 +129,7 @@
 		3778856A1CCCF37400A41020 /* TrainingBackground_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_2.png; path = "Realistic Training Images/TrainingBackground_2.png"; sourceTree = "<group>"; };
 		3778856B1CCCF37400A41020 /* TrainingBackground_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_3.png; path = "Realistic Training Images/TrainingBackground_3.png"; sourceTree = "<group>"; };
 		3778856C1CCCF37400A41020 /* TrainingBackground_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_4.png; path = "Realistic Training Images/TrainingBackground_4.png"; sourceTree = "<group>"; };
+		929331171E6C5C8000F3D5AE /* OCR-Network */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "OCR-Network"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,9 +191,9 @@
 		373ED0B11CC9071D00C4758B /* SwiftOCR */ = {
 			isa = PBXGroup;
 			children = (
+				929331171E6C5C8000F3D5AE /* OCR-Network */,
 				373ED0C91CC9076300C4758B /* SwiftOCR.swift */,
 				373ED0CA1CC9076300C4758B /* SwiftOCRTraining.swift */,
-				373ED1281CC912C000C4758B /* OCR-Network */,
 				373ED11E1CC90C4200C4758B /* Supporting files */,
 			);
 			path = SwiftOCR;
@@ -383,6 +382,7 @@
 				TargetAttributes = {
 					373ED0AE1CC9071C00C4758B = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = DG779MAMM2;
 						LastSwiftMigration = 0800;
 					};
 					373ED0B81CC9071D00C4758B = {
@@ -459,12 +459,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				375558181CDF7DA8008CED46 /* Test 3.png in Resources */,
-				373ED12E1CC914E400C4758B /* OCR-Network in Resources */,
 				3778856F1CCCF37400A41020 /* TrainingBackground_2.png in Resources */,
 				377885711CCCF37400A41020 /* TrainingBackground_3.png in Resources */,
 				377885731CCCF37400A41020 /* TrainingBackground_4.png in Resources */,
 				377885681CCCF32A00A41020 /* Test 2.png in Resources */,
 				377885671CCCF32A00A41020 /* Test 1.png in Resources */,
+				929331181E6C5C8000F3D5AE /* OCR-Network in Resources */,
 				3778856D1CCCF37400A41020 /* TrainingBackground_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,7 +484,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3755581A1CDF7DA8008CED46 /* Test 3.png in Resources */,
-				373ED12A1CC912E400C4758B /* OCR-Network in Resources */,
 				377885661CCCF32900A41020 /* Test 2.png in Resources */,
 				377885651CCCF32900A41020 /* Test 1.png in Resources */,
 				377885701CCCF37400A41020 /* TrainingBackground_2.png in Resources */,
@@ -696,7 +695,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -724,7 +723,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -765,12 +764,12 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftOCR/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Mac";
 				PRODUCT_NAME = SwiftOCR;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -788,13 +787,13 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftOCR/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Mac";
 				PRODUCT_NAME = SwiftOCR;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

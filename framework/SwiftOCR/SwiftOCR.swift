@@ -597,7 +597,7 @@ open class SwiftOCR {
         biliteralFilter.distanceNormalizationFactor = 1.6
         thresholdFilter.threshold                   = 0.7
         
-        picture?               .addTarget(medianFilter)
+        picture?              .addTarget(medianFilter)
         medianFilter          .addTarget(openingFilter)
         openingFilter         .addTarget(biliteralFilter)
         biliteralFilter       .addTarget(firstBrightnessFilter)

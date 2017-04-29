@@ -56,7 +56,6 @@ open class SwiftOCRTraining {
         
         let randomCode: () -> String = {
             let randomCharacter: () -> String = {
-                
                 let charArray = Array(recognizableCharacters.characters)
                 let randomDouble = Double(arc4random())/(Double(UINT32_MAX) + 1)
                 let randomIndex  = Int(floor(randomDouble * Double(charArray.count)))

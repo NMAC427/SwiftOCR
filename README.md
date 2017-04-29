@@ -23,15 +23,15 @@ If you want to recognize normal text like a poem or a news article, go with Tess
 
 Tesseract is written in C++ and over 30 years old. To use it you first have to write a Objective-C++ wrapper for it. The main issue that's slowing down Tesseract is the way memory is managed. Too many memory allocations and releases slow it down.
 
-
 I did some testing on over 50 difficult images containing alphanumeric codes. The results where astonishing. SwiftOCR beat Tesseract in every category.
 
- |SwiftOCR | Tesseract
------------- |------------ | -------------
-Speed | 0.08 sec. | 0.63 sec.
-Accuracy | 97.7% | 45.2%
-CPU | ~30% | ~90% 
-Memory | 45 MB | 73 MB
+|          | SwiftOCR  | Tesseract |
+| -------- | :-------: | :-------: |
+| Speed    | 0.08 sec. | 0.63 sec. |
+| Accuracy | 97.7%     | 45.2%     |
+| CPU      | ~30%      | ~90%      |
+| Memory   | 45 MB     | 73 MB     |
+
 
 ## How does it work?
 
@@ -66,7 +66,7 @@ The `Test` button is used for evaluating the accuracy of the trained neural netw
 
 Here is an example image. SwiftOCR has no problem recognizing it. If you try to recognize the same image using Tesseract the output is 'LABMENSW' ?!?!?.
 
-![Image 1](example/OS X/SwiftOCR Example OS X/SwiftOCR Example OS X/images/Test 2.png)
+![Image 1](https://github.com/garnele007/SwiftOCR/blob/master/example/OS%20X/SwiftOCR%20Example%20OS%20X/SwiftOCR%20Example%20OS%20X/images/Test%202.png?raw=true)
 
 This image is difficult to recognize because of two reasons:
 - The lighting is uneven. This problem is solved by the innovative preprocessing algorithm of SwiftOCR.

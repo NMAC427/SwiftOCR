@@ -1,0 +1,13 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': '/Users/serhiilondar/projects/GitHub/SwiftOCR/framework/build/Release-iphoneos/SwiftOCR.framework/Modules'
+    'contents': [{
+      'type': 'file',
+      'name': 'module.modulemap',
+      'external-contents': '/Users/serhiilondar/projects/GitHub/SwiftOCR/framework/build/SwiftOCR.build/Release-iphoneos/SwiftOCR.build/unextended-module.modulemap',
+    }]
+  }]
+}

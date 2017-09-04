@@ -65,7 +65,7 @@ open class SwiftOCR {
     //MARK: Init
     public   init(){}
     
-    public   init(image: OCRImage, delegate: SwiftOCRDelegate?, _ completionHandler: @escaping (String) -> Void){
+    public   init(image: OCRImage, delegate: SwiftOCRDelegate?, _ completionHandler: @escaping (String, CGRect) -> Void){
         self.delegate = delegate
         self.recognize(image, completionHandler)
     }
@@ -79,7 +79,11 @@ open class SwiftOCR {
      
      */
     
-    open func recognize(_ image: OCRImage, _ completionHandler: @escaping (String) -> Void){
+    open func recognize(_ image: OCRImage, _ completionHandler: @escaping (String, CGRect) -> Void){
+        
+        let path = NSString(string:"~/Desktop/OCR-Network-Images/original.png").expandingTildeInPath
+        _ = image.pngWrite(to: URL(string: "file://\(path)")!)
+        
         
         func indexToCharacter(_ index: Int) -> Character {
             return Array(recognizableCharacters.characters)[index]
@@ -95,15 +99,25 @@ open class SwiftOCR {
         DispatchQueue.global(qos: .userInitiated).async {
             let preprocessedImage      = self.delegate?.preprocessImageForOCR(image) ?? self.preprocessImageForOCR(image)
             
+            let path = NSString(string:"~/Desktop/OCR-Network-Images/preprocess.png").expandingTildeInPath
+            _ = preprocessedImage.pngWrite(to: URL(string: "file://\(path)")!)
+            
             let blobs                  = self.extractBlobs(preprocessedImage)
             var recognizedString       = ""
             var ocrRecognizedBlobArray = [SwiftOCRRecognizedBlob]()
-            
+            var blobNumber = 0
+            var rect: CGRect = CGRect(x: 0, y: 0, width: 0, height: 0)
             for blob in blobs {
                 do {
-                    let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
-                    let networkResult  = try self.network.update(inputs: blobData)
+                    blobNumber += 1
+                    let path = NSString(string:"~/Desktop/OCR-Network-Images/blobImage_\(blobNumber).png").expandingTildeInPath
+                    _ = blob.0.pngWrite(to: URL(string: "file://\(path)")!)
                     
+                    let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
+                    print("blobData_\(blobNumber) - [\(blobData)]")
+                    
+                    let networkResult  = try self.network.update(inputs: blobData)
+                    print("networkResult_\(blobNumber) - [\(networkResult)]")
                     //Generate Output Character
                     if networkResult.max() >= self.confidenceThreshold {
                        
@@ -118,7 +132,8 @@ open class SwiftOCR {
                             guard checkWhiteAndBlackListForCharacter(character) else {
                                 continue
                             }
-                            
+                            print("character_\(blobNumber) - \(character)")
+                            rect = blob.1
                             recognizedString.append(character)
                             break
                         }
@@ -151,7 +166,8 @@ open class SwiftOCR {
             }
             
             self.currentOCRRecognizedBlobs = ocrRecognizedBlobArray
-            completionHandler(recognizedString)
+            
+            completionHandler(recognizedString, rect)
         }
     }
     
@@ -165,7 +181,7 @@ open class SwiftOCR {
      
      */
     
-    open   func recognizeInRect(_ image: OCRImage, rect: CGRect, completionHandler: @escaping (String) -> Void){
+    open   func recognizeInRect(_ image: OCRImage, rect: CGRect, completionHandler: @escaping (String, CGRect) -> Void){
         DispatchQueue.global(qos: .userInitiated).async {
             #if os(iOS)
                 let cgImage        = image.cgImage
@@ -442,7 +458,6 @@ open class SwiftOCR {
         var outputImages = [(OCRImage, CGRect)]()
         
         //MARK: Crop image to blob
-        
         for rect in mergeLabelRects {
             
             if let croppedCGImage = cgImage?.cropping(to: rect) {
@@ -452,7 +467,6 @@ open class SwiftOCR {
                 #else
                     let croppedImage = NSImage(cgImage: croppedCGImage, size: rect.size)
                 #endif
-                
                 outputImages.append((croppedImage, rect))
             }
         }

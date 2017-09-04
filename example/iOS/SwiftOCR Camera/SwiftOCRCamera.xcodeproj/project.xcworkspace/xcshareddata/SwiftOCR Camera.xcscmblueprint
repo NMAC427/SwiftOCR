@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C2DF0243C3D603F14BC9097ADB2E5594C42D3904",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C2DF0243C3D603F14BC9097ADB2E5594C42D3904" : 9223372036854775807,
+    "173AEAC6212D8C24AE556EA1E4F2817BE777B578" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4D1BDB8C-49C5-4DF2-909B-C2CEAB4A2CE1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C2DF0243C3D603F14BC9097ADB2E5594C42D3904" : "SwiftOCR\/",
+    "173AEAC6212D8C24AE556EA1E4F2817BE777B578" : "Expression\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SwiftOCR Camera",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "example\/iOS\/SwiftOCR Camera\/SwiftOCR Camera.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nicklockwood\/Expression.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "173AEAC6212D8C24AE556EA1E4F2817BE777B578"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:serhii-londar\/SwiftOCR.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C2DF0243C3D603F14BC9097ADB2E5594C42D3904"
+    }
+  ]
+}

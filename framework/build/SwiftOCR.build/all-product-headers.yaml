@@ -1,0 +1,33 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/serhiilondar/projects/GitHub/SwiftOCR/framework/build/Release-iphoneos/SwiftOCR.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "SwiftOCR-Swift.h",
+          'external-contents': "/Users/serhiilondar/projects/GitHub/SwiftOCR/framework/build/Release-iphoneos/SwiftOCR.framework/Headers/SwiftOCR-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "SwiftOCR.h",
+          'external-contents': "/Users/serhiilondar/projects/GitHub/SwiftOCR/framework/SwiftOCR/SwiftOCR.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/serhiilondar/projects/GitHub/SwiftOCR/framework/build/Release-iphoneos/SwiftOCR.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/serhiilondar/projects/GitHub/SwiftOCR/framework/build/SwiftOCR.build/Release-iphoneos/SwiftOCR.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

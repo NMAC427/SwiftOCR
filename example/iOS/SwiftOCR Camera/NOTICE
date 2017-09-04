@@ -1,0 +1,9 @@
+swift-auto-diagram uses and redistributes the following third-party libraries:
+
+- Vis.js
+  http://visjs.org/
+  The MIT License
+
+- mustache.js
+  https://github.com/janl/mustache.js/
+  The MIT License

@@ -14,8 +14,10 @@ open class SwiftOCRTraining {
     
     //Training Variables
     fileprivate let trainingImageNames = ["TrainingBackground_1.png", "TrainingBackground_2.png", "TrainingBackground_3.png", "TrainingBackground_4.png"]
-    open var trainingFontNames  = ["Arial Narrow", "Arial Narrow Bold"]
+    open var trainingFontNames  = ["HelveticaNeue"]
 
+    var imagesCount = 1
+    
     public  init() {}
     
     /**
@@ -56,7 +58,6 @@ open class SwiftOCRTraining {
         
         let randomCode: () -> String = {
             let randomCharacter: () -> String = {
-                
                 let charArray = Array(recognizableCharacters.characters)
                 let randomDouble = Double(arc4random())/(Double(UINT32_MAX) + 1)
                 let randomIndex  = Int(floor(randomDouble * Double(charArray.count)))
@@ -182,6 +183,11 @@ open class SwiftOCRTraining {
             }
             
             let distortedImage = ocrInstance.preprocessImageForOCR(transformedImage!)
+            
+            
+//            let path = NSString(string:"~/Desktop/OCR-Network-Images/\(imagesCount).png").expandingTildeInPath
+//            _ = distortedImage.pngWrite(to: URL(string: "file://\(path)")!)
+//            imagesCount += 1
             
             //Generate Training set
             

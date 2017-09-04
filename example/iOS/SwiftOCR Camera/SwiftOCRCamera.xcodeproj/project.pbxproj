@@ -10,12 +10,19 @@
 		375846911CDA64A90058F3EE /* SwiftOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3758468A1CDA649E0058F3EE /* SwiftOCR.framework */; };
 		375846921CDA64A90058F3EE /* SwiftOCR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3758468A1CDA649E0058F3EE /* SwiftOCR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37E120941CDA5E6B00FC2701 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E120931CDA5E6B00FC2701 /* AppDelegate.swift */; };
-		37E120961CDA5E6B00FC2701 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E120951CDA5E6B00FC2701 /* ViewController.swift */; };
 		37E120991CDA5E6B00FC2701 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37E120971CDA5E6B00FC2701 /* Main.storyboard */; };
 		37E1209B1CDA5E6B00FC2701 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37E1209A1CDA5E6B00FC2701 /* Assets.xcassets */; };
 		37E1209E1CDA5E6B00FC2701 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37E1209C1CDA5E6B00FC2701 /* LaunchScreen.storyboard */; };
 		37FC9A931DDB0B8900393DC9 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D876A1CEE10B200952521 /* GPUImage.framework */; };
 		37FC9A941DDB0B8900393DC9 /* GPUImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 374D876A1CEE10B200952521 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		92CC84301ED35C0000767706 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CC842C1ED35C0000767706 /* MainRouter.swift */; };
+		92CC84311ED35C0000767706 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CC842D1ED35C0000767706 /* MainViewController.swift */; };
+		92CC84321ED35C0000767706 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CC842F1ED35C0000767706 /* SettingsViewController.swift */; };
+		92CC84341ED35C0E00767706 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CC84331ED35C0E00767706 /* MainPresenter.swift */; };
+		92CC84361ED3793700767706 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CC84351ED3793700767706 /* SettingsRouter.swift */; };
+		92CC84381ED3794400767706 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CC84371ED3794400767706 /* SettingsPresenter.swift */; };
+		92F599ED1ED2432500E2533F /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F599E71ED2432500E2533F /* Expression.swift */; };
+		92F599EE1ED2432500E2533F /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F599E91ED2432500E2533F /* SettingsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,13 +102,20 @@
 /* Begin PBXFileReference section */
 		374D87611CEE10B100952521 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "../../../framework/SwiftOCR/GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
 		375846801CDA649D0058F3EE /* SwiftOCR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftOCR.xcodeproj; path = ../../../framework/SwiftOCR.xcodeproj; sourceTree = "<group>"; };
-		37E120901CDA5E6B00FC2701 /* SwiftOCR Camera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftOCR Camera.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37E120901CDA5E6B00FC2701 /* SwiftOCRCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftOCRCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E120931CDA5E6B00FC2701 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		37E120951CDA5E6B00FC2701 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		37E120981CDA5E6B00FC2701 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		37E1209A1CDA5E6B00FC2701 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37E1209D1CDA5E6B00FC2701 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37E1209F1CDA5E6B00FC2701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92CC842C1ED35C0000767706 /* MainRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		92CC842D1ED35C0000767706 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		92CC842F1ED35C0000767706 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		92CC84331ED35C0E00767706 /* MainPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		92CC84351ED3793700767706 /* SettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		92CC84371ED3794400767706 /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		92F599E71ED2432500E2533F /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
+		92F599E91ED2432500E2533F /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +164,7 @@
 		37E120911CDA5E6B00FC2701 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37E120901CDA5E6B00FC2701 /* SwiftOCR Camera.app */,
+				37E120901CDA5E6B00FC2701 /* SwiftOCRCamera.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,8 +172,10 @@
 		37E120921CDA5E6B00FC2701 /* SwiftOCR Camera */ = {
 			isa = PBXGroup;
 			children = (
+				92CC842A1ED35C0000767706 /* Modules */,
+				92F599E61ED2432500E2533F /* Expression */,
+				92F599E81ED2432500E2533F /* Managers */,
 				37E120931CDA5E6B00FC2701 /* AppDelegate.swift */,
-				37E120951CDA5E6B00FC2701 /* ViewController.swift */,
 				37E120971CDA5E6B00FC2701 /* Main.storyboard */,
 				37E1209A1CDA5E6B00FC2701 /* Assets.xcassets */,
 				37E1209C1CDA5E6B00FC2701 /* LaunchScreen.storyboard */,
@@ -168,12 +184,57 @@
 			path = "SwiftOCR Camera";
 			sourceTree = "<group>";
 		};
+		92CC842A1ED35C0000767706 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				92CC842B1ED35C0000767706 /* Main */,
+				92CC842E1ED35C0000767706 /* Settings */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		92CC842B1ED35C0000767706 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				92CC842C1ED35C0000767706 /* MainRouter.swift */,
+				92CC842D1ED35C0000767706 /* MainViewController.swift */,
+				92CC84331ED35C0E00767706 /* MainPresenter.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		92CC842E1ED35C0000767706 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				92CC842F1ED35C0000767706 /* SettingsViewController.swift */,
+				92CC84351ED3793700767706 /* SettingsRouter.swift */,
+				92CC84371ED3794400767706 /* SettingsPresenter.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		92F599E61ED2432500E2533F /* Expression */ = {
+			isa = PBXGroup;
+			children = (
+				92F599E71ED2432500E2533F /* Expression.swift */,
+			);
+			path = Expression;
+			sourceTree = "<group>";
+		};
+		92F599E81ED2432500E2533F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				92F599E91ED2432500E2533F /* SettingsManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		37E1208F1CDA5E6B00FC2701 /* SwiftOCR Camera */ = {
+		37E1208F1CDA5E6B00FC2701 /* SwiftOCRCamera */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37E120A21CDA5E6B00FC2701 /* Build configuration list for PBXNativeTarget "SwiftOCR Camera" */;
+			buildConfigurationList = 37E120A21CDA5E6B00FC2701 /* Build configuration list for PBXNativeTarget "SwiftOCRCamera" */;
 			buildPhases = (
 				37E1208C1CDA5E6B00FC2701 /* Sources */,
 				37E1208D1CDA5E6B00FC2701 /* Frameworks */,
@@ -186,9 +247,9 @@
 				375846941CDA64A90058F3EE /* PBXTargetDependency */,
 				37FC9A961DDB0B8900393DC9 /* PBXTargetDependency */,
 			);
-			name = "SwiftOCR Camera";
+			name = SwiftOCRCamera;
 			productName = "SwiftOCR Camera";
-			productReference = 37E120901CDA5E6B00FC2701 /* SwiftOCR Camera.app */;
+			productReference = 37E120901CDA5E6B00FC2701 /* SwiftOCRCamera.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -203,11 +264,13 @@
 				TargetAttributes = {
 					37E1208F1CDA5E6B00FC2701 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 22AFPHX3AU;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 37E1208B1CDA5E6B00FC2701 /* Build configuration list for PBXProject "SwiftOCR Camera" */;
+			buildConfigurationList = 37E1208B1CDA5E6B00FC2701 /* Build configuration list for PBXProject "SwiftOCRCamera" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -230,7 +293,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				37E1208F1CDA5E6B00FC2701 /* SwiftOCR Camera */,
+				37E1208F1CDA5E6B00FC2701 /* SwiftOCRCamera */,
 			);
 		};
 /* End PBXProject section */
@@ -298,8 +361,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37E120961CDA5E6B00FC2701 /* ViewController.swift in Sources */,
+				92CC84301ED35C0000767706 /* MainRouter.swift in Sources */,
+				92CC84361ED3793700767706 /* SettingsRouter.swift in Sources */,
 				37E120941CDA5E6B00FC2701 /* AppDelegate.swift in Sources */,
+				92F599EE1ED2432500E2533F /* SettingsManager.swift in Sources */,
+				92F599ED1ED2432500E2533F /* Expression.swift in Sources */,
+				92CC84381ED3794400767706 /* SettingsPresenter.swift in Sources */,
+				92CC84311ED35C0000767706 /* MainViewController.swift in Sources */,
+				92CC84341ED35C0E00767706 /* MainPresenter.swift in Sources */,
+				92CC84321ED35C0000767706 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,13 +505,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 22AFPHX3AU;
 				INFOPLIST_FILE = "SwiftOCR Camera/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Camera-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = com.slon.testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0.1;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -452,20 +524,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 22AFPHX3AU;
 				INFOPLIST_FILE = "SwiftOCR Camera/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "camenisch.nicolas.SwiftOCR-Camera-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = com.slon.testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0.1;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		37E1208B1CDA5E6B00FC2701 /* Build configuration list for PBXProject "SwiftOCR Camera" */ = {
+		37E1208B1CDA5E6B00FC2701 /* Build configuration list for PBXProject "SwiftOCRCamera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37E120A01CDA5E6B00FC2701 /* Debug */,
@@ -474,7 +548,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37E120A21CDA5E6B00FC2701 /* Build configuration list for PBXNativeTarget "SwiftOCR Camera" */ = {
+		37E120A21CDA5E6B00FC2701 /* Build configuration list for PBXNativeTarget "SwiftOCRCamera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37E120A31CDA5E6B00FC2701 /* Debug */,

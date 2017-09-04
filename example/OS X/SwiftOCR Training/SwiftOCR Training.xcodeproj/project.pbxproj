@@ -32,6 +32,7 @@
 		37CCABEC1CD8D03600ECA264 /* CrossPlatformSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD81CD8D03600ECA264 /* CrossPlatformSupport.swift */; };
 		37CCABED1CD8D03600ECA264 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABD91CD8D03600ECA264 /* Extensions.swift */; };
 		37CCABEE1CD8D03600ECA264 /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCABDA1CD8D03600ECA264 /* UnionFind.swift */; };
+		92B7CDFB1EC20C5F0063804A /* NSImage+File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B7CDFA1EC20C5F0063804A /* NSImage+File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		37CCABD81CD8D03600ECA264 /* CrossPlatformSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPlatformSupport.swift; sourceTree = "<group>"; };
 		37CCABD91CD8D03600ECA264 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		37CCABDA1CD8D03600ECA264 /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
+		92B7CDFA1EC20C5F0063804A /* NSImage+File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSImage+File.swift"; path = "../../example/OS X/SwiftOCR Training/SwiftOCR Training/NSImage+File.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 		37CCABDC1CD8D03600ECA264 /* SwiftOCR */ = {
 			isa = PBXGroup;
 			children = (
+				92B7CDFA1EC20C5F0063804A /* NSImage+File.swift */,
 				37CCABC41CD8D03600ECA264 /* SwiftOCR.swift */,
 				37CCABC51CD8D03600ECA264 /* SwiftOCRTraining.swift */,
 				37CCABC61CD8D03600ECA264 /* OCR-Network */,
@@ -347,6 +350,7 @@
 				37711DB71CD7A84D00DC6B43 /* ButtonTableCellView.swift in Sources */,
 				37CCABE61CD8D03600ECA264 /* FFNN.swift in Sources */,
 				37CCABEC1CD8D03600ECA264 /* CrossPlatformSupport.swift in Sources */,
+				92B7CDFB1EC20C5F0063804A /* NSImage+File.swift in Sources */,
 				37CCABEB1CD8D03600ECA264 /* Vector.swift in Sources */,
 				37CCABE51CD8D03600ECA264 /* FFNN+Storage.swift in Sources */,
 				37CCABED1CD8D03600ECA264 /* Extensions.swift in Sources */,

@@ -1,43 +1,46 @@
 //
-//  ViewController.swift
-//  SwiftOCR Camera
+//  MainPresenter.swift
+//  SwiftOCRCamera
 //
-//  Created by Nicolas Camenisch on 04.05.16.
-//  Copyright © 2016 Nicolas Camenisch. All rights reserved.
+//  Created by Serhii Londar on 5/22/17.
+//  Copyright © 2017 Nicolas Camenisch. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import SwiftOCR
 import AVFoundation
 
-extension UIImage {
-    func detectOrientationDegree () -> CGFloat {
-        switch imageOrientation {
-        case .right, .rightMirrored:    return 90
-        case .left, .leftMirrored:      return -90
-        case .up, .upMirrored:          return 180
-        case .down, .downMirrored:      return 0
+class MainPresenter {
+    var view: MainViewController?
+    var router: MainRouter?
+    
+    
+    init(view: MainViewController, router: MainRouter) {
+        self.view = view
+        self.router = router
+    }
+    
+    var stillImageOutput: AVCaptureStillImageOutput!
+    let captureSession = AVCaptureSession()
+    let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+    let ocrInstance = SwiftOCR()
+    
+    var timer: Timer?
+    var working = false
+    
+    func startTimer() {
+        self.stopTimer()
+        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(SettingsManager.shared.frequency), target: self, selector: #selector(scanImage), userInfo: nil, repeats: true)
+    }
+    
+    func stopTimer() {
+        if self.timer != nil {
+            self.timer?.invalidate()
+            self.timer = nil
         }
     }
-}
-
-class ViewController: UIViewController {
-    // MARK: - Outlets
-    @IBOutlet weak var cameraView: UIView!
-    @IBOutlet weak var viewFinder: UIView!
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var label: UILabel!
     
-    // MARK: - Private Properties
-    fileprivate var stillImageOutput: AVCaptureStillImageOutput!
-    fileprivate let captureSession = AVCaptureSession()
-    fileprivate let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-    private let ocrInstance = SwiftOCR()
-    
-    // MARK: - View LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // start camera init
+    func viewDidLoad() {
         DispatchQueue.global(qos: .userInitiated).async {
             if self.device != nil {
                 self.configureCameraForUse()
@@ -45,8 +48,29 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: - IBActions
-    @IBAction func takePhotoButtonPressed (_ sender: UIButton) {
+    func viewWillDisappear(_ animated: Bool) {
+        self.stopTimer()
+    }
+    
+    func takePhoto() {
+        if SettingsManager.shared.frequency > 0 {
+            if working {
+                working = false
+                self.stopTimer()
+            } else {
+                working = true
+                self.startTimer()
+            }
+        } else {
+            self.scanImage()
+        }
+    }
+    
+    func openSettings() {
+        self.router?.openSettings()
+    }
+    
+    @objc func scanImage() {
         DispatchQueue.global(qos: .userInitiated).async {
             let capturedType = self.stillImageOutput.connection(withMediaType: AVMediaTypeVideo)
             self.stillImageOutput.captureStillImageAsynchronously(from: capturedType) { [weak self] buffer, error -> Void in
@@ -55,10 +79,15 @@ class ViewController: UIViewController {
                     let image = UIImage(data: imageData!)
                     
                     let croppedImage = self?.prepareImageForCrop(using: image!)
-                    self?.ocrInstance.recognize(croppedImage!) { [weak self] recognizedString in
+                    self?.ocrInstance.recognize(croppedImage!) { [weak self] recognizedString, rect in
                         DispatchQueue.main.async {
-                            self?.label.text = recognizedString
-                            print(self?.ocrInstance.currentOCRRecognizedBlobs ?? "Recoginzed Blob is empty")
+                            do {
+                                let result = try Expression(recognizedString).evaluate()
+                                
+                                self?.view?.updateLabelWithResult(recognizedString, result: result, rect: rect)
+                            } catch {
+                                self?.view?.updateLabelWithError("\(error)")
+                            }
                         }
                     }
                 } else {
@@ -68,10 +97,10 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func sliderValueDidChange(_ sender: UISlider) {
+    func sliderValueDidChange(_ value: CGFloat) {
         do {
             try device!.lockForConfiguration()
-            var zoomScale = CGFloat(slider.value * 10.0)
+            var zoomScale = value
             let zoomFactor = device?.activeFormat.videoMaxZoomFactor
             
             if zoomScale < 1 {
@@ -86,11 +115,8 @@ class ViewController: UIViewController {
             print("captureDevice?.lockForConfiguration() denied")
         }
     }
-}
-
-extension ViewController {
-    // MARK: AVFoundation
-    fileprivate func configureCameraForUse () {
+    
+    func configureCameraForUse () {
         self.stillImageOutput = AVCaptureStillImageOutput()
         let fullResolution = UIDevice.current.userInterfaceIdiom == .phone && max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) < 568.0
         
@@ -107,7 +133,7 @@ extension ViewController {
         }
     }
     
-    private func prepareCaptureSession () {
+    func prepareCaptureSession () {
         do {
             self.captureSession.addInput(try AVCaptureDeviceInput(device: self.device))
         } catch {
@@ -116,7 +142,7 @@ extension ViewController {
         
         // layer customization
         let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        previewLayer?.frame.size = self.cameraView.frame.size
+        previewLayer?.frame.size = (self.view?.cameraView.frame.size)!
         previewLayer?.frame.origin = CGPoint.zero
         previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
         
@@ -147,7 +173,7 @@ extension ViewController {
         }
         
         DispatchQueue.main.async(execute: {
-            self.cameraView.layer.addSublayer(previewLayer!)
+            self.view?.cameraView.layer.addSublayer(previewLayer!)
             self.captureSession.startRunning()
         })
     }
@@ -205,5 +231,4 @@ extension ViewController {
         
         return UIImage(cgImage: scaledCGImage!)
     }
-    
 }

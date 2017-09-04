@@ -19,7 +19,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     @IBOutlet weak var accuracyLabel: NSTextField!
     
     var allFontNames      = [String]()
-    var selectedFontNames = [String]()
+    var selectedFontNames = ["HelveticaNeue"] //["HelveticaNeue", "HelveticaNeue-Bold", "HelveticaNeue-BoldItalic", "HelveticaNeue-Light", "HelveticaNeue-Italic",  "HelveticaNeue-UltraLightItalic", "HelveticaNeue-CondensedBold", "HelveticaNeue-MediumItalic", "HelveticaNeue-Thin", "HelveticaNeue-Medium", "HelveticaNeue-ThinItalic", "HelveticaNeue-LightItalic", "HelveticaNeue-UltraLight", "HelveticaNeue-CondensedBlack"]
     var isTraining        = false
 
     let trainingInstance  = SwiftOCRTraining()

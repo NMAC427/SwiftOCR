@@ -1,0 +1,10 @@
+framework module SwiftOCR {
+  umbrella header "SwiftOCR.h"
+
+  export *
+  module * { export * }
+}
+
+module SwiftOCR.__Swift {
+    exclude header "SwiftOCR-Swift.h"
+}

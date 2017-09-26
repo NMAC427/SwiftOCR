@@ -112,7 +112,7 @@ open class SwiftOCR {
                          recognizedString.append(recognizedChar)
                          */
                         
-                        for (networkIndex, _) in networkResult.enumerated().sorted(by: {$0.0.element > $0.1.element}) {
+                        for (networkIndex, _) in networkResult.enumerated().sorted(by: { $0.element > $1.element }) {
                             let character = indexToCharacter(networkIndex)
                             
                             guard checkWhiteAndBlackListForCharacter(character) else {
@@ -378,10 +378,9 @@ open class SwiftOCR {
                     continue
                 }
                 
-                let transposedData = Array(data[minY...maxY].map({return $0[(minX + 2)...(maxX - 2)]})).transpose() // [y][x] -> [x][y]
-                let reducedMaxIndexArray = transposedData.map({return $0.reduce(0, {return UInt32($0.0) + UInt32($0.1)})}) //Covert to UInt32 to prevent overflow
-                let maxIndex = reducedMaxIndexArray.enumerated().max(by: {return $0.1 < $1.1})?.0 ?? 0
-                
+                let transposedData = Array(data[minY...maxY].map({ $0[(minX + 2)...(maxX - 2)]})).transpose() // [y][x] -> [x][y]
+                let reducedMaxIndexArray = transposedData.map({ $0.reduce(0, { UInt32($0) + UInt32($1) }) })
+                let maxIndex = reducedMaxIndexArray.enumerated().max(by: { $0.1 < $1.1})?.0 ?? 0
                 
                 let cutXPosition   = minX + 2 + maxIndex
                 
@@ -456,8 +455,7 @@ open class SwiftOCR {
                 outputImages.append((croppedImage, rect))
             }
         }
-        
-        outputImages.sort(by: {return $0.0.1.origin.x < $0.1.1.origin.x})
+        outputImages.sort { $0.1.origin.x < $1.1.origin.x }
         return outputImages
         
     }
@@ -706,7 +704,7 @@ public struct SwiftOCRRecognizedBlob {
     public let boundingBox:              CGRect!
     
     init(charactersWithConfidence: [(character: Character, confidence: Float)]!, boundingBox: CGRect) {
-        self.charactersWithConfidence = charactersWithConfidence.sorted(by: {return $0.0.confidence > $0.1.confidence})
+        self.charactersWithConfidence = charactersWithConfidence.sorted(by: { $0.confidence > $1.confidence })
         self.boundingBox = boundingBox
     }
     

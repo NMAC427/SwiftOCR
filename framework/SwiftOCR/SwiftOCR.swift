@@ -36,8 +36,9 @@ public var globalNetwork = FFNN.fromFile(Bundle(for: SwiftOCR.self).url(forResou
 
 open class SwiftOCR {
     
-    fileprivate     var network = globalNetwork
-    
+	fileprivate		var characters = recognizableCharacters
+	fileprivate     var network = globalNetwork
+	
     //MARK: Setup
     
     ///SwiftOCR's delegate
@@ -65,11 +66,23 @@ open class SwiftOCR {
     //MARK: Init
     public   init(){}
     
-    public   init(image: OCRImage, delegate: SwiftOCRDelegate?, _ completionHandler: @escaping (String) -> Void){
-        self.delegate = delegate
-        self.recognize(image, completionHandler)
-    }
-    
+	public   init(recognizableCharacters: String, network: FFNN) {
+		self.characters = recognizableCharacters
+		self.network = network
+	}
+	
+	public   init(image: OCRImage, delegate: SwiftOCRDelegate?, _ completionHandler: @escaping (String) -> Void){
+		self.delegate = delegate
+		self.recognize(image, completionHandler)
+	}
+	
+	public   init(recognizableCharacters: String, network: FFNN, image: OCRImage, delegate: SwiftOCRDelegate?, _ completionHandler: @escaping (String) -> Void) {
+		self.characters = recognizableCharacters
+		self.network = network
+		self.delegate = delegate
+		self.recognize(image, completionHandler)
+	}
+	
     /**
      
      Performs ocr on the image.
@@ -82,7 +95,7 @@ open class SwiftOCR {
     open   func recognize(_ image: OCRImage, _ completionHandler: @escaping (String) -> Void){
         
         func indexToCharacter(_ index: Int) -> Character {
-            return Array(recognizableCharacters.characters)[index]
+            return Array(characters.characters)[index]
         }
         
         func checkWhiteAndBlackListForCharacter(_ character: Character) -> Bool {
@@ -108,7 +121,7 @@ open class SwiftOCR {
                     if networkResult.max() >= self.confidenceThreshold {
                        
                         /*
-                         let recognizedChar = Array(recognizableCharacters.characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
+                         let recognizedChar = Array(characters.characters)[networkResult.indexOf(networkResult.maxElement() ?? 0) ?? 0]
                          recognizedString.append(recognizedChar)
                          */
                         

@@ -90,12 +90,7 @@ open class SwiftOCRTraining {
     
         let randomFontAttributes: () -> [NSAttributedStringKey: Any] = {
             
-            #if os(iOS)
-                let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-            #else
-                let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
-            #endif
-            
+            let paragraphStyle       = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
             paragraphStyle.alignment = NSTextAlignment.center
             
             return [.font: randomFont(),

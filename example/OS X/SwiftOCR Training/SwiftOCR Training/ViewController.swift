@@ -31,7 +31,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         
         globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .crossEntropy(average: false))
         
-        allFontNames = NSFontManager.shared().availableFonts
+        allFontNames = NSFontManager.shared.availableFonts
         
         charactersToTrainTextField.delegate = self
         
@@ -44,20 +44,20 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        if tableColumn?.identifier == "0" {
-            let cell = tableView.make(withIdentifier: "fontCell", owner: self) as! NSTableCellView
+        if (tableColumn?.identifier)!.rawValue == "0" {
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "fontCell"), owner: self) as! NSTableCellView
             let fontName = allFontNames[row]
             cell.textField?.stringValue = NSFont(name: fontName, size: 0)?.displayName ?? ""
             return cell
         } else {
-            let cell = tableView.make(withIdentifier: "buttonCell", owner: self) as! ButtonTableCellView
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "buttonCell"), owner: self) as! ButtonTableCellView
             let fontName = allFontNames[row]
             
             if selectedFontNames.contains(fontName) {
                 cell.button.integerValue = 1
             }
             
-            cell.button.identifier = fontName
+            cell.button.identifier = NSUserInterfaceItemIdentifier(rawValue: fontName)
             
             return cell
         }
@@ -66,12 +66,12 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
 
     @objc @IBAction func buttonTableCellViewButtonPressed(_ sender: NSButton) {
         if sender.integerValue == 0 {
-            if let index = selectedFontNames.index(of: sender.identifier ?? "") {
+            if let index = selectedFontNames.index(of: sender.identifier?.rawValue ?? "") {
                 selectedFontNames.remove(at: index)
             }
         } else {
             if let fontName = sender.identifier {
-                selectedFontNames.append(fontName)
+                selectedFontNames.append(fontName.rawValue)
             }
         }
     }

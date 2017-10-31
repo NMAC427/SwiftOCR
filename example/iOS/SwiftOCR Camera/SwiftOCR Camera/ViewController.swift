@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     // MARK: - Private Properties
     fileprivate var stillImageOutput: AVCaptureStillImageOutput!
     fileprivate let captureSession = AVCaptureSession()
-    fileprivate let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+    fileprivate let device  = AVCaptureDevice.default(for: AVMediaType.video)
     private let ocrInstance = SwiftOCR()
     
     // MARK: - View LifeCycle
@@ -48,22 +48,26 @@ class ViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func takePhotoButtonPressed (_ sender: UIButton) {
         DispatchQueue.global(qos: .userInitiated).async {
-            let capturedType = self.stillImageOutput.connection(withMediaType: AVMediaTypeVideo)
-            self.stillImageOutput.captureStillImageAsynchronously(from: capturedType) { [weak self] buffer, error -> Void in
-                if buffer != nil {
-                    let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
-                    let image = UIImage(data: imageData!)
-                    
-                    let croppedImage = self?.prepareImageForCrop(using: image!)
-                    self?.ocrInstance.recognize(croppedImage!) { [weak self] recognizedString in
-                        DispatchQueue.main.async {
-                            self?.label.text = recognizedString
-                            print(self?.ocrInstance.currentOCRRecognizedBlobs ?? "Recoginzed Blob is empty")
-                        }
-                    }
-                } else {
+            guard let capturedType = self.stillImageOutput.connection(with: AVMediaType.video) else {
+                return
+            }
+            
+            self.stillImageOutput.captureStillImageAsynchronously(from: capturedType) { [weak self] optionalBuffer, error -> Void in
+                guard let buffer = optionalBuffer else {
                     return
                 }
+                
+                let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
+                let image = UIImage(data: imageData!)
+                
+                let croppedImage = self?.prepareImageForCrop(using: image!)
+                self?.ocrInstance.recognize(croppedImage!) { [weak self] recognizedString in
+                    DispatchQueue.main.async {
+                        self?.label.text = recognizedString
+                        print(self?.ocrInstance.currentOCRRecognizedBlobs ?? "Recoginzed Blob is empty")
+                    }
+                }
+                
             }
         }
     }
@@ -95,9 +99,9 @@ extension ViewController {
         let fullResolution = UIDevice.current.userInterfaceIdiom == .phone && max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) < 568.0
         
         if fullResolution {
-            self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto
+            self.captureSession.sessionPreset = AVCaptureSession.Preset.photo
         } else {
-            self.captureSession.sessionPreset = AVCaptureSessionPreset1280x720
+            self.captureSession.sessionPreset = AVCaptureSession.Preset.hd1280x720
         }
         
         self.captureSession.addOutput(self.stillImageOutput)
@@ -109,16 +113,16 @@ extension ViewController {
     
     private func prepareCaptureSession () {
         do {
-            self.captureSession.addInput(try AVCaptureDeviceInput(device: self.device))
+            self.captureSession.addInput(try AVCaptureDeviceInput(device: self.device!))
         } catch {
             print("AVCaptureDeviceInput Error")
         }
         
         // layer customization
         let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        previewLayer?.frame.size = self.cameraView.frame.size
-        previewLayer?.frame.origin = CGPoint.zero
-        previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+        previewLayer.frame.size = self.cameraView.frame.size
+        previewLayer.frame.origin = CGPoint.zero
+        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
         // device lock is important to grab data correctly from image
         do {
@@ -132,8 +136,7 @@ extension ViewController {
         
         //Set initial Zoom scale
         do {
-            let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-            try device?.lockForConfiguration()
+            try self.device?.lockForConfiguration()
             
             let zoomScale: CGFloat = 2.5
             
@@ -147,7 +150,7 @@ extension ViewController {
         }
         
         DispatchQueue.main.async(execute: {
-            self.cameraView.layer.addSublayer(previewLayer!)
+            self.cameraView.layer.addSublayer(previewLayer)
             self.captureSession.startRunning()
         })
     }
@@ -155,7 +158,7 @@ extension ViewController {
     // MARK: Image Processing
     fileprivate func prepareImageForCrop (using image: UIImage) -> UIImage {
         let degreesToRadians: (CGFloat) -> CGFloat = {
-            return $0 / 180.0 * CGFloat(M_PI)
+            return $0 / 180.0 * CGFloat(Double.pi)
         }
         
         let imageOrientation = image.imageOrientation

@@ -13,7 +13,7 @@ class ButtonTableCellView: NSTableCellView {
 
     override func prepareForReuse() {
         button.integerValue = 0
-        button.identifier   = ""
+        button.identifier   = NSUserInterfaceItemIdentifier(rawValue: "")
     }
     
 }

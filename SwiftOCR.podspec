@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SwiftOCR"
-  s.version      = "1.0"
+  s.version      = "1.1"
   s.summary      = "OCR engine written in swift"
 
   # This description is used to generate tags and improve search results.

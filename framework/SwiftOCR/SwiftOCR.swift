@@ -105,7 +105,7 @@ open class SwiftOCR {
             return whiteList && blackList
         }
 
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).sync {
             let preprocessedImage      = self.delegate?.preprocessImageForOCR(image) ?? self.preprocessImageForOCR(image)
             
             let blobs                  = self.extractBlobs(preprocessedImage)
@@ -179,7 +179,7 @@ open class SwiftOCR {
      */
     
     open   func recognizeInRect(_ image: OCRImage, rect: CGRect, completionHandler: @escaping (String) -> Void){
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).sync {
             #if os(iOS)
                 let cgImage        = image.cgImage
                 let croppedCGImage = cgImage?.cropping(to: rect)!

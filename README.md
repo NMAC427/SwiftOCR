@@ -39,6 +39,10 @@ First, SwiftOCR binarizes the input image. Afterwards it extracts the characters
 
 ## How to use it?
 
+SwiftOCR is available through CocoaPods. To install it, simply add the following line to your Podfile:
+
+`pod 'SwiftOCR'`
+
 If you ever used Tesseract you know how exhausting it can be to implement OCR into your project. 
 SwiftOCR is the exact opposite of Tesseract. It can be implemented using **just 6 lines of code**. 
 

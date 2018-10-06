@@ -88,7 +88,7 @@ open class SwiftOCRTraining {
             return OCRFont(name: randomFontName(), size: 45 + randomFloat(5))!
         }
     
-        let randomFontAttributes: () -> [NSAttributedStringKey: Any] = {
+        let randomFontAttributes: () -> [NSAttributedString.Key: Any] = {
             
             let paragraphStyle       = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
             paragraphStyle.alignment = NSTextAlignment.center

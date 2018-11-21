@@ -92,7 +92,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "framework/SwiftOCR/*.swift", "framework/SwiftOCR/FFNN/*.swift" 
-
+  s.swift_version = '4.0'
   # s.public_header_files = "Classes/**/*.h"
 
 
@@ -131,7 +131,6 @@ Pod::Spec.new do |s|
 
   # s.requires_arc = true
 
-  s.xcconfig = { "SWIFT_VERSION" => "3.0.1" }
   s.dependency "GPUImage"
 
 end

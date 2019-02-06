@@ -35,7 +35,9 @@ I did some testing on over 50 difficult images containing alphanumeric codes. Th
 
 ## How does it work?
 
-First, SwiftOCR binarizes the input image. Afterwards it extracts the characters of the image using a technique called [Connected-component labeling](https://en.wikipedia.org/wiki/Connected-component_labeling). Finally the seperated characters get converted into numbers which then get feed into the neural network.
+1) Input image is thresholded (binarized).
+2) Characters are extracted from the image, using a technique called [Connected-component labeling](https://en.wikipedia.org/wiki/Connected-component_labeling).
+3) Separated characters are converted into numbers, which are then fed into the neural network.
 
 ## How to use it?
 

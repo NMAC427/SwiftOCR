@@ -534,9 +534,9 @@ open class SwiftOCR {
      
      */
     
-    open func preprocessImageForOCR(_ image:OCRImage) -> OCRImage {
+    open func preprocessImageForOCR(_ image: OCRImage, blurRadiusInPixels: CGFloat = 9) -> OCRImage {
         
-        func getDodgeBlendImage(_ inputImage: OCRImage) -> OCRImage {
+        func getDodgeBlendImage(_ inputImage: OCRImage, blurRadiusInPixels: CGFloat) -> OCRImage {
             let image  = GPUImagePicture(image: inputImage)
             let image2 = GPUImagePicture(image: inputImage)
             
@@ -547,7 +547,7 @@ open class SwiftOCR {
             let blurFilter      = GPUImageBoxBlurFilter()
             let opacityFilter   = GPUImageOpacityFilter()
             
-            blurFilter.blurRadiusInPixels = 9
+            blurFilter.blurRadiusInPixels = blurRadiusInPixels
             opacityFilter.opacity         = 0.93
             
             image?       .addTarget(grayFilter)
@@ -588,7 +588,7 @@ open class SwiftOCR {
             return processedImage!
         }
         
-        let dodgeBlendImage        = getDodgeBlendImage(image)
+        let dodgeBlendImage        = getDodgeBlendImage(image, blurRadiusInPixels: blurRadiusInPixels)
         let picture                = GPUImagePicture(image: dodgeBlendImage)
         
         let medianFilter           = GPUImageMedianFilter()

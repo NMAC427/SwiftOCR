@@ -9,10 +9,10 @@ import Accelerate
 
 open class Matrix {
     
-    open let columns: Int
-    open let rows: Int
-    open let shape: (Int, Int)
-    open let size: Int
+    public let columns: Int
+    public let rows: Int
+    public let shape: (Int, Int)
+    public let size: Int
     var flat: Vector
     
     open var vectorView: Vector {

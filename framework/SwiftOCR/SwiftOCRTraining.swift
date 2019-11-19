@@ -57,7 +57,7 @@ open class SwiftOCRTraining {
         let randomCode: () -> String = {
             let randomCharacter: () -> String = {
                 
-                let charArray = Array(recognizableCharacters.characters)
+                let charArray = Array(recognizableCharacters)
                 let randomDouble = Double(arc4random())/(Double(UINT32_MAX) + 1)
                 let randomIndex  = Int(floor(randomDouble * Double(charArray.count)))
                 return String(charArray[randomIndex])
@@ -190,8 +190,8 @@ open class SwiftOCRTraining {
                     
                     let imageData = ocrInstance.convertImageToFloatArray(blob.0)
                     
-                    var imageAnswer = [Float](repeating: 0, count: recognizableCharacters.characters.count)
-                    if let index = Array(recognizableCharacters.characters).index(of: Array(code.characters)[blobIndex]) {
+                    var imageAnswer = [Float](repeating: 0, count: recognizableCharacters.count)
+                    if let index = Array(recognizableCharacters).index(of: Array(code)[blobIndex]) {
                         imageAnswer[index] = 1
                     }
                     
@@ -275,8 +275,8 @@ open class SwiftOCRTraining {
                     for (blobIndex, blob) in blobs.enumerated() {
                         let imageData = ocrInstance.convertImageToFloatArray(blob.0)
                         
-                        var imageAnswer = [Float](repeating: 0, count: recognizableCharacters.characters.count)
-                        if let index = Array(recognizableCharacters.characters).index(of: characters[blobIndex]) {
+                        var imageAnswer = [Float](repeating: 0, count: recognizableCharacters.count)
+                        if let index = Array(recognizableCharacters).index(of: characters[blobIndex]) {
                             imageAnswer[index] = 1
                         }
                         
@@ -308,7 +308,7 @@ open class SwiftOCRTraining {
      */
     
     open   func testOCR(_ completionHandler: (Double) -> Void) {
-        let testData  = generateRealisticCharSet(recognizableCharacters.characters.count)
+        let testData  = generateRealisticCharSet(recognizableCharacters.count)
         
         var correctCount = 0
         var totalCount   = 0
@@ -318,8 +318,8 @@ open class SwiftOCRTraining {
             do {
                 let networkResult = try globalNetwork.update(inputs: i.0)
                 
-                let input      = Array(recognizableCharacters.characters)[i.1.index(of: 1)!]
-                let recognized = Array(recognizableCharacters.characters)[networkResult.index(of: networkResult.max() ?? 0) ?? 0]
+                let input      = Array(recognizableCharacters)[i.1.index(of: 1)!]
+                let recognized = Array(recognizableCharacters)[networkResult.index(of: networkResult.max() ?? 0) ?? 0]
                 
                 print(input, recognized)
                 

@@ -95,12 +95,12 @@ open class SwiftOCR {
     open   func recognize(_ image: OCRImage, _ completionHandler: @escaping (String) -> Void){
         
         func indexToCharacter(_ index: Int) -> Character {
-            return Array(characters.characters)[index]
+            return Array(characters)[index]
         }
         
         func checkWhiteAndBlackListForCharacter(_ character: Character) -> Bool {
-            let whiteList =   characterWhiteList?.characters.contains(character) ?? true
-            let blackList = !(characterBlackList?.characters.contains(character) ?? false)
+            let whiteList =   characterWhiteList?.contains(character) ?? true
+            let blackList = !(characterBlackList?.contains(character) ?? false)
             
             return whiteList && blackList
         }

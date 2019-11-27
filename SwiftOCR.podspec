@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SwiftOCR"
-  s.version      = "1.1"
+  s.version      = "1.2"
   s.summary      = "OCR engine written in swift"
 
   # This description is used to generate tags and improve search results.
@@ -68,8 +68,8 @@ Pod::Spec.new do |s|
   # s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
-  s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.10"
+  s.ios.deployment_target = "13.0"
+  s.osx.deployment_target = "10.15"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
@@ -131,7 +131,7 @@ Pod::Spec.new do |s|
 
   # s.requires_arc = true
 
-  s.xcconfig = { "SWIFT_VERSION" => "3.0.1" }
+  s.xcconfig = { "SWIFT_VERSION" => "5.1.2" }
   
 
 end

@@ -359,14 +359,14 @@ public struct FFNN {
 public extension FFNN {
     
     /// Returns an NSURL for a document with the given filename in the default documents directory.
-    public static func getFileURL(_ filename: String) -> URL {
+    static func getFileURL(_ filename: String) -> URL {
         let manager = FileManager.default
         let dirURL = try! manager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         return dirURL.appendingPathComponent(filename)
     }
     
     /// Reads a FFNN stored in a file at the given URL.
-    public static func read(_ url: URL) -> FFNN? {
+    static func read(_ url: URL) -> FFNN? {
         guard let data = try? Data(contentsOf: url) else {
             return nil
         }
@@ -400,7 +400,7 @@ public extension FFNN {
     }
     
     /// Writes the current state of the FFNN to a file at the given URL.
-    public func write(_ url: URL) {
+    func write(_ url: URL) {
         var storage = [String : AnyObject]()
         storage["inputs"] = self.numInputs as AnyObject?
         storage["hidden"] = self.numHidden as AnyObject?

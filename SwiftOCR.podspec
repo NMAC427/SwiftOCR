@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SwiftOCR"
-  s.version      = "1.2"
+  s.version      = "1.2.1"
   s.summary      = "OCR engine written in swift"
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/garnele007/SwiftOCR.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/garnele007/SwiftOCR.git", :tag => s.version }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -131,7 +131,7 @@ Pod::Spec.new do |s|
 
   # s.requires_arc = true
 
-  s.xcconfig = { "SWIFT_VERSION" => "5.1.2" }
+  s.swift_versions = ['5.1', '5.2']
   
 
 end

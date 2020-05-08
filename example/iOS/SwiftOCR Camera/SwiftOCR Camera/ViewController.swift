@@ -17,6 +17,7 @@ extension UIImage {
         case .left, .leftMirrored:      return -90
         case .up, .upMirrored:          return 180
         case .down, .downMirrored:      return 0
+        @unknown default: return 0
         }
     }
 }
@@ -74,14 +75,14 @@ class ViewController: UIViewController {
     
     @IBAction func sliderValueDidChange(_ sender: UISlider) {
         do {
-            try device!.lockForConfiguration()
+            try device?.lockForConfiguration()
             var zoomScale = CGFloat(slider.value * 10.0)
-            let zoomFactor = device?.activeFormat.videoMaxZoomFactor
+            let zoomFactor = device?.activeFormat.videoMaxZoomFactor ?? CGFloat(1.0)
             
             if zoomScale < 1 {
                 zoomScale = 1
-            } else if zoomScale > zoomFactor! {
-                zoomScale = zoomFactor!
+            } else if zoomScale > zoomFactor {
+                zoomScale = zoomFactor
             }
             
             device?.videoZoomFactor = zoomScale

@@ -309,7 +309,7 @@ open class SwiftOCR {
         
         for label in 0...currentLabel {
             if label != 255 {
-                labelUnionSetOfXArray[label] = parentArray.index(of: labelsUnion.setOf(label) ?? 255)
+                labelUnionSetOfXArray[label] = parentArray.firstIndex(of: labelsUnion.setOf(label) ?? 255)
             }
         }
         

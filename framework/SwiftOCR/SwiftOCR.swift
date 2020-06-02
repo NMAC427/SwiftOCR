@@ -581,7 +581,7 @@ open class SwiftOCR {
             let orientationUp = UIImage.Orientation.up
             #else
             //GPUImage is using a re-definition of the UIImageOrientation for Mac compilation
-            let orientationUp = UIImageOrientation.up
+            let orientationUp = UIImage.Orientation.up
             #endif
             
             var processedImage:OCRImage? = dodgeBlendFilter.imageFromCurrentFramebuffer(with: orientationUp)
@@ -630,7 +630,7 @@ open class SwiftOCR {
         let orientationUp = UIImage.Orientation.up
         #else
         //GPUImage is using a re-definition of the UIImageOrientation for Mac compilation
-        let orientationUp = UIImageOrientation.up
+        let orientationUp = UIImage.Orientation.up
         #endif
         
         var processedImage:OCRImage? = thresholdFilter.imageFromCurrentFramebuffer(with: orientationUp)

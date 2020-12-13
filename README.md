@@ -1,3 +1,10 @@
+<h3 align="center">⛔️ This Project is deprecated and no longer gets maintained!</h3>
+
+Please use Apple's [Vision](https://developer.apple.com/documentation/vision/recognizing_text_in_images) framework instead of SwiftOCR. It is very fast, accurate and much less finicky.
+
+---
+
+![Deprecated](https://img.shields.io/badge/Status-Deprecated-critical)
 ![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)
 ![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftOCR.svg)
 ![Platform](https://img.shields.io/cocoapods/p/SwiftOCR.svg?style=flat)
